@@ -16,6 +16,8 @@
   "bugs": {
     "url": "https://github.com/Arcane-Solutions/project-catwalk/issues"
   },
-  "homepage": "https://github.com/Arcane-Solutions/project-catwalk#readme"
+  "homepage": "https://github.com/Arcane-Solutions/project-catwalk#readme",
+  "devDependencies": {
+    "eslint": "^8.8.0"
+  }
 }
-//
