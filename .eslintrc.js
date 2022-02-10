@@ -22,5 +22,7 @@ module.exports = {
     'no-useless-constructor': 'off',
     'padded-blocks': 'off',
     'react/prefer-stateless-function': 'off',
+    'no-unused-vars': 'off',
+    'import/extensions': 'off',
   },
 };
