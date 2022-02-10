@@ -24,5 +24,6 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'no-unused-vars': 'off',
     'import/extensions': 'off',
+    'no-multiple-empty-lines': 'off',
   },
 };
