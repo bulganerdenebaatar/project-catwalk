@@ -23,7 +23,7 @@ const Title = styled.h1`
   font-weight: 700;
   padding: 10px 40px 10px 40px;
   position: sticky;
-  text-shadow: -2px 3px 0 rgba(52, 168, 152, 66);
+  text-shadow: -1px 2px 0 rgba(52, 250, 250, 66);
   top: 0;
   width: 100%;
 `;
@@ -37,7 +37,7 @@ class App extends React.Component {
     return (
       <Body>
         <Title>
-          The Store
+          The Store?
         </Title>
         <Overview />
         <RatingsAndReviews />
