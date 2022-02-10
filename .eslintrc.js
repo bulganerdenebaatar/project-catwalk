@@ -18,5 +18,9 @@ module.exports = {
     'react',
   ],
   rules: {
+    'no-console': 'off',
+    'no-useless-constructor': 'off',
+    'padded-blocks': 'off',
+    'react/prefer-stateless-function': 'off',
   },
 };
