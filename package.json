@@ -4,8 +4,8 @@
   "description": "a modernized client-facing retail web-portal",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack",
-    "start": "webpack serve",
+    "webpack": "webpack -w",
+    "start": "webpack serve --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,19 +20,26 @@
   },
   "homepage": "https://github.com/Arcane-Solutions/project-catwalk#readme",
   "devDependencies": {
+    "@babel/core": "^7.17.2",
+    "@babel/node": "^7.16.8",
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "babel-loader": "^8.2.3",
     "eslint": "^8.8.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "path": "^0.12.7",
     "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.7.4"
   },
   "dependencies": {
-    "webpack-cli": "^4.9.2",
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
