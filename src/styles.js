@@ -1,14 +1,14 @@
 // Testing whether I can store some common styling options in variables and import them
 
 const colors = {
-  standardBGColor: 'rgb(163, 78, 120)',
+  standardBGColor: 'rgb(107, 41, 97)',
   standardTxtColor: 'rgb(50, 150, 240)',
   standardBorder: '3px solid rgba(52, 168, 192, 0.8)',
 };
 
 const styles = {
   Standard: `
-    background: rgba(220, 110, 150, 0.3);
+    background: rgba(220, 110, 150, 0.8);
     border: 3px solid rgba(52, 168, 192, 0.8);
     border-radius: 20px;
     box-shadow: -3px 3px rgba(89, 255, 255, 0.6);
@@ -20,7 +20,7 @@ const styles = {
     padding: 20px;
 
     &:hover {
-      background: rgba(220, 110, 150, 0.5);
+      background: rgba(220, 110, 150);
     }
 
     h2 {
