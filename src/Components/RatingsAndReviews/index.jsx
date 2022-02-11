@@ -1,13 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { colors, styles } from '../../styles.js';
 
 const RandRStyle = styled.div`
-  border: 3px solid rgba(52, 168, 152, 66);
-  border-radius: 20px;
+  ${styles.Standard};
   height: 200px;
-  max-width: 85%;
-  margin: 20px;
-  padding: 20px;
 `;
 
 function RatingsAndReviews() {

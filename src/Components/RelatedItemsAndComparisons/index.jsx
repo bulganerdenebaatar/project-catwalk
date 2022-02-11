@@ -1,14 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+import { colors, styles } from '../../styles.js';
 
 const RelatedStyle = styled.div`
-  border: 3px solid rgba(52, 168, 152, 66);
-  border-radius: 20px;
-  height: 200px;
-  margin: 20px;
-  max-width: 85%;
-  overflow-x: scroll;
-  padding: 20px;
+  ${styles.Standard};
+  height: 400px;
 `;
 
 function RelatedItemsAndComparisons() {
