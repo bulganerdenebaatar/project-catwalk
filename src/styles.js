@@ -1,7 +1,7 @@
 // Testing whether I can store some common styling options in variables and import them
 
 const colors = {
-  standardBGColor: 'rgb(107, 41, 97)',
+  standardBGColor: 'rgb(120, 100, 160)',
   standardTxtColor: 'rgb(50, 150, 240)',
   standardBorder: '3px solid rgba(52, 168, 192, 0.8)',
 };
@@ -27,8 +27,6 @@ const styles = {
       text-shadow: -1px 1px 1px rgba(60, 230, 230, 0.8);
     },
   `,
-
-
 };
 
 module.exports = {
