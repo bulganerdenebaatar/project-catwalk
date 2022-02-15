@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
+import RatingsBreakdown from './RatingsBreakdown.jsx';
 
 const RandRStyle = styled.div`
   ${styles.Standard};
@@ -9,7 +10,9 @@ const RandRStyle = styled.div`
 
 function RatingsAndReviews() {
   return (
-    <RandRStyle className="ratingsAndReviews">RATINGS AND REVIEWS WILL GO HERE</RandRStyle>
+    <RandRStyle className="ratingsAndReviews">
+      <RatingsBreakdown />
+    </RandRStyle>
   );
 }
 
