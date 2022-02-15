@@ -1,5 +1,6 @@
 import React from 'react';
 import FiveStar from '../FiveStar.jsx';
+import Breakdown from './Breakdown.jsx';
 // Test data
 const ratings = {
   1: '1',
@@ -11,7 +12,12 @@ const ratings = {
 
 function RatingsBreakdown(props) {
   return (
-    <FiveStar ratings={ratings} />
+    <div>
+      <FiveStar ratings={ratings} />
+      {/* <PercentRecommended /> */}
+      <Breakdown ratings={ratings} />
+    </div>
+
   );
 }
 
