@@ -2,14 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import QuestionsList from './QuestionsList.jsx';
 import SearchForm from './SearchForm.jsx';
+import { colors, styles } from '../../styles.js';
+
 
 const QandAStyle = styled.div`
-  border: 3px solid rgba(52, 168, 152, 66);
-  border-radius: 20px;
-  min-height: 490px;
-  max-width: 85%;
-  margin: 20px;
-  padding: 20px;
+  ${styles.Standard};
 `;
 
 const exampleData = {

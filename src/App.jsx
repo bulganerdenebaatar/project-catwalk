@@ -1,29 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Overview from './Components/Overview/index.jsx';
 import RatingsAndReviews from './Components/RatingsAndReviews/index.jsx';
 import QuestionsAndAnswers from './Components/QuestionsAndAnswers/index.jsx';
 import RelatedItemsAndComparisons from './Components/RelatedItemsAndComparisons/index.jsx';
+import { colors, styles } from './styles.js';
 
-const Body = styled.body`
-  background-color: rgba(163, 64, 83, 64);
-  color: rgba(127, 150, 240, 94);
-  display: flex;
-  flex-direction: column;
-  font-family: 'Comfortaa', monospace;
-  height: 100%;
-  justify-content: center;
-  position: relative;
-  width: 100%;
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${colors.standardBGColor};
+    color: ${colors.standardTxtColor};
+    display: flex;
+    flex-direction: column;
+    font-family: 'Comfortaa', monospace;
+    justify-content: center;
+    position: relative;
+  }
 `;
 
 const Title = styled.h1`
-  background-color: inherit;
-  color: rgba(127, 150, 240, 94);
+  background-color: ${colors.standardBGColor};
+  color: rgb(80, 155, 255);
   font-weight: 700;
   padding: 10px 40px 10px 40px;
   position: sticky;
-  text-shadow: -1px 2px 0 rgba(52, 250, 250, 66);
+  text-shadow: -2px 2.5px 0 rgba(130, 200, 250, 0.9);
   top: 0;
   width: 100%;
 `;
@@ -35,7 +36,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <Body>
+      <div>
+        <GlobalStyle />
         <Title>
           The Store?
         </Title>
@@ -43,7 +45,7 @@ class App extends React.Component {
         <RatingsAndReviews />
         <RelatedItemsAndComparisons />
         <QuestionsAndAnswers />
-      </Body>
+      </div>
     );
   }
 }
