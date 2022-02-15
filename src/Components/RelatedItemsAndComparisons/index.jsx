@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
+import RelatedProductCards from './RelatedProductCards.jsx';
 
 const RelatedStyle = styled.div`
   ${styles.Standard};
@@ -9,7 +10,9 @@ const RelatedStyle = styled.div`
 
 function RelatedItemsAndComparisons() {
   return (
-    <RelatedStyle className="relatedAndComparisons">RELATED ITEMS AND COMPARISONS WILL GO HERE</RelatedStyle>
+    <RelatedStyle className="relatedAndComparisons">
+      <RelatedProductCards />
+    </RelatedStyle>
   );
 }
 
