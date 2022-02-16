@@ -20,7 +20,7 @@ const ProductInteractions = styled.div`
 
 function Overview() {
   return (
-    <OverviewStyle className="overview">
+    <OverviewStyle id="overview" data-testid="overview">
       <MainView />
       <ProductInteractions>
         <ProductInfo />
