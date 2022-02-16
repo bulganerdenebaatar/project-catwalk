@@ -19,9 +19,21 @@ const CardStyle = styled.div`
   border: solid;
   background: blue;
   z-index: 2;
+  width: 250px;
+  height: 400px;
+
+  .div__pic {
+    width: 100%;
+    height: 250;
+  }
 
   .pic {
-    height: 30px;
+    width: 100%;
+    height: auto;
+  }
+
+  p {
+    margin: 0;
   }
 
 `;
@@ -31,12 +43,17 @@ function ProductCard() {
   return (
     <CardStyle className="product__card">
       <div>Star</div>
+      <div className="div__pic">
       <img src={productStyleData.results[0].photos[0].thumbnail_url} alt="placeholder for Product img" className="pic" />
+      </div>
       <div className="product__info">
-        <div>{productIdData.category}</div>
-        <div>{productIdData.name}</div>
-        <div>{productIdData.slogan}</div>
-        <div>{productIdData.default_price}</div>
+        <p>{productIdData.category}</p>
+        <p>{productIdData.name}</p>
+        <p>{productIdData.slogan}</p>
+        <p>
+          $
+          {productIdData.default_price}
+        </p>
         <FiveStar ratings={ratings} />
       </div>
     </CardStyle>
