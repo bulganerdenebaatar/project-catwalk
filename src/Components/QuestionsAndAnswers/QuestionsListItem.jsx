@@ -2,9 +2,14 @@ import React, { useState } from 'react';
 
 function QuestionsListItem(props) {
   return (
-    <p>
-      Q: {props.item}
-    </p>
+    <div className="list-item">
+      <p>
+        Q: {props.question}
+      </p>
+      {props.answers.length !== 0
+        ? props.answers.map((answer) =>
+          <p>A: {answer}</p>) : <p>A: N/A</p>}
+    </div>
   );
 }
 
