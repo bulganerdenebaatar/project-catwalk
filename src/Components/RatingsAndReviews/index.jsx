@@ -5,7 +5,8 @@ import RatingsBreakdown from './RatingsBreakdown.jsx';
 
 const RandRStyle = styled.div`
   ${styles.Standard};
-  height: 200px;
+  height: fit-content;
+  width: 100%;
 `;
 
 function RatingsAndReviews() {
