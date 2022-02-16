@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Star = styled.span`
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1em;
   color: #ddd;
 
   &:after {
