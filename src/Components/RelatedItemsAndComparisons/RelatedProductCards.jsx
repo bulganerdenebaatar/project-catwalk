@@ -51,7 +51,7 @@ const CardStyle = styled.div`
 
 function ProductCard() {
   return (
-    <CardStyle className="product__card">
+    <CardStyle className="product__card" id="productCard" data-testid="productCard">
       <div className="div__pic">
         <div className="product__topStar">Star</div>
         <img src={productStyleData.results[0].photos[0].thumbnail_url} alt="placeholder for Product img" className="pic" />

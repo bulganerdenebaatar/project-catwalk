@@ -81,7 +81,7 @@ function QuestionsAndAnswers() {
         setSearched={setSearched}
         handleSubmit={handleSubmit}
       />
-      <QuestionsList questions={searched} />
+      <QuestionsList questions={searched} data-testid="questions-list" />
       <ExpandButton />
       <AskForm />
     </QandAStyle>
