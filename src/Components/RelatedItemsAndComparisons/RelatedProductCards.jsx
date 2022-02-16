@@ -17,23 +17,33 @@ const ratings = {
 
 const CardStyle = styled.div`
   border: solid;
-  background: blue;
+  background: #fafafa;
   z-index: 2;
   width: 250px;
   height: 400px;
 
+  .product__topStar {
+    position: absolute;
+    z-index: 3;
+    right: 0;
+  }
+
   .div__pic {
     width: 100%;
-    height: 250;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
   }
 
   .pic {
-    width: 100%;
-    height: auto;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
   }
 
   p {
-    margin: 0;
+    margin: 5px;
   }
 
 `;
@@ -42,9 +52,9 @@ const CardStyle = styled.div`
 function ProductCard() {
   return (
     <CardStyle className="product__card">
-      <div>Star</div>
       <div className="div__pic">
-      <img src={productStyleData.results[0].photos[0].thumbnail_url} alt="placeholder for Product img" className="pic" />
+      <div className="product__topStar">Star</div>
+        <img src={productStyleData.results[0].photos[0].thumbnail_url} alt="placeholder for Product img" className="pic" />
       </div>
       <div className="product__info">
         <p>{productIdData.category}</p>
