@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { colors, styles } from '../../styles.js';
 import QuestionsList from './QuestionsList.jsx';
 import SearchForm from './SearchForm.jsx';
-import { colors, styles } from '../../styles.js';
+import AskForm from './AskForm.jsx';
+import ExpandButton from './ExpandButton.jsx';
 
 
 const QandAStyle = styled.div`
@@ -52,23 +54,32 @@ const exampleData = {
 };
 
 function QuestionsAndAnswers() {
+  const [questionData, setQuestionData] = useState(exampleData);
+  // change example data to empty object, use setQuestionData to make request
+  // QuestionsAndAnswers would take in productID as prop
+  // use prop and setQuestionData to make the request for actual data
+  const [searchInput, setSearchInput] = useState('');
   const questions = [];
+  const [searched, setSearched] = useState(questions);
+  // const searched = questions.filter((question) => question.question.includes(searchInput));
 
-  exampleData.results.forEach((item) => (
-    questions.push(item.question_body)
-  ));
+  questionData.results.forEach((question) => {
+    const answers = Object.values(question.answers);
+    const answersBody = answers.map((answer) => answer.body);
+    questions.push({ question: question.question_body, answers: answersBody });
+  });
 
-  const answers = [];
-
-  exampleData.results.forEach((item) => (
-    // item.answers !== undefined ? answers.push(item.answers.body) : null
-    answers.push(item.answers.body)
-  ));
+  const handleSubmit = function() {
+    setSearched(questions.filter((question) => question.question.includes(searchInput)));
+  };
 
   return (
     <QandAStyle className="questionsAndAnswers">
-      <SearchForm />
-      <QuestionsList questions={questions} answers={answers} />
+      <SearchForm searchInput={searchInput} setSearchInput={setSearchInput}
+         setSearched={setSearched} handleSubmit={handleSubmit} />
+      <QuestionsList questions={searched} />
+      <ExpandButton />
+      <AskForm />
     </QandAStyle>
   );
 }

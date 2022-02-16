@@ -6,7 +6,8 @@ function QuestionsList(props) {
 
   return (
     <p>
-      {props.questions.map((item, index) => <QuestionsListItem item={item} key={index} />)}
+      {props.questions.map((item, index) =>
+        <QuestionsListItem question={item.question} answers={item.answers} key={index} />)}
     </p>
   );
 }
