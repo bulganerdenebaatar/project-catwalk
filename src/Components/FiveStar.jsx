@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const Star = styled.span`
   display: inline-block;
   position: relative;
-  font-size: 100px;
+  font-size: 1em;
   color: #ddd;
 
   &:after {
@@ -55,26 +55,26 @@ function FiveStar({ ratings }) {
 
   while (closestQuarter > 0) {
     if (closestQuarter >= 1) {
-      stars.push(<Star className="star fa fa-star" />);
+      stars.push(<Star className="star fa fa-star" data-testid="full-star" />);
       closestQuarter -= 1;
     } else if (closestQuarter >= 0.75) {
-      stars.push(<ThreeQuarterStar className="star fa fa-star" />);
+      stars.push(<ThreeQuarterStar className="star fa fa-star" data-testid="3/4-star" />);
       closestQuarter -= 0.75;
     } else if (closestQuarter >= 0.5) {
-      stars.push(<HalfStar className="star fa fa-star" />);
+      stars.push(<HalfStar className="star fa fa-star" data-testid="1/2-star" />);
       closestQuarter -= 0.5;
     } else {
-      stars.push(<QuarterStar className="star fa fa-star" />);
+      stars.push(<QuarterStar className="star fa fa-star" data-testid="1/4-star" />);
       closestQuarter -= 0.25;
     }
   }
 
   while (stars.length < 5) {
-    stars.push(<EmptyStar className="star fa fa-star" />);
+    stars.push(<EmptyStar className="star fa fa-star" data-testid="empty-star" />);
   }
 
   return (
-    <div className="five-star">
+    <div className="five-star" data-testid="five-star">
       {stars}
     </div>
   );
