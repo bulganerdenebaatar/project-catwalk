@@ -4,11 +4,17 @@ function QuestionsListItem(props) {
   return (
     <div className="list-item">
       <p>
-        Q: {props.question}
+        Q:
+        {' '}
+        {props.question}
       </p>
       {props.answers.length !== 0
-        ? props.answers.map((answer) =>
-          <p>A: {answer}</p>) : <p>A: N/A</p>}
+        ? props.answers.map((answer) => (
+          <p>
+            A:
+            {answer}
+          </p>
+        )) : <p>A: N/A</p>}
     </div>
   );
 }

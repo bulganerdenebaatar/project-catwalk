@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import { styleOptions } from '../test_data/testdata.js';
-
 
 const Scroller = styled.div`
   border: thick solid rgba(100, 100, 100, 0.5);
@@ -12,14 +12,18 @@ const Scroller = styled.div`
     height: 60px;
     overflow: hide;
   }
-`
+`;
 
-function MainViewScroller ({ thumbs }) {
+function MainViewScroller({ thumbs }) {
   return (
     <Scroller>
       {thumbs.map((image) => <img src={image.thumbnail_url} alt="placeholder renders" />)}
     </Scroller>
-  )
+  );
 }
+
+MainViewScroller.propTypes = {
+  thumbs: PropTypes.isRequired,
+};
 
 export default MainViewScroller;

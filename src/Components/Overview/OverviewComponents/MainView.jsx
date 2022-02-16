@@ -7,15 +7,15 @@ const ImageView = styled.span`
   img {
     width: 100%;
   }
-`
+`;
 
 function MainView() {
   return (
     <ImageView>
       <img src={styleOptions.results[0].photos[0].url} alt="test for overview component" />
-      <MainViewScroller thumbs={styleOptions.results[0].photos}/>
+      <MainViewScroller thumbs={styleOptions.results[0].photos} />
     </ImageView>
-  )
+  );
 }
 
 export default MainView;

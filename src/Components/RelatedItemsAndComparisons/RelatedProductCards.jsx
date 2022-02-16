@@ -53,7 +53,7 @@ function ProductCard() {
   return (
     <CardStyle className="product__card">
       <div className="div__pic">
-      <div className="product__topStar">Star</div>
+        <div className="product__topStar">Star</div>
         <img src={productStyleData.results[0].photos[0].thumbnail_url} alt="placeholder for Product img" className="pic" />
       </div>
       <div className="product__info">
