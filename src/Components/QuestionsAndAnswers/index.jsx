@@ -69,14 +69,18 @@ function QuestionsAndAnswers() {
     questions.push({ question: question.question_body, answers: answersBody });
   });
 
-  const handleSubmit = function() {
+  const handleSubmit = function () {
     setSearched(questions.filter((question) => question.question.includes(searchInput)));
   };
 
   return (
     <QandAStyle className="questionsAndAnswers">
-      <SearchForm searchInput={searchInput} setSearchInput={setSearchInput}
-         setSearched={setSearched} handleSubmit={handleSubmit} />
+      <SearchForm
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        setSearched={setSearched}
+        handleSubmit={handleSubmit}
+      />
       <QuestionsList questions={searched} />
       <ExpandButton />
       <AskForm />
