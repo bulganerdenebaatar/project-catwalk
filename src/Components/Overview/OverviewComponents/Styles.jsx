@@ -8,7 +8,7 @@ const StyleNames = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 50%);
   grid-template-rows: repeat(auto-fill, fit-content);
-  width: 25%;
+  width: 50%;
 `;
 
 const testStyles = styleOptions.results;

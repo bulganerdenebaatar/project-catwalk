@@ -2,15 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Style = styled.button`
-  border: thin solid black;
+  background-color: pink;
+  border: thin solid teal;
   width: fit-content;
   height: 70px;
 `;
 
-function StyleIcon({ thumb }) {
+function StyleName({ thumb }) {
   return (
     <Style>{thumb}</Style>
   );
 }
 
-export default StyleIcon;
+export default StyleName;
