@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Style = styled.button`
   background-color: pink;
@@ -13,5 +14,9 @@ function StyleName({ thumb }) {
     <Style>{thumb}</Style>
   );
 }
+
+StyleName.propTypes = {
+  thumb: PropTypes.isRequired,
+};
 
 export default StyleName;

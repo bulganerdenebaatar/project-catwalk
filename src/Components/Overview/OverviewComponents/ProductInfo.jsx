@@ -25,7 +25,7 @@ function ProductInfo() {
   return (
     <ProductInformation>
       <h2 className="overview-info name">{product.name}</h2>
-      <FiveStar className="overview-info stars" ratings={ratings}/>
+      <FiveStar className="overview-info stars" ratings={ratings} />
       <h4 className="overview-info category">{product.category}</h4>
       <h3 className="overview-info price">
         $
