@@ -16,7 +16,7 @@ const ProductInformation = styled.div`
 `;
 
 function ProductInfo() {
-  const { closestQuarter } = useContext(GlobalContext).ratings;
+  const { closestQuarter } = useContext(GlobalContext).ratingsData;
   return (
     <ProductInformation>
       <h2 className="overview-info name">{product.name}</h2>
