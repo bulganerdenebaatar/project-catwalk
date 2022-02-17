@@ -5,7 +5,7 @@ import { GlobalContext } from '../../App.jsx';
 
 
 function RatingSummary() {
-  const { averageRating, closestQuarter, numberOfRatings } = useContext(GlobalContext).ratings;
+  const { averageRating, closestQuarter, numberOfRatings } = useContext(GlobalContext).ratingsData;
   return (
     <div>
       <div>{averageRating}</div>
