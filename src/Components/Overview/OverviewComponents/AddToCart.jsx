@@ -21,7 +21,7 @@ function AddToCart() {
       <select value="qty">
         {stock.map((num) => <option value={num}>{num}</option>)}
       </select>
-      <button type="submit">Add To Cart</button>
+      <button type="button">Add To Cart</button>
     </AddStyle>
   );
 }

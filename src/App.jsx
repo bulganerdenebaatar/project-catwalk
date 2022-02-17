@@ -31,6 +31,7 @@ position: sticky;
 text-shadow: -2px 2.5px 0 rgba(130, 200, 250, 0.9);
 top: 0;
 width: 100%;
+z-index: 10;
 `;
 
 export const GlobalContext = createContext(0);
@@ -42,28 +43,62 @@ function App() {
     averageRating: 0,
     closestQuarter: 0,
     numberOfRatings: 0,
+    characteristics: {},
+    recommended: {},
   });
 
-  const [productId, setProductId] = useState(40345);
+  const [productId, setProductId] = useState(40344);
+  const [productInfo, setProductInfo] = useState({});
+  const [productStyles, setProductStyles] = useState({});
 
   useEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
       .then((res) => {
-        console.log('res.data', res.data);
+        const { characteristics, recommended } = res.data;
         const entries = Object.entries(res.data.ratings);
         const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
         const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
         const averageRating = (Math.round((ratingsTotal / numberOfRatings) * 10) / 10);
         const closestQuarter = (Math.round(averageRating * 4) / 4);
-        setRatings({ averageRating, closestQuarter, numberOfRatings });
+        setRatings({
+          averageRating,
+          closestQuarter,
+          numberOfRatings,
+          characteristics,
+          recommended,
+        });
       })
       .catch((err) => (
-        console.log('hi', err)
+        console.log(err)
       ));
+
+    axios.get(`shopdata/products/${productId}`)
+      .then((res) => {
+        setProductInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios.get(`shopdata/products/${productId}/styles`)
+      .then((res) => {
+        setProductStyles(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
   }, [productId]);
 
   return (
-    <GlobalContext.Provider value={{ ratings, productId, setProductId }}>
+    <GlobalContext.Provider value={{
+      productInfo,
+      productStyles,
+      ratings,
+      productId,
+      setProductId,
+    }}
+    >
       <GlobalStyle />
       <Title>
         The Store?

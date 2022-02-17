@@ -5,6 +5,7 @@ import Styles from './OverviewComponents/Styles.jsx';
 import MainView from './OverviewComponents/MainView.jsx';
 import AddToCart from './OverviewComponents/AddToCart.jsx';
 import { colors, styles } from '../../styles.js';
+import { GlobalContext } from '../../App.jsx';
 
 const OverviewStyle = styled.div`
   ${styles.Standard};
@@ -16,6 +17,7 @@ const OverviewStyle = styled.div`
 const ProductInteractions = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 0.5fr);
+  width: fit-content;
 `;
 
 function Overview() {
