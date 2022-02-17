@@ -54,7 +54,11 @@ function ProductCard() {
     <CardStyle className="product__card" id="productCard" data-testid="productCard">
       <div className="div__pic">
         <div className="product__topStar">Star</div>
-        <img src={productStyleData.results[0].photos[0].thumbnail_url} alt="placeholder for Product img" className="pic" />
+        <img
+          src={productStyleData.results[0].photos[0].thumbnail_url}
+          alt="placeholder for Product img"
+          className="pic"
+        />
       </div>
       <div className="product__info">
         <p>{productIdData.category}</p>
