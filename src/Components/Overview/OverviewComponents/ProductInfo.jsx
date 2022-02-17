@@ -5,7 +5,7 @@ import { product } from '../test_data/testdata.js';
 import FiveStar from '../../FiveStar.jsx';
 import { GlobalContext } from '../../../App.jsx';
 
-const ProductInformation = styled.div`
+const ProductInformationStyle = styled.div`
   color: rgba(89, 255, 255, 0.9);
   display: grid;
   grid-template-rows: repeat(5, 0.5fr);
@@ -15,20 +15,21 @@ const ProductInformation = styled.div`
   }
 `;
 
-function ProductInfo() {
+function ProductInformation() {
   const { closestQuarter } = useContext(GlobalContext).ratingsData;
+  const { productInfo } = useContext(GlobalContext);
   return (
-    <ProductInformation>
-      <h2 className="overview-info name">{product.name}</h2>
+    <ProductInformationStyle>
+      <h2 className="overview-info name">{productInfo.name}</h2>
       <FiveStar className="overview-info stars" rating={closestQuarter} />
-      <h4 className="overview-info category">{product.category}</h4>
+      <h4 className="overview-info category">{productInfo.category}</h4>
       <h3 className="overview-info price">
         $
-        {product.default_price}
+        {productInfo.default_price}
       </h3>
-      <div className="overview-info description">{product.description}</div>
-    </ProductInformation>
+      <div className="overview-info description">{productInfo.description}</div>
+    </ProductInformationStyle>
   );
 }
 
-export default ProductInfo;
+export default ProductInformation;
