@@ -27,5 +27,8 @@ module.exports = {
     'no-unused-vars': 'off',
     'import/extensions': 'off',
     'no-multiple-empty-lines': 'off',
+    'react/jsx-no-constructed-context-values': 'warn',
+    'import/no-cycle': 'off',
+    'max-len': ['error', { code: 120 }],
   },
 };

@@ -13,7 +13,4 @@ router.post('/cart', requests.postInfo);
 router.put('/reviews/*', requests.updateInfo);
 router.put('/qa/*', requests.updateInfo);
 
-
-
-
 module.exports = router;

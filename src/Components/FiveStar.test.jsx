@@ -17,14 +17,8 @@ import '@testing-library/jest-dom';
 import FiveStar from './FiveStar';
 
 test('FiveStar can render', () => {
-  const ratings = {
-    1: '1',
-    2: '2',
-    3: '8',
-    4: '2',
-    5: '4',
-  };
-  render(<FiveStar ratings={ratings} />);
+  const rating = 3.5;
+  render(<FiveStar rating={rating} />);
   expect(screen.getByTestId('five-star')).toBeTruthy();
   expect(screen.getAllByTestId('full-star')).toBeTruthy();
   expect(() => {

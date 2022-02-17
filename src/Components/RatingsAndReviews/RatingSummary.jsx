@@ -1,15 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable import/no-cycle */
+import React, { useContext } from 'react';
 import FiveStar from '../FiveStar.jsx';
+import { GlobalContext } from '../../App.jsx';
 
-function RatingSummary({ number, ratings, average }) {
+
+function RatingSummary() {
+  const { averageRating, closestQuarter, numberOfRatings } = useContext(GlobalContext).ratingsData;
   return (
     <div>
-      <div>{average}</div>
+      <div>{averageRating}</div>
       <div className="stars-number">
-        <FiveStar ratings={ratings} />
+        <FiveStar rating={closestQuarter} />
         <div>
-          {number}
+          {numberOfRatings}
           {' '}
           reviews
         </div>
@@ -17,17 +20,5 @@ function RatingSummary({ number, ratings, average }) {
     </div>
   );
 }
-
-RatingSummary.propTypes = {
-  number: PropTypes.number.isRequired,
-  ratings: PropTypes.shape({
-    1: PropTypes.string,
-    2: PropTypes.string,
-    3: PropTypes.string,
-    4: PropTypes.string,
-    5: PropTypes.string,
-  }).isRequired,
-  average: PropTypes.number.isRequired,
-};
 
 export default RatingSummary;

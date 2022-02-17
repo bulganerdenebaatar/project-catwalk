@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import React from 'react';
 import RatingSummary from './RatingSummary.jsx';
 import PercentRecommended from './PercentRecommended.jsx';
@@ -35,7 +36,7 @@ const characteristics = {
 function RatingsBreakdown(props) {
   return (
     <div>
-      <RatingSummary number={17} ratings={ratings} average={3.8} />
+      <RatingSummary number={17} />
       <PercentRecommended percent={10} />
       <Breakdown ratings={ratings} />
       <Characteristics characteristics={characteristics} />
