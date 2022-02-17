@@ -18,13 +18,13 @@ const ratings = {
 const CardStyle = styled.div`
   border: solid;
   background: #fafafa;
-  z-index: 2;
+  z-index: 0;
   width: 250px;
   height: 400px;
 
   .product__topStar {
     position: absolute;
-    z-index: 3;
+    z-index: 1;
     right: 0;
   }
 
