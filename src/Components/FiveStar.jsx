@@ -44,13 +44,15 @@ const EmptyStar = styled(Star)`
   }
 `;
 
-function FiveStar({ ratings }) {
+function FiveStar({ rating }) {
+  // Take in a number (rating to nearest quarter) return five stars filled to the nearest 1/4 star
   // Take in ratings object and return five stars filled to the nearest 1/4 star
-  const entries = Object.entries(ratings);
-  const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
-  const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
-  const average = Math.round((ratingsTotal / numberOfRatings) * 10) / 10;
-  let closestQuarter = Math.round(average * 4) / 4;
+  // const entries = Object.entries(ratings);
+  // const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
+  // const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
+  // const average = Math.round((ratingsTotal / numberOfRatings) * 10) / 10;
+  // let closestQuarter = Math.round(average * 4) / 4;
+  let closestQuarter = rating;
   const stars = [];
 
   while (closestQuarter > 0) {
@@ -81,13 +83,7 @@ function FiveStar({ ratings }) {
 }
 
 FiveStar.propTypes = {
-  ratings: PropTypes.shape({
-    1: PropTypes.string,
-    2: PropTypes.string,
-    3: PropTypes.string,
-    4: PropTypes.string,
-    5: PropTypes.string,
-  }).isRequired,
+  rating: PropTypes.number.isRequired,
 };
 
 export default FiveStar;
