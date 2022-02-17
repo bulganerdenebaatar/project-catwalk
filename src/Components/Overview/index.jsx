@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import ProductInfo from './OverviewComponents/ProductInfo.jsx';
 import Styles from './OverviewComponents/Styles.jsx';
@@ -19,6 +19,8 @@ const ProductInteractions = styled.div`
   grid-template-rows: repeat(3, 0.5fr);
   width: fit-content;
 `;
+
+
 
 function Overview() {
   return (

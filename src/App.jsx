@@ -50,6 +50,7 @@ function App() {
   const [productId, setProductId] = useState(40344);
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
+  const [currentStyleId, setCurrentStyleId] = useState(240500);
 
   useEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
@@ -97,6 +98,8 @@ function App() {
       ratings,
       productId,
       setProductId,
+      currentStyleId,
+      setCurrentStyleId,
     }}
     >
       <GlobalStyle />
