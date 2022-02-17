@@ -1,15 +1,9 @@
-import React from 'react';
+/* eslint-disable import/no-cycle */
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { product } from '../test_data/testdata.js';
 import FiveStar from '../../FiveStar.jsx';
-
-const ratings = {
-  1: '1',
-  2: '2',
-  3: '8',
-  4: '2',
-  5: '4',
-};
+import { GlobalContext } from '../../../App.jsx';
 
 const ProductInformation = styled.div`
   color: rgba(89, 255, 255, 0.9);
@@ -22,10 +16,11 @@ const ProductInformation = styled.div`
 `;
 
 function ProductInfo() {
+  const { closestQuarter } = useContext(GlobalContext).ratings;
   return (
     <ProductInformation>
       <h2 className="overview-info name">{product.name}</h2>
-      <FiveStar className="overview-info stars" ratings={ratings} />
+      <FiveStar className="overview-info stars" rating={closestQuarter} />
       <h4 className="overview-info category">{product.category}</h4>
       <h3 className="overview-info price">
         $
