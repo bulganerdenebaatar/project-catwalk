@@ -9,6 +9,7 @@ import RatingsAndReviews from './Components/RatingsAndReviews/index.jsx';
 import QuestionsAndAnswers from './Components/QuestionsAndAnswers/index.jsx';
 import RelatedItemsAndComparisons from './Components/RelatedItemsAndComparisons/index.jsx';
 import { colors, styles } from './styles.js';
+import { ratingsCalculator } from './util/util.js';
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -39,7 +40,8 @@ export const GlobalContext = createContext(0);
 function App() {
 
   // State
-  const [ratings, setRatings] = useState({
+  const [ratingsData, setRatingsData] = useState({
+    ratings: {},
     averageRating: 0,
     closestQuarter: 0,
     numberOfRatings: 0,
@@ -54,13 +56,15 @@ function App() {
   useEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
       .then((res) => {
-        const { characteristics, recommended } = res.data;
-        const entries = Object.entries(res.data.ratings);
-        const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
-        const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
-        const averageRating = (Math.round((ratingsTotal / numberOfRatings) * 10) / 10);
-        const closestQuarter = (Math.round(averageRating * 4) / 4);
-        setRatings({
+        const { characteristics, recommended, ratings } = res.data;
+        const { closestQuarter, averageRating, numberOfRatings } = ratingsCalculator(res.data.ratings);
+        // const entries = Object.entries(res.data.ratings);
+        // const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
+        // const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
+        // const averageRating = (Math.round((ratingsTotal / numberOfRatings) * 10) / 10);
+        // const closestQuarter = (Math.round(averageRating * 4) / 4);
+        setRatingsData({
+          ratings,
           averageRating,
           closestQuarter,
           numberOfRatings,
@@ -94,7 +98,7 @@ function App() {
     <GlobalContext.Provider value={{
       productInfo,
       productStyles,
-      ratings,
+      ratingsData,
       productId,
       setProductId,
     }}
