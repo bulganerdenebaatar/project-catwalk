@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import StyleName from './StyleName.jsx';
 import { styleOptions } from '../test_data/testdata.js';
-import { GlobalContext } from '../../../App.jsx';
+import { OverviewContext } from '../index.jsx';
 import loading from './assets/loading.gif';
 
 
@@ -21,16 +21,15 @@ const StyleSelectors = styled.div`
 const testStyles = styleOptions.results;
 
 function StyleSelection() {
-  const { productStyles } = useContext(GlobalContext);
-  const styles = productStyles.results;
+  const { productStyles, currentStyleSelection } = useContext(OverviewContext);
 
-  if (styles) {
-    const [currentStyleName, setCurrentStyleName] = useState(styles[0].name);
+  if (productStyles.length) {
+    const [currentStyleName, setCurrentStyleName] = useState(productStyles[0].name);
     return (
       <div>
         {currentStyleName}
         <StyleSelectors>
-          {styles.map((style) => (
+          {productStyles.map((style) => (
             <StyleName
               thumb={style.name}
               key={style.style_id}

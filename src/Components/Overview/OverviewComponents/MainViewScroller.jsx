@@ -18,7 +18,7 @@ const Scroller = styled.div`
   button {
     padding: none;
     background: none;
-    margin: none;
+    margin-left: -10px;
     border: none;
     :hover {
       cursor: pointer;
@@ -27,14 +27,15 @@ const Scroller = styled.div`
 `;
 
 function MainViewScroller({ thumbs, setCurrentMainImage }) {
-  const handleClickOnThumbnail = (newImageUrl) => {
-    setCurrentMainImage(newImageUrl);
+  const handleClickOnThumbnail = (index) => {
+    setCurrentMainImage([thumbs[index].url, index]);
   };
   return (
     <Scroller>
-      {thumbs.map((image) => (
-        <button type="button" onClick={() => handleClickOnThumbnail(image.url)}>
+      {thumbs.map((image, index) => (
+        <button type="button" onClick={() => handleClickOnThumbnail(index)}>
           <img
+            position={index}
             src={image.thumbnail_url}
             alt="placeholder renders"
           />

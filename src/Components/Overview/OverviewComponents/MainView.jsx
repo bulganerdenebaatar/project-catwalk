@@ -4,7 +4,7 @@ import { Standard } from '../../../styles.js';
 import { product, styleOptions } from '../test_data/testdata.js';
 import MainViewScroller from './MainViewScroller.jsx';
 import MainViewImage from './MainViewImage.jsx';
-import { GlobalContext } from '../../../App.jsx';
+import { OverviewContext } from '../index.jsx';
 import loading from './assets/loading.gif';
 
 const ImageView = styled.div`
@@ -36,24 +36,30 @@ const ImageView = styled.div`
 `;
 
 function MainView() {
-  const { currentStyleId, productStyles } = useContext(GlobalContext);
-  const [currentStyleSelection, setCurrentStyleSelection] = useState([]);
-  const [currentMainImage, setCurrentMainImage] = useState('');
-  const [currentImageThumbs, setCurrentImageThumbs] = useState([]);
+  const {
+    currentStyleId,
+    productStyles,
+    currentMainImage,
+    setCurrentMainImage,
+    currentStyleSelection,
+    setCurrentStyleSelection,
+    currentImageThumbs,
+    setCurrentImageThumbs,
+  } = useContext(OverviewContext);
+
+  const index = currentMainImage[1];
 
   useEffect(() => {
-    if (productStyles.results) {
-      productStyles.results.forEach((style) => {
-        if (style.style_id === currentStyleId) {
-          setCurrentStyleSelection(style);
-          setCurrentImageThumbs(style.photos);
-        }
-        if (!currentMainImage) {
-          setCurrentMainImage(style.photos[0].url);
-        }
-      });
-    }
-  });
+    console.log(productStyles);
+    productStyles.forEach((style) => {
+      if (style.style_id === currentStyleId) {
+        console.log(index);
+        setCurrentStyleSelection(style);
+        setCurrentImageThumbs(style.photos);
+        setCurrentMainImage([style.photos[index].url, index]);
+      }
+    });
+  }, [currentStyleId]);
 
   if (currentMainImage) {
     return (
