@@ -1,4 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useContext,
+} from 'react';
+import axios from 'axios';
 import styled from 'styled-components';
 import ProductInformation from './OverviewComponents/ProductInfo.jsx';
 import Styles from './OverviewComponents/Styles.jsx';
@@ -20,17 +27,66 @@ const ProductInteractions = styled.div`
   width: fit-content;
 `;
 
-
+export const OverviewContext = createContext({});
 
 function Overview() {
+  const { productId } = useContext(GlobalContext);
+  const [currentMainImage, setCurrentMainImage] = useState('');
+  const [currentStyleSelection, setCurrentStyleSelection] = useState([]);
+  const [currentImageThumbs, setCurrentImageThumbs] = useState([]);
+  const [productInfo, setProductInfo] = useState({});
+  const [productStyles, setProductStyles] = useState([]);
+  const [currentStyleId, setCurrentStyleId] = useState(240500);
+
+  useEffect(() => {
+    axios.get(`shopdata/products/${productId}`)
+      .then((res) => {
+        setProductInfo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios.get(`shopdata/products/${productId}/styles`)
+      .then((res) => {
+        setProductStyles(res.data.results);
+        res.data.results.forEach((style) => {
+          if (style.style_id === currentStyleId) {
+            setCurrentStyleSelection(style);
+            setCurrentImageThumbs(style.photos);
+            setCurrentMainImage([style.photos[0].url, 0]);
+          }
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [productId]);
+
   return (
     <OverviewStyle id="overview" data-testid="overview">
-      <MainView />
-      <ProductInteractions>
-        <ProductInformation />
-        <Styles />
-        <AddToCart />
-      </ProductInteractions>
+      <OverviewContext.Provider value={{
+        productInfo,
+        setProductInfo,
+        productStyles,
+        setProductStyles,
+        currentMainImage,
+        setCurrentMainImage,
+        currentStyleSelection,
+        setCurrentStyleSelection,
+        currentImageThumbs,
+        setCurrentImageThumbs,
+        currentStyleId,
+        setCurrentStyleId,
+      }}
+      >
+        <MainView />
+        <ProductInteractions>
+          <ProductInformation />
+          <Styles />
+          <AddToCart />
+        </ProductInteractions>
+      </OverviewContext.Provider>
     </OverviewStyle>
   );
 }

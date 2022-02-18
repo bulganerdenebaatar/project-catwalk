@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { GlobalContext } from '../../../App.jsx';
+import { OverviewContext } from '../index.jsx';
 
 const Style = styled.button`
   background-color: pink;
@@ -25,7 +25,10 @@ const Style = styled.button`
 
 
 function StyleName({ thumb, styleId, setCurrentStyleName }) {
-  const { setCurrentStyleId } = useContext(GlobalContext);
+  const {
+    setCurrentStyleId,
+    setCurrentMainImage,
+  } = useContext(OverviewContext);
 
   const handleClickOnStyleName = () => {
     setCurrentStyleId(styleId);
@@ -38,7 +41,7 @@ function StyleName({ thumb, styleId, setCurrentStyleName }) {
 }
 
 StyleName.propTypes = {
-  thumb: PropTypes.isRequired,
+  thumb: PropTypes.string.isRequired,
   styleId: PropTypes.number.isRequired,
   setCurrentStyleName: PropTypes.func.isRequired,
 };

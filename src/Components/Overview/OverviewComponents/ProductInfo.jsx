@@ -1,14 +1,15 @@
 /* eslint-disable import/no-cycle */
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { product } from '../test_data/testdata.js';
 import FiveStar from '../../FiveStar.jsx';
 import { GlobalContext } from '../../../App.jsx';
+import { OverviewContext } from '../index.jsx';
 
 const ProductInformationStyle = styled.div`
   color: rgba(89, 255, 255, 0.9);
   display: grid;
-  grid-template-rows: repeat(5, 0.5fr);
+  grid-template-rows: repeat(5, 0.3fr);
 
   .overview-info {
     padding: 1px;
@@ -17,7 +18,8 @@ const ProductInformationStyle = styled.div`
 
 function ProductInformation() {
   const { closestQuarter } = useContext(GlobalContext).ratingsData;
-  const { productInfo } = useContext(GlobalContext);
+  const { productInfo } = useContext(OverviewContext);
+
   return (
     <ProductInformationStyle>
       <h2 className="overview-info name">{productInfo.name}</h2>
@@ -25,7 +27,7 @@ function ProductInformation() {
       <h4 className="overview-info category">{productInfo.category}</h4>
       <h3 className="overview-info price">
         $
-        {productInfo.default_price}
+        {productInfo.price}
       </h3>
       <div className="overview-info description">{productInfo.description}</div>
     </ProductInformationStyle>
