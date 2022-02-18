@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import ProductInfo from './OverviewComponents/ProductInfo.jsx';
+import ProductInformation from './OverviewComponents/ProductInfo.jsx';
 import Styles from './OverviewComponents/Styles.jsx';
 import MainView from './OverviewComponents/MainView.jsx';
 import AddToCart from './OverviewComponents/AddToCart.jsx';
@@ -11,7 +11,7 @@ const OverviewStyle = styled.div`
   ${styles.Standard};
   display: grid;
   grid-template-columns: 60% 40%;
-  height: fit-content;
+  height: fit-content(1em);
 `;
 
 const ProductInteractions = styled.div`
@@ -20,12 +20,14 @@ const ProductInteractions = styled.div`
   width: fit-content;
 `;
 
+
+
 function Overview() {
   return (
     <OverviewStyle id="overview" data-testid="overview">
       <MainView />
       <ProductInteractions>
-        <ProductInfo />
+        <ProductInformation />
         <Styles />
         <AddToCart />
       </ProductInteractions>
