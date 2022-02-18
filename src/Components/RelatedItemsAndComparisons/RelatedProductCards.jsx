@@ -51,7 +51,7 @@ const CardStyle = styled.div`
 `;
 
 
-function ProductCard({ product, relatedProductsItem }) {
+function ProductCard({ product, relatedProductsItem, index }) {
   return (
     <CardStyle className="product__card" id="productCard" data-testid="productCard">
       <div className="div__pic">
@@ -63,14 +63,15 @@ function ProductCard({ product, relatedProductsItem }) {
         />
       </div>
       <div className="product__info">
-        <p>{relatedProductsItem.category}</p>
-        <p>{relatedProductsItem.name}</p>
-        <p>{relatedProductsItem.slogan}</p>
+        {console.log('relatedProductsItem: ', relatedProductsItem)}
+        <p>{relatedProductsItem[index].category}</p>
+        <p>{relatedProductsItem[index].name}</p>
+        <p>{relatedProductsItem[index].slogan}</p>
         <p>
           $
-          {relatedProductsItem.default_price}
+          {relatedProductsItem[index].default_price}
         </p>
-        {console.log('IN PRODUCT CARD ', relatedProductsItem)}
+        {console.log('IN PRODUCT CARD ', relatedProductsItem[index])}
         <FiveStar ratings={ratings} />
       </div>
     </CardStyle>
@@ -80,6 +81,7 @@ function ProductCard({ product, relatedProductsItem }) {
 ProductCard.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
   relatedProductsItem: PropTypes.objectOf(PropTypes.any).isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 export default ProductCard;

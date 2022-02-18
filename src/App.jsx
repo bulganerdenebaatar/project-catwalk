@@ -1,6 +1,6 @@
 /* eslint-disable import/no-cycle */
 import React, {
-  useState, useEffect, useContext, createContext, useMemo,
+  useState, useEffect, useContext, createContext, useMemo, useLayoutEffect,
 } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
@@ -53,7 +53,7 @@ function App() {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
       .then((res) => {
         const { characteristics, recommended, ratings } = res.data;

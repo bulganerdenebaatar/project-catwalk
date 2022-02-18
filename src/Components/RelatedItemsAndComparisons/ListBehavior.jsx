@@ -30,8 +30,12 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
   return (
     <ListStyle>
       <ContainerStyle>
-        {relatedProducts ? relatedProducts.map((product) => (
-          <ProductCard product={product} relatedProductsItem={relatedProductsItem} />
+        {relatedProducts ? relatedProducts.map((product, index) => (
+          <ProductCard
+            product={product}
+            relatedProductsItem={relatedProductsItem}
+            index={index}
+          />
         )) : console.log('BANG: ', outfitPicks)}
       </ContainerStyle>
     </ListStyle>

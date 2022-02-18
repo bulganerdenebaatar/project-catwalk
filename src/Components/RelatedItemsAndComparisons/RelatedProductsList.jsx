@@ -1,4 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, {
+  useState, useContext, useEffect, useLayoutEffect,
+} from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -14,7 +16,7 @@ function RelatedProductsList() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [relatedProductsItem, setRelatedProductsItem] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     axios.get(`shopdata/products/${productId}/related`)
       .then((res) => {
         setRelatedIDs(res.data);
@@ -24,7 +26,7 @@ function RelatedProductsList() {
       ));
   }, [productId]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     console.log('in related: ', relatedIDs);
     relatedIDs.forEach((ID, index) => {
       console.log('per round: ', ID);
@@ -49,7 +51,7 @@ function RelatedProductsList() {
 
   return (
     <>
-      <p>{relatedIDs}</p>
+      <p>{console.log('SKKEEERRRRTTT: ', relatedProductsItem)}</p>
       <p>{console.log(relatedProducts, 'rendered')}</p>
       <ListBehavior relatedProducts={relatedProducts} relatedProductsItem={relatedProductsItem} />
     </>
@@ -57,4 +59,8 @@ function RelatedProductsList() {
 }
 
 export default RelatedProductsList;
+
+// have to use useLayoutEfftect hook because of painting issues
+
+// or check to see if relatedProductsItem is not undefined first then do something
 
