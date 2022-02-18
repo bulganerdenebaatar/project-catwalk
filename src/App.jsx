@@ -52,17 +52,13 @@ function App() {
   const [productId, setProductId] = useState(40344);
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState({});
+  const [currentStyleId, setCurrentStyleId] = useState(240500);
 
   useEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
       .then((res) => {
         const { characteristics, recommended, ratings } = res.data;
         const { closestQuarter, averageRating, numberOfRatings } = ratingsCalculator(res.data.ratings);
-        // const entries = Object.entries(res.data.ratings);
-        // const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
-        // const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
-        // const averageRating = (Math.round((ratingsTotal / numberOfRatings) * 10) / 10);
-        // const closestQuarter = (Math.round(averageRating * 4) / 4);
         setRatingsData({
           ratings,
           averageRating,
@@ -101,6 +97,8 @@ function App() {
       ratingsData,
       productId,
       setProductId,
+      currentStyleId,
+      setCurrentStyleId,
     }}
     >
       <GlobalStyle />
