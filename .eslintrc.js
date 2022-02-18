@@ -30,5 +30,6 @@ module.exports = {
     'react/jsx-no-constructed-context-values': 'warn',
     'import/no-cycle': 'off',
     'max-len': ['error', { code: 120 }],
+    'react/jsx-one-expression-per-line': 'off',
   },
 };

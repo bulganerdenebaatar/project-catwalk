@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { GlobalContext } from '../../App.jsx';
 
-function PercentRecommended({ percent }) {
+
+function PercentRecommended() {
+  const { recommended } = useContext(GlobalContext).ratingsData;
+  const rec = Number(recommended.true);
+  const total = Number(recommended.false) + rec;
+  const percent = Math.floor((rec / total) * 100);
   return (
     <div>
       <p>
@@ -11,9 +17,5 @@ function PercentRecommended({ percent }) {
     </div>
   );
 }
-
-PercentRecommended.propTypes = {
-  percent: PropTypes.number.isRequired,
-};
 
 export default PercentRecommended;

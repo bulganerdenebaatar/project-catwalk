@@ -15,11 +15,26 @@ const Scale = styled.div`
   justify-content: space-between;
 `;
 
+// const Bar = styled.div`
+//   display: flex;
+
+//   .hr-line {
+//     width: 100%
+//     height: 25px;
+//     position: relative;
+//     margin: 5px;
+//     backgound-color: grey;
+//   }
+
+//   .
+// `;
+
 function CharacteristicBar({ name, value }) {
+  const percentile = Math.floor(((value - 1) / 4) * 100);
   return (
     <div className="characteristic-bar">
       <div>{name}</div>
-      <div>{value}</div>
+      <div>{percentile}</div>
       <Scale className="scale-ends">
         {scaleEnds[name].map((scale) => <div>{scale}</div>)}
       </Scale>
