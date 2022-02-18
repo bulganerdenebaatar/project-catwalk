@@ -1,61 +1,53 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+import { GlobalContext } from '../../App.jsx';
 
-function Breakdown({ ratings }) {
+const StarBar = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+function Breakdown() {
+  const { numberOfRatings, ratings } = useContext(GlobalContext).ratingsData;
   // Take in a ratings object and return five bars (one for each numerical rating)
   // Each bar shows proportinally (green) how many of the reviews had this value
-  const numberOfRatings = Object.values(ratings);
-  const total = numberOfRatings.reduce((p, c) => p + Number(c), 0);
+  // const numberOfRatings = Object.values(ratings);
+  // const total = numberOfRatings.reduce((p, c) => p + Number(c), 0);
+  const percents = Object.values(ratings).map((rating) => ((Number(rating) * 100) / numberOfRatings).toString());
 
   return (
     <div className="breakdown">
-      <RatingBar className="rating-bar" stars="1" percent={((Number(ratings[1]) * 100) / total).toString()} />
-      <RatingBar className="rating-bar" stars="2" percent={((Number(ratings[2]) * 100) / total).toString()} />
-      <RatingBar className="rating-bar" stars="3" percent={((Number(ratings[3]) * 100) / total).toString()} />
-      <RatingBar className="rating-bar" stars="4" percent={((Number(ratings[4]) * 100) / total).toString()} />
-      <RatingBar className="rating-bar" stars="5" percent={((Number(ratings[5]) * 100) / total).toString()} />
+      <RatingBar className="rating-bar" stars="1" number={ratings[1]} percent={percents[0]} />
+      <RatingBar className="rating-bar" stars="2" number={ratings[2]} percent={percents[1]} />
+      <RatingBar className="rating-bar" stars="3" number={ratings[3]} percent={percents[2]} />
+      <RatingBar className="rating-bar" stars="4" number={ratings[4]} percent={percents[3]} />
+      <RatingBar className="rating-bar" stars="5" number={ratings[5]} percent={percents[4]} />
     </div>
   );
 }
 
-function RatingBar({ stars, percent }) {
+function RatingBar({ stars, percent, number }) {
   return (
-    <div>
+    <StarBar>
       <label htmlFor="test">
         {stars}
         {' '}
         Stars
-        {' '}
+        {' -- '}
+        {number}
       </label>
       <progress id="test" max="100" value={percent}>
         {percent}
         %
       </progress>
-    </div>
+    </StarBar>
   );
 }
-
-Breakdown.propTypes = {
-  ratings: PropTypes.shape({
-    1: PropTypes.string,
-    2: PropTypes.string,
-    3: PropTypes.string,
-    4: PropTypes.string,
-    5: PropTypes.string,
-  }).isRequired,
-};
 
 RatingBar.propTypes = {
   stars: PropTypes.string.isRequired,
   percent: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 export default Breakdown;
-// Example
-// "ratings": {
-//   "1": "1",
-//   "2": "2",
-//   "3": "2",
-//   "4": "2",
-//   "5": "21"
-// }

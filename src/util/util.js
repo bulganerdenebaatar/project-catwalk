@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/prefer-default-export */
 const ratingsCalculator = function (ratings) {
   // expects to take in a ratings object and returns
@@ -10,5 +11,15 @@ const ratingsCalculator = function (ratings) {
   return { closestQuarter, averageRating, numberOfRatings };
 };
 
-export { ratingsCalculator };
+const dateFormatter = (unformattedDate) => {
+  const months = ['indexSpacer', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  const chunks = unformattedDate.split('-');
+  const year = chunks[0];
+  const month = months[Number(chunks[1])];
+  let day = chunks[2];
+  if (day[0] === '0') day = day[1];
+  return `${month} ${day}, ${year}`;
+};
+
+export { ratingsCalculator, dateFormatter };
 
