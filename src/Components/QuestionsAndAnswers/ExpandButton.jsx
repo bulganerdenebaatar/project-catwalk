@@ -1,8 +1,8 @@
 import React from 'react';
 
-function ExpandButton() {
+function ExpandButton(props) {
   return (
-    <button>
+    <button type="button" onClick={props.updateDisplayNumber}>
       Show More
     </button>
   );

@@ -14,41 +14,39 @@ const QandAStyle = styled.div`
 
 function QuestionsAndAnswers() {
   const { productId } = useContext(GlobalContext);
-  // console.log('this is productId', productId);
   const [questionData, setQuestionData] = useState('');
   const [searchInput, setSearchInput] = useState('');
   const [selected, setSelected] = useState([]);
   const questions = [];
-  // change example data to empty object, use setQuestionData to make request
-  // QuestionsAndAnswers would take in productID as prop
-  // use prop and setQuestionData to make the request for actual data
+  const [displayNumber, setDisplayNumber] = useState(2);
 
   useEffect(() => {
-    console.log('this is productId', productId);
-    // axios.get(`shopdata/qa/questions/?product_id=${productId}`)
-    axios.get(`shopdata/qa/questions/?product_id=${40345}`)
+    axios({
+      method: 'get',
+      url: 'shopdata/qa/questions/',
+      params: {
+        count: 8,
+        product_id: 40345,
+      },
+    })
       .then((res) => {
-        // console.log('this is res.data', res.data);
-        // console.log('this is res', res);
         setQuestionData(res.data.results);
-        // console.log('this is questionData', questionData);
         res.data.results.forEach((question) => {
           const answers = Object.values(question.answers);
           const answersBody = answers.map((answer) => answer.body);
           questions.push({ question: question.question_body, answers: answersBody });
         });
-        console.log('this is questions', questions);
         setSelected(questions);
       })
       .catch((err) => (console.log('error message', err)));
   }, [productId]);
 
-  // useEffect(() => {
-  //   setSelected(selected);
-  // });
-
   const handleSubmit = () => {
     setSelected(selected.filter((element) => element.question.includes(searchInput)));
+  };
+
+  const updateDisplayNumber = () => {
+    setDisplayNumber((prev) => prev + 2);
   };
 
   return (
@@ -59,12 +57,16 @@ function QuestionsAndAnswers() {
         setSearched={setSelected}
         handleSubmit={handleSubmit}
       />
-      <QuestionsList questions={selected} data-testid="questions-list" />
-      <ExpandButton />
+      <QuestionsList
+        questions={selected}
+        data-testid="questions-list"
+        updateDisplayNumber={updateDisplayNumber}
+        displayNumber={displayNumber}
+      />
+      <ExpandButton updateDisplayNumber={updateDisplayNumber} />
       <AskForm />
     </QandAStyle>
   );
 }
-//
 
 export default QuestionsAndAnswers;
