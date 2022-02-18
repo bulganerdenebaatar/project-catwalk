@@ -1,12 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import FiveStar from '../FiveStar.jsx';
 
+// dont need
 import {
   productData, productIdData, productStyleData, relatedProductsData,
 } from './other_test_data/othertestdata.js';
 
-
+// dont need
 const ratings = {
   1: '1',
   2: '2',
@@ -49,30 +51,36 @@ const CardStyle = styled.div`
 `;
 
 
-function ProductCard() {
+function ProductCard({ product, relatedProductsItem }) {
   return (
     <CardStyle className="product__card" id="productCard" data-testid="productCard">
       <div className="div__pic">
         <div className="product__topStar">Star</div>
         <img
-          src={productStyleData.results[0].photos[0].thumbnail_url}
+          src={product.results[0].photos[0].thumbnail_url}
           alt="placeholder for Product img"
           className="pic"
         />
       </div>
       <div className="product__info">
-        <p>{productIdData.category}</p>
-        <p>{productIdData.name}</p>
-        <p>{productIdData.slogan}</p>
+        <p>{relatedProductsItem.category}</p>
+        <p>{relatedProductsItem.name}</p>
+        <p>{relatedProductsItem.slogan}</p>
         <p>
           $
-          {productIdData.default_price}
+          {relatedProductsItem.default_price}
         </p>
+        {console.log('IN PRODUCT CARD ', relatedProductsItem)}
         <FiveStar ratings={ratings} />
       </div>
     </CardStyle>
   );
 }
+
+ProductCard.propTypes = {
+  product: PropTypes.objectOf(PropTypes.any).isRequired,
+  relatedProductsItem: PropTypes.objectOf(PropTypes.any).isRequired,
+};
 
 export default ProductCard;
 

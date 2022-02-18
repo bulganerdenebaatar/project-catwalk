@@ -15,7 +15,7 @@ const RelatedStyle = styled.div`
 function RelatedItemsAndComparisons() {
   return (
     <RelatedStyle className="relatedAndComparisons">
-      <RelatedProductCards />
+      {/* <RelatedProductCards /> */}
       <RelatedProductsList />
     </RelatedStyle>
   );
