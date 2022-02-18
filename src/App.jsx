@@ -18,7 +18,6 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Comfortaa', monospace;
-  justify-content: center;
   position: relative;
 }
 `;
