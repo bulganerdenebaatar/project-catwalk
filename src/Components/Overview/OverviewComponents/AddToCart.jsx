@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const AddStyle = styled.div`
+  margin-top: 10px;
   button {
     background-color: pink;
     border-radius: 5px;
