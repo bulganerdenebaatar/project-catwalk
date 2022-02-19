@@ -5,24 +5,27 @@ import { styleOptions } from '../test_data/testdata.js';
 import { standardBGColor } from '../../../styles.js';
 
 const Scroller = styled.div`
-  background-color: ${standardBGColor};
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  img {
-    overflow: hide;
-    object-fit: cover;
-    .not-selected:hover {
-      cursor: pointer;
-    }
-  }
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 5%;
+
+
   button {
-    padding: none;
-    background: none;
-    margin-left: -10px;
+    background-color: rgba(20, 0, 20, 0.7);
+    border-radius: 0;
     border: none;
+    height: 80%;
+    width: 100%;
+    margin: 0;
+    padding: 3px;
+    margin-left: -5px;
     :hover {
       cursor: pointer;
     }
+    box-shadow: 0 -5px 0 rgba(120, 90, 200, 0.3);
   }
 `;
 
@@ -31,39 +34,38 @@ const SelectedImage = styled.img`
   margin-left: -5px;
   overflow: hide;
   object-fit: cover;
-  padding: none;
+  max-height: 80%;
+  box-shadow: 0 -5px 0 rgba(255, 255, 0, 0.9);
 `;
 
+const Arrow = styled.span`
+  bottom: 33%;
+  font-family: FontAwesome;
+  font-size: 2em;
+  position: relative;
+  top: 33%;
+  width: 100%;
+`;
 
 
 
 function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }) {
 
-  const LeftArrow = styled.span`
-    font-family: FontAwesome;
-    font-size: 2em;
+  const LeftArrow = styled(Arrow)`
     content: &#Xf104;
-    top: 33%;
-    bottom: 33%;
     left: 33%;
-    width: 100%;
-    color: rgba(100, 190, 250, ${currentMainImageIndex ? 1 : 0});
-    position: relative;
+    color: rgba(80, 190, 250, ${currentMainImageIndex ? 1 : 0});
+    text-shadow: 1px 1px rgba(20, 20, 20, ${currentMainImageIndex ? 1 : 0});
     :hover {
       cursor:${currentMainImageIndex ? 'pointer' : 'auto'}
     }
   `;
 
-  const RightArrow = styled.span`
-    font-family: FontAwesome;
-    font-size: 2em;
+  const RightArrow = styled(Arrow)`
     content: &#Xf105;
-    top: 33%;
     left: 20%;
-    bottom: 33%;
-    width: 100%;
-    color: rgba(100, 190, 250, ${(currentMainImageIndex === thumbs.length - 1) ? 0 : 1});
-    position: relative;
+    color: rgba(80, 190, 250, ${(currentMainImageIndex === thumbs.length - 1) ? 0 : 1});
+    text-shadow: 1px 1px rgba(20, 20, 20, ${(currentMainImageIndex === thumbs.length - 1) ? 0 : 1});
     :hover {
       cursor: ${(currentMainImageIndex === thumbs.length - 1) ? 'auto' : 'pointer'};
     }

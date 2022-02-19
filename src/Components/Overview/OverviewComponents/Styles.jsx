@@ -7,14 +7,24 @@ import loading from './assets/loading.gif';
 
 
 const StyleSelectors = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(auto-fill, 70px);
-  width: min-content;
 
-  img{
+  position: relative;
+  top: -30px;
+
+  .selector {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(auto-fill, 60px);
+    width: min-content;
+  }
+
+  img {
     width: 50px;
     height: 50px;
+  }
+
+  p {
+    text-shadow: -1px 1px 1px grey;
   }
 `;
 
@@ -26,19 +36,19 @@ function StyleSelection() {
   if (productStyles.length) {
     const [currentStyleName, setCurrentStyleName] = useState(productStyles[0].name);
     return (
-      <div>
-        {currentStyleName}
-        <StyleSelectors>
-          {productStyles.map((style) => (
-            <StyleName
-              thumb={style.name}
-              key={style.style_id}
-              styleId={style.style_id}
-              setCurrentStyleName={setCurrentStyleName}
-            />
-          ))}
-        </StyleSelectors>
-      </div>
+      <StyleSelectors>
+        <p className="style-name"><em>{currentStyleName}</em></p>
+        {productStyles.map((style) => (
+          <StyleName
+            className="selector"
+            thumb={style.name}
+            key={style.style_id}
+            styleId={style.style_id}
+            setCurrentStyleName={setCurrentStyleName}
+            icon={style.photos[0].thumbnail_url}
+          />
+        ))}
+      </StyleSelectors>
     );
   }
   return (

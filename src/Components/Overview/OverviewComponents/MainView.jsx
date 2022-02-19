@@ -16,22 +16,12 @@ const ImageView = styled.div`
   max-width: 490px;
   max-height: 490px;
   overflow: hidden;
-  position: relative
-
-  .thumbnails {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  position: relative;
 
   img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
-
-  .main-view:hover {
-    cursor: zoom-in;
   }
 `;
 
@@ -41,7 +31,6 @@ function MainView() {
     productStyles,
     currentMainImage,
     setCurrentMainImage,
-    currentStyleSelection,
     setCurrentStyleSelection,
     currentImageThumbs,
     setCurrentImageThumbs,
@@ -50,10 +39,8 @@ function MainView() {
   const index = currentMainImage[1];
 
   useEffect(() => {
-    console.log(productStyles);
     productStyles.forEach((style) => {
       if (style.style_id === currentStyleId) {
-        console.log(index);
         setCurrentStyleSelection(style);
         setCurrentImageThumbs(style.photos);
         setCurrentMainImage([style.photos[index].url, index]);
@@ -65,7 +52,6 @@ function MainView() {
     return (
       <ImageView>
         <MainViewScroller
-          className="thumbnails"
           thumbs={currentImageThumbs}
           setCurrentMainImage={setCurrentMainImage}
           currentMainImageIndex={currentMainImage[1]}
