@@ -8,21 +8,18 @@ import ProductCard from './RelatedProductCards.jsx';
 // dont need
 import { GlobalContext } from '../../App.jsx';
 
-// dont need
+
 const ListStyle = styled.div`
-  border: solid;
-  background: blue;
-  z-index: 20;
-  width: 250px;
-  height: 400px;
+  position: relative;
+  height: 250px;
+  display: flex;
+  border: 5px dotted red;
+  overflow: hidden;
 `;
 
 const ContainerStyle = styled.div`
-  border: solid;
-  background: red;
-  z-index: 20;
-  width: 250px;
-  height: 400px;
+  border: 5px solid green;
+  display: flex;
 `;
 
 function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
