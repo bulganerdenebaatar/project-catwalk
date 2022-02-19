@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import CharacteristicBar from './CharacteristicBar.jsx';
+import { GlobalContext } from '../../App.jsx';
 
-function Characteristics({ characteristics }) {
+
+function Characteristics() {
+  const { characteristics } = useContext(GlobalContext).ratingsData;
   const characteristicsAndValues = Object.entries(characteristics);
   // tuple ['fit', {id: num, value: num}]
   return (
@@ -11,16 +14,5 @@ function Characteristics({ characteristics }) {
     </div>
   );
 }
-
-Characteristics.propTypes = {
-  characteristics: PropTypes.shape({
-    Fit: PropTypes.shape({
-      value: PropTypes.number,
-    }),
-    Comfort: PropTypes.shape({
-      value: PropTypes.number,
-    }),
-  }).isRequired,
-};
 
 export default Characteristics;
