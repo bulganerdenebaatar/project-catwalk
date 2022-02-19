@@ -30,7 +30,7 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
   return (
     <ListStyle>
       <ContainerStyle>
-        {relatedProducts ? relatedProducts.map((product, index) => (
+        {relatedProductsItem ? relatedProducts.map((product, index) => (
           <ProductCard
             product={product}
             relatedProductsItem={relatedProductsItem}

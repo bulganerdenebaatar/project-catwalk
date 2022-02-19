@@ -52,6 +52,7 @@ const CardStyle = styled.div`
 
 
 function ProductCard({ product, relatedProductsItem, index }) {
+
   return (
     <CardStyle className="product__card" id="productCard" data-testid="productCard">
       <div className="div__pic">
@@ -64,14 +65,14 @@ function ProductCard({ product, relatedProductsItem, index }) {
       </div>
       <div className="product__info">
         {console.log('relatedProductsItem: ', relatedProductsItem)}
-        <p>{relatedProductsItem[index].category}</p>
-        <p>{relatedProductsItem[index].name}</p>
-        <p>{relatedProductsItem[index].slogan}</p>
+        <p>{relatedProductsItem.category}</p>
+        <p>{relatedProductsItem.name}</p>
+        <p>{relatedProductsItem.slogan}</p>
         <p>
           $
-          {relatedProductsItem[index].default_price}
+          {relatedProductsItem.default_price}
         </p>
-        {console.log('IN PRODUCT CARD ', relatedProductsItem[index])}
+        {console.log('IN PRODUCT CARD ', relatedProductsItem)}
         <FiveStar ratings={ratings} />
       </div>
     </CardStyle>
