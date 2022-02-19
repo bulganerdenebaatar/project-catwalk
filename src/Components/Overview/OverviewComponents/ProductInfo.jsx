@@ -9,10 +9,25 @@ import { OverviewContext } from '../index.jsx';
 const ProductInformationStyle = styled.div`
   color: rgba(89, 255, 255, 0.9);
   display: grid;
-  grid-template-rows: repeat(5, 0.3fr);
+  grid-template-rows: repeat(4, 0.5fr);
+  margin-bottom: 10px;
+  height: 80%;
+
+  position: relative;
+  top: -5%;
 
   .overview-info {
     padding: 1px;
+  }
+
+  h2{
+    margin-bottom: 10px;
+  }
+
+  h4{
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
   }
 `;
 
@@ -27,7 +42,7 @@ function ProductInformation() {
       <h4 className="overview-info category">{productInfo.category}</h4>
       <h3 className="overview-info price">
         $
-        {productInfo.price}
+        {productInfo.default_price}
       </h3>
       <div className="overview-info description">{productInfo.description}</div>
     </ProductInformationStyle>

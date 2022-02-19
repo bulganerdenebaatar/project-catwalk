@@ -68,6 +68,7 @@ function MainView() {
           className="thumbnails"
           thumbs={currentImageThumbs}
           setCurrentMainImage={setCurrentMainImage}
+          currentMainImageIndex={currentMainImage[1]}
         />
         <MainViewImage
           className="main-view"

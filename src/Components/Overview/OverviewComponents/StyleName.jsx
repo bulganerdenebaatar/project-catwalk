@@ -8,6 +8,7 @@ const Style = styled.button`
   border: thin solid teal;
   color: rgba(30, 20, 60, 0.8);
   cursor: pointer;
+  font-family: inherit;
   height: 70px;
   width: fit-content;
 
@@ -18,9 +19,17 @@ const Style = styled.button`
 
   :focus {
     border-color: rgb(70, 230, 175);
-    background-color: rgb(255, 160, 180);
-    color: rgb(120, 120, 240)
   }
+`;
+
+const SelectedStyle = styled.button`
+  border: thin solid rgb(20, 140, 125);
+  background-color: rgb(205, 110, 130);
+  color: rgb(30, 230, 220);
+  cursor: pointer;
+  font-family: inherit;
+  height: 70px;
+  width: fit-content;
 `;
 
 
@@ -28,6 +37,7 @@ function StyleName({ thumb, styleId, setCurrentStyleName }) {
   const {
     setCurrentStyleId,
     setCurrentMainImage,
+    currentStyleId,
   } = useContext(OverviewContext);
 
   const handleClickOnStyleName = () => {
@@ -35,8 +45,19 @@ function StyleName({ thumb, styleId, setCurrentStyleName }) {
     setCurrentStyleName(thumb);
   };
 
+  if (currentStyleId === styleId) {
+    return (
+      <SelectedStyle>
+        {thumb}
+      </SelectedStyle>
+    );
+  }
+
   return (
-    <Style onClick={handleClickOnStyleName}>{thumb}</Style>
+    <Style
+      onClick={handleClickOnStyleName}
+    >{thumb}
+    </Style>
   );
 }
 

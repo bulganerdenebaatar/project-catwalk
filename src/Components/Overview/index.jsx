@@ -23,7 +23,7 @@ const OverviewStyle = styled.div`
 
 const ProductInteractions = styled.div`
   display: grid;
-  grid-template-rows: repeat(3, 0.5fr);
+  grid-template-rows: repeat(3, 0.3fr);
   width: fit-content;
 `;
 
