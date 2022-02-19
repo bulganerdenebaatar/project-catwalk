@@ -8,6 +8,7 @@ const scaleEnds = {
   Comfort: ['poor', 'perfect'],
   Quality: ['poor', 'great'],
   Size: ['too small', 'perfect', 'too big'],
+  Width: ['too narrow', 'perfect', 'too wide'],
 };
 
 const Scale = styled.div`

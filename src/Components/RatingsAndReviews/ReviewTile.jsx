@@ -1,9 +1,27 @@
 /* eslint-disable camelcase */
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Styled from 'styled-components';
 import FiveStar from '../FiveStar.jsx';
 import { dateFormatter } from '../../util/util.js';
 import { Helpful, Report } from '../HelpfulOrReport.jsx';
+
+const SpacedBody = Styled.div`
+  overflow-wrap: anywhere;
+  padding-bottom: 20px;
+`;
+
+const StyledReview = Styled.div`
+  padding: 0px 10px 0px 10px;
+  margin: 10px 0px 10px 0px;
+  border: black;
+  background-color: rgba(220, 152, 245, 0.3);
+`;
+
+const TopBar = Styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
 
 function ReviewTile({ review, handleRefresh }) {
   const {
@@ -11,17 +29,17 @@ function ReviewTile({ review, handleRefresh }) {
   } = review;
 
   return (
-    <div>
-      <div className="top-bar">
+    <StyledReview>
+      <TopBar>
         <FiveStar rating={rating} />
         <div>
           {reviewer_name}
           {' '}
           {dateFormatter(date)}
         </div>
-      </div>
+      </TopBar>
       <h3>{summary}</h3>
-      <div>{body}</div>
+      <SpacedBody>{body}</SpacedBody>
       <div>{response}</div>
       <div className="bottom-bar">
         Helpful?
@@ -31,8 +49,7 @@ function ReviewTile({ review, handleRefresh }) {
         {' | '}
         <Report path="reviews" id={review_id} handleRefresh={handleRefresh} />
       </div>
-      <hr />
-    </div>
+    </StyledReview>
   );
 }
 

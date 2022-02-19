@@ -19,10 +19,6 @@ const styles = {
     margin: 20px;
     padding: 20px;
 
-    &:hover {
-      background: rgba(220, 110, 150);
-    }
-
     h2 {
       text-shadow: -1px 1px 1px rgba(60, 230, 230, 0.8);
     },
