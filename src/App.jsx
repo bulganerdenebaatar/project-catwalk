@@ -18,7 +18,6 @@ body {
   display: flex;
   flex-direction: column;
   font-family: 'Comfortaa', monospace;
-  justify-content: center;
   position: relative;
 }
 `;
@@ -50,19 +49,12 @@ function App() {
   });
 
   const [productId, setProductId] = useState(40344);
-  const [productInfo, setProductInfo] = useState({});
-  const [productStyles, setProductStyles] = useState({});
 
   useEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
       .then((res) => {
         const { characteristics, recommended, ratings } = res.data;
         const { closestQuarter, averageRating, numberOfRatings } = ratingsCalculator(res.data.ratings);
-        // const entries = Object.entries(res.data.ratings);
-        // const ratingsTotal = entries.reduce(((p, c) => p + Number(c[0]) * Number(c[1])), 0);
-        // const numberOfRatings = entries.reduce(((p, c) => p + Number(c[1])), 0);
-        // const averageRating = (Math.round((ratingsTotal / numberOfRatings) * 10) / 10);
-        // const closestQuarter = (Math.round(averageRating * 4) / 4);
         setRatingsData({
           ratings,
           averageRating,
@@ -76,28 +68,10 @@ function App() {
         console.log(err)
       ));
 
-    axios.get(`shopdata/products/${productId}`)
-      .then((res) => {
-        setProductInfo(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    axios.get(`shopdata/products/${productId}/styles`)
-      .then((res) => {
-        setProductStyles(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
   }, [productId]);
 
   return (
     <GlobalContext.Provider value={{
-      productInfo,
-      productStyles,
       ratingsData,
       productId,
       setProductId,
