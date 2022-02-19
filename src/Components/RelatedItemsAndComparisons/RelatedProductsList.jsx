@@ -1,5 +1,5 @@
 import React, {
-  useState, useContext, useEffect, useLayoutEffect,
+  useState, useContext, useEffect,
 } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -14,7 +14,7 @@ function RelatedProductsList() {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [relatedProductsItem, setRelatedProductsItem] = useState([]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     axios.get(`shopdata/products/${productId}/related`)
       .then((res) => {
         setRelatedIDs(res.data);
@@ -24,10 +24,10 @@ function RelatedProductsList() {
       ));
   }, [productId]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     console.log('in related: ', relatedIDs);
     relatedIDs.forEach((ID, index) => {
-      console.log('per round: ', ID);
+      console.log('per round: ', ID, 'index: ', index);
       axios.get(`shopdata/products/${ID}/styles`)
         .then((res) => {
           console.log('IN style req: ', res.data);
@@ -38,7 +38,7 @@ function RelatedProductsList() {
         ));
       axios.get(`shopdata/products/${ID}`)
         .then((res) => {
-          console.log('IN PRODOO req: ', res.data);
+          console.log('IN PRODUCT ID req: ', res.data);
           setRelatedProductsItem((prevIDs) => [...prevIDs, res.data]);
         })
         .catch((err) => (
@@ -49,9 +49,17 @@ function RelatedProductsList() {
 
   return (
     <>
-      <p>{console.log('SKKEEERRRRTTT: ', relatedProductsItem)}</p>
-      <p>{console.log(relatedProducts, 'rendered')}</p>
-      <ListBehavior relatedProducts={relatedProducts} relatedProductsItem={relatedProductsItem} />
+      <p>{console.log('Start of RPL render', 'relatedProductsItem: ', relatedProductsItem)}</p>
+      <p>{console.log('Start of RPL render', 'relatedProducts: ', relatedProducts)}</p>
+      <div>
+        {relatedProductsItem.length >= 3
+          ? (
+            <ListBehavior
+              relatedProducts={relatedProducts}
+              relatedProductsItem={relatedProductsItem}
+            />
+          ) : <div>{6}</div>}
+      </div>
     </>
   );
 }

@@ -54,28 +54,42 @@ const CardStyle = styled.div`
 function ProductCard({ product, relatedProductsItem, index }) {
 
   return (
-    <CardStyle className="product__card" id="productCard" data-testid="productCard">
-      <div className="div__pic">
-        <div className="product__topStar">Star</div>
-        <img
-          src={product.results[0].photos[0].thumbnail_url}
-          alt="placeholder for Product img"
-          className="pic"
-        />
-      </div>
-      <div className="product__info">
-        {console.log('relatedProductsItem: ', relatedProductsItem)}
-        <p>{relatedProductsItem.category}</p>
-        <p>{relatedProductsItem.name}</p>
-        <p>{relatedProductsItem.slogan}</p>
-        <p>
-          $
-          {relatedProductsItem.default_price}
-        </p>
-        {console.log('IN PRODUCT CARD ', relatedProductsItem)}
-        <FiveStar ratings={ratings} />
-      </div>
-    </CardStyle>
+
+    <div>
+      {
+        product.results[0].photos[0].thumbnail_url && (
+          <CardStyle className="product__card" id="productCard" data-testid="productCard">
+            <div>
+              <div className="div__pic">
+                <div className="product__topStar">Star</div>
+                <img
+                  src={product.results[0].photos[0].thumbnail_url}
+                  alt="placeholder for Product img"
+                  className="pic"
+                />
+              </div>
+              <div className="product__info">
+                {console.log('relatedProductsItem: ', relatedProductsItem)}
+                {relatedProductsItem[index] && (
+                  <div>
+                    <p>{relatedProductsItem[index].category}</p>
+                    <p>{relatedProductsItem[index].name}</p>
+                    <p>{relatedProductsItem[index].slogan}</p>
+                    <p>
+                      $
+                      {relatedProductsItem[index].default_price}
+                    </p>
+                  </div>
+                )}
+                {console.log('IN PRODUCT CARD ', relatedProductsItem)}
+                <FiveStar ratings={ratings} />
+              </div>
+            </div>
+          </CardStyle>
+        )
+      }
+    </div>
+
   );
 }
 
@@ -90,3 +104,46 @@ export default ProductCard;
 
 
 // Root div of Card will be clickable
+
+
+
+// function ProductCard({ product, relatedProductsItem, index }) {
+
+//   return (
+//     <CardStyle className="product__card" id="productCard" data-testid="productCard">
+//       <div className="div__pic">
+//         <div className="product__topStar">Star</div>
+//         {product.results[0].photos[0].thumbnail_url && (
+//           <img
+//             src={product.results[0].photos[0].thumbnail_url}
+//             alt="placeholder for Product img"
+//             className="pic"
+//           />
+//         )}
+//       </div>
+//       <div className="product__info">
+//         {console.log('relatedProductsItem: ', relatedProductsItem)}
+//         {relatedProductsItem[index] && (
+//           <div>
+//             <p>{relatedProductsItem[index].category}</p>
+//             <p>{relatedProductsItem[index].name}</p>
+//             <p>{relatedProductsItem[index].slogan}</p>
+//             <p>
+//               $
+//               {relatedProductsItem[index].default_price}
+//             </p>
+//           </div>
+//         )}
+//         {/* <p>{relatedProductsItem.category}</p>
+//         <p>{relatedProductsItem.name}</p>
+//         <p>{relatedProductsItem.slogan}</p>
+//         <p>
+//           $
+//           {relatedProductsItem.default_price}
+//         </p> */}
+//         {console.log('IN PRODUCT CARD ', relatedProductsItem)}
+//         <FiveStar ratings={ratings} />
+//       </div>
+//     </CardStyle>
+//   );
+// }
