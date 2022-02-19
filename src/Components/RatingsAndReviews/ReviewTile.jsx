@@ -54,8 +54,8 @@ ReviewTile.propTypes = {
   }).isRequired,
 };
 
-export default ReviewTile;
-
 FiveStar.propTypes = {
   rating: PropTypes.number.isRequired,
 };
+
+export default ReviewTile;
