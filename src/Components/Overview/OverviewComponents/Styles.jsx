@@ -7,7 +7,6 @@ import loading from './assets/loading.gif';
 
 
 const StyleSelectors = styled.div`
-
   position: relative;
   top: -30px;
 
