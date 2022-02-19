@@ -10,6 +10,7 @@ import ExpandButton from './ExpandButton.jsx';
 
 const QandAStyle = styled.div`
   ${styles.Standard};
+  height: fit-content;
 `;
 
 function QuestionsAndAnswers() {
@@ -26,7 +27,7 @@ function QuestionsAndAnswers() {
       url: 'shopdata/qa/questions/',
       params: {
         count: 10,
-        product_id: 40345,
+        product_id: 40347,
       },
     })
       .then((res) => {
