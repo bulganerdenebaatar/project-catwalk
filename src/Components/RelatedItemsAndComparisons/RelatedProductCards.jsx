@@ -21,8 +21,9 @@ const CardStyle = styled.div`
   border: solid;
   background: #fafafa;
   z-index: 0;
-  width: 200px;
+  width: 12.5rem;
   height: 100%;
+  margin-right: 1em;
 
   .product__topStar {
     position: absolute;
