@@ -10,6 +10,7 @@ import ExpandButton from './ExpandButton.jsx';
 
 const QandAStyle = styled.div`
   ${styles.Standard};
+  height: fit-content;
 `;
 
 function QuestionsAndAnswers() {
@@ -18,25 +19,42 @@ function QuestionsAndAnswers() {
   const [searchInput, setSearchInput] = useState('');
   const [selected, setSelected] = useState([]);
   const questions = [];
-  const [displayNumber, setDisplayNumber] = useState(2);
+  const [displayNumber, setDisplayNumber] = useState(4);
 
   useEffect(() => {
     axios({
       method: 'get',
       url: 'shopdata/qa/questions/',
       params: {
-        count: 8,
-        product_id: 40345,
+        count: 10,
+        product_id: 40347,
       },
     })
       .then((res) => {
-        setQuestionData(res.data.results);
-        res.data.results.forEach((question) => {
+        // sort res.data.results on question helpfulness
+        // setquestiondata to that sorted array
+        // use sorted array.forEach
+        const sortedArr = res.data.results.sort((a, b) => (
+          b.question_helpfulness - a.question_helpfulness
+        ));
+        setQuestionData(sortedArr);
+        console.log('this is sortedArr', sortedArr);
+        sortedArr.forEach((question) => {
           const answers = Object.values(question.answers);
           const answersBody = answers.map((answer) => answer.body);
-          questions.push({ question: question.question_body, answers: answersBody });
+          questions.push({
+            question: question.question_body,
+            answers: answersBody,
+          });
         });
         setSelected(questions);
+        // setQuestionData(res.data.results);
+        // res.data.results.forEach((question) => {
+        //   const answers = Object.values(question.answers);
+        //   const answersBody = answers.map((answer) => answer.body);
+        //   questions.push({ question: question.question_body, answers: answersBody });
+        // });
+        // setSelected(questions);
       })
       .catch((err) => (console.log('error message', err)));
   }, [productId]);
@@ -60,8 +78,8 @@ function QuestionsAndAnswers() {
       <QuestionsList
         questions={selected}
         data-testid="questions-list"
-        updateDisplayNumber={updateDisplayNumber}
         displayNumber={displayNumber}
+        updateDisplayNumber={updateDisplayNumber}
       />
       <ExpandButton updateDisplayNumber={updateDisplayNumber} />
       <AskForm />

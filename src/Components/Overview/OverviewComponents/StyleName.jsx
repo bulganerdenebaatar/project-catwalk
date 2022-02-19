@@ -3,31 +3,59 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { OverviewContext } from '../index.jsx';
 
-const Style = styled.button`
+
+const StyleSelector = styled.button`
   background-color: pink;
   border: thin solid teal;
-  color: rgba(30, 20, 60, 0.8);
+  border-radius: 50%;
   cursor: pointer;
-  height: 70px;
-  width: fit-content;
+  height: 50px;
+  margin-right: 5px;
+  width: 50px;
 
   :hover {
-    background-color: rgba(255, 255, 255, 0.6);
-    color: rgb(120, 100, 150);
+    background-color: rgb(255, 230, 230);
+    border-color: rgb(70, 230, 175);
   }
 
-  :focus {
-    border-color: rgb(70, 230, 175);
-    background-color: rgb(255, 160, 180);
-    color: rgb(120, 120, 240)
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+    position: relative;
+    top: -9px;
+    left: -1px;
+    filter: saturate(120%);
+  }
+`;
+
+const SelectedStyle = styled(StyleSelector)`
+  background-color: rgb(101, 215, 230);
+  border: thin solid gold;
+
+  :hover {
+    background-color: rgb(101, 215, 230);
+    border: thin solid gold;
+    cursor: auto;
+  }
+
+  img {
+    border-radius: 50%;
+    object-fit: cover;
+    filter: grayscale(90%) blur(0.2px);
   }
 `;
 
 
-function StyleName({ thumb, styleId, setCurrentStyleName }) {
+function StyleName({
+  thumb,
+  styleId,
+  setCurrentStyleName,
+  icon,
+}) {
   const {
     setCurrentStyleId,
     setCurrentMainImage,
+    currentStyleId,
   } = useContext(OverviewContext);
 
   const handleClickOnStyleName = () => {
@@ -35,8 +63,20 @@ function StyleName({ thumb, styleId, setCurrentStyleName }) {
     setCurrentStyleName(thumb);
   };
 
+  if (currentStyleId === styleId) {
+    return (
+      <SelectedStyle>
+        <img src={icon} alt={thumb} />
+      </SelectedStyle>
+    );
+  }
+
   return (
-    <Style onClick={handleClickOnStyleName}>{thumb}</Style>
+    <StyleSelector
+      onClick={handleClickOnStyleName}
+    >
+      <img src={icon} alt={thumb} />
+    </StyleSelector>
   );
 }
 
@@ -44,6 +84,7 @@ StyleName.propTypes = {
   thumb: PropTypes.string.isRequired,
   styleId: PropTypes.number.isRequired,
   setCurrentStyleName: PropTypes.func.isRequired,
+  icon: PropTypes.string.isRequired,
 };
 
 export default StyleName;
