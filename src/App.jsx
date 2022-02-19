@@ -19,6 +19,33 @@ body {
   flex-direction: column;
   font-family: 'Comfortaa', monospace;
   position: relative;
+  button {
+    background-color: rgba(255, 240, 240);
+    border: thin solid teal;
+    border-radius: 15px;
+    font-family: inherit;
+    margin: 5px;
+    padding: 5px;
+
+    :hover{
+      background-color: rgb(255, 255, 255);
+      border-color: gold;
+      cursor: pointer;
+    }
+    :active {
+      background-color: rgba(200, 255, 255, 0.9);
+    }
+  }
+  select {
+    border: thin solid teal;
+    border-radius: 10px;
+    background-color: rgba(255, 240, 240);
+    font-family: inherit;
+    :hover {
+      background-color: rgb(255, 255, 255);
+      border-color: gold;
+      cursor: pointer;
+    }
 }
 `;
 
