@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import axios from 'axios';
+import SearchSite from './Components/SearchSite.jsx';
 import Overview from './Components/Overview/index.jsx';
 import RatingsAndReviews from './Components/RatingsAndReviews/index.jsx';
 import QuestionsAndAnswers from './Components/QuestionsAndAnswers/index.jsx';
@@ -19,20 +20,55 @@ body {
   flex-direction: column;
   font-family: 'Comfortaa', monospace;
   position: relative;
+  button {
+    background-color: rgba(255, 240, 240);
+    border: thin solid teal;
+    border-radius: 15px;
+    font-family: inherit;
+    margin: 5px;
+    padding: 5px;
+
+    :hover{
+      background-color: rgb(255, 255, 255);
+      border-color: gold;
+      cursor: pointer;
+    }
+    :active {
+      background-color: rgba(200, 255, 255, 0.9);
+    }
+  }
+  select {
+    border: thin solid teal;
+    border-radius: 10px;
+    background-color: rgba(255, 240, 240);
+    font-family: inherit;
+    :hover {
+      background-color: rgb(255, 255, 255);
+      border-color: gold;
+      cursor: pointer;
+    }
 }
 `;
 
-const Title = styled.h1`
-background-color: ${colors.standardBGColor};
-color: rgb(80, 155, 255);
-font-weight: 700;
-padding: 10px 40px 10px 40px;
-position: sticky;
-text-shadow: -2px 2.5px 0 rgba(130, 200, 250, 0.9);
-top: 0;
-width: 100%;
-z-index: 10;
+const TitleBar = styled.div`
+  background-color: ${colors.standardBGColor};
+  color: ${colors.standardTxtColor};
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  h1 {
+    font-weight: 700;
+    padding: 0 40px 0 40px;
+    text-shadow: -2px 2.5px 0 rgba(130, 200, 250, 0.9);
+    width: 100%;
+  }
 `;
+
+const titles = ["Owen's Oddities", "Ken's Klutter", "Ryan's Retail", "Daniel's Duds"];
+const randomTitle = titles[Math.floor(Math.random() * 4)];
 
 export const GlobalContext = createContext(0);
 
@@ -48,7 +84,10 @@ function App() {
     recommended: {},
   });
 
-  const [productId, setProductId] = useState(40344);
+  // For testing
+  const exampleProductIds = [40344, 40345];
+
+  const [productId, setProductId] = useState(exampleProductIds[0]);
 
   useLayoutEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
@@ -78,9 +117,10 @@ function App() {
     }}
     >
       <GlobalStyle />
-      <Title>
-        The Store?
-      </Title>
+      <TitleBar>
+        <h1>{randomTitle}</h1>
+        <SearchSite className="search-site" />
+      </TitleBar>
       <Overview />
       <RatingsAndReviews />
       <RelatedItemsAndComparisons />

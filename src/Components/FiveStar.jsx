@@ -16,7 +16,7 @@ const Star = styled.span`
     top: 0;
     width: 100%;
     overflow: hidden;
-    color: #f80;
+    color: yellow;
   }
 `;
 

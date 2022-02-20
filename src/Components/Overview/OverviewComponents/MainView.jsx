@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { Standard } from '../../../styles.js';
+import { Standard, standardBorder } from '../../../styles.js';
 import { product, styleOptions } from '../test_data/testdata.js';
 import MainViewScroller from './MainViewScroller.jsx';
 import MainViewImage from './MainViewImage.jsx';
@@ -9,29 +9,19 @@ import loading from './assets/loading.gif';
 
 const ImageView = styled.div`
   ${Standard}
-  border: 2px solid rgba(52, 168, 192, 0.8);
-  border-radius: 20px;
+  border: ${standardBorder};
+  border-radius: 10px;
   box-shadow: -2px 2px rgba(89, 255, 255, 0.6);
   margin-right: 20px;
   max-width: 490px;
   max-height: 490px;
   overflow: hidden;
-  position: relative
-
-  .thumbnails {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  position: relative;
 
   img {
     height: 100%;
     width: 100%;
     object-fit: cover;
-  }
-
-  .main-view:hover {
-    cursor: zoom-in;
   }
 `;
 
@@ -41,7 +31,6 @@ function MainView() {
     productStyles,
     currentMainImage,
     setCurrentMainImage,
-    currentStyleSelection,
     setCurrentStyleSelection,
     currentImageThumbs,
     setCurrentImageThumbs,
@@ -50,10 +39,8 @@ function MainView() {
   const index = currentMainImage[1];
 
   useEffect(() => {
-    console.log(productStyles);
     productStyles.forEach((style) => {
       if (style.style_id === currentStyleId) {
-        console.log(index);
         setCurrentStyleSelection(style);
         setCurrentImageThumbs(style.photos);
         setCurrentMainImage([style.photos[index].url, index]);
@@ -65,7 +52,6 @@ function MainView() {
     return (
       <ImageView>
         <MainViewScroller
-          className="thumbnails"
           thumbs={currentImageThumbs}
           setCurrentMainImage={setCurrentMainImage}
           currentMainImageIndex={currentMainImage[1]}

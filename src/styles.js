@@ -1,17 +1,18 @@
 // Testing whether I can store some common styling options in variables and import them
 
 const colors = {
-  standardBGColor: 'rgb(100, 80, 140)',
-  standardTxtColor: 'rgba(89, 255, 255, 0.9)',
+  standardBGColor: 'rgb(40, 35, 45)',
+  standardTxtColor: 'rgba(200, 255, 255, 0.9)',
   standardBorder: '3px solid rgba(52, 168, 192, 0.8)',
+  standardComponentBG: 'rgba(100, 100, 150, 0.8)',
 };
 
 const styles = {
   Standard: `
-    background: rgba(240, 130, 170, 0.8);
-    border: 3px solid rgba(52, 168, 192, 0.8);
-    border-radius: 20px;
-    box-shadow: -3px 3px rgba(89, 255, 255, 0.6);
+    background: ${colors.standardComponentBG};
+    border: ${colors.standardBorder};
+    border-radius: 10px;
+    box-shadow: -3px 3px rgba140, 255, 255, 0.6);
     display: flex;
     flex-direction: column;
     height: 490px;
@@ -24,6 +25,7 @@ const styles = {
     },
   `,
 };
+
 
 module.exports = {
   colors,
