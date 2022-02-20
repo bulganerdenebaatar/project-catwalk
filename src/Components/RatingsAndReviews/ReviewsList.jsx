@@ -1,8 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import Styled from 'styled-components';
 import { GlobalContext } from '../../App.jsx';
 import ReviewTile from './ReviewTile.jsx';
+import ReviewModal from '../ReviewModal.jsx';
+
+const ScrollDiv = Styled.div`
+  min-height: 40vh;
+  max-height: 40vh;
+  overflow-y: scroll;
+`;
 
 function ReviewsList() {
   const { averageRating, closestQuarter, numberOfRatings } = useContext(GlobalContext).ratingsData;
@@ -10,6 +18,7 @@ function ReviewsList() {
   const [reviews, setReviews] = useState([]);
   const [displayNumber, setDisplayNumber] = useState(2);
   const [sort, setSort] = useState('relevant');
+  const [showModal, setShowModal] = useState(false);
 
   const updateDisplayNumber = () => {
     setDisplayNumber((previous) => previous + 2);
@@ -27,7 +36,6 @@ function ReviewsList() {
     })
       .then((res) => {
         setReviews(res.data.results);
-        setDisplayNumber(2);
       })
       .catch((err) => {
         console.log(err);
@@ -40,7 +48,6 @@ function ReviewsList() {
   };
 
   const handleRefresh = () => {
-    console.log('hi!');
     dropdownSort(sort);
   };
 
@@ -54,20 +61,26 @@ function ReviewsList() {
         {reviews.length}
         {' '}
         reviews sorted by
+        {' '}
         <select value={sort} onChange={handleChange}>
           <option value="relevant">relevant</option>
           <option value="helpful">helpful</option>
-          <option value="newest">Newest</option>
+          <option value="newest">newest</option>
         </select>
+        <hr />
       </div>
-      <hr />
-      <div>
+      {reviews.length > 0
+      && (
+      <ScrollDiv>
         {reviews.slice(0, displayNumber).map((review) => <ReviewTile handleRefresh={handleRefresh} review={review} />)}
-      </div>
+      </ScrollDiv>
+      )}
       <div>
+        <hr />
         {displayNumber < reviews.length
         && <button type="button" onClick={updateDisplayNumber}>More Reviews</button>}
-        <button type="button" onClick={updateDisplayNumber}>Add Review</button>
+        <button type="button" onClick={() => setShowModal(true)}>Add Review</button>
+        {showModal && <ReviewModal id={productId} onDismiss={() => setShowModal(false)} />}
       </div>
     </div>
   );

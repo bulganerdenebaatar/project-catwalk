@@ -75,7 +75,10 @@ function App() {
     recommended: {},
   });
 
-  const [productId, setProductId] = useState(40344);
+  // For testing
+  const exampleProductIds = [40344, 40345];
+
+  const [productId, setProductId] = useState(exampleProductIds[0]);
 
   useEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)
