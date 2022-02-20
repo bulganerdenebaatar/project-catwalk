@@ -8,6 +8,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, '/../build')));
 // other configuration...
 
+app.use(express.json());
 app.use('/shopdata', routes);
 
 console.log('Listening on port 3000');
