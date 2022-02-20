@@ -3,7 +3,7 @@ import React from 'react';
 function ExpandButton(props) {
   return (
     <button type="button" onClick={props.updateDisplayNumber}>
-      Show More
+      More Answered Questions
     </button>
   );
 }

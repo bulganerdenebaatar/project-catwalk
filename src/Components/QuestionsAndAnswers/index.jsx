@@ -81,8 +81,8 @@ function QuestionsAndAnswers() {
         displayNumber={displayNumber}
         updateDisplayNumber={updateDisplayNumber}
       />
-      <ExpandButton updateDisplayNumber={updateDisplayNumber} />
-      <AskForm />
+      {/* <ExpandButton updateDisplayNumber={updateDisplayNumber} /> */}
+      {/* <AskForm /> */}
     </QandAStyle>
   );
 }
