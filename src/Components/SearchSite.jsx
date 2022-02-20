@@ -43,13 +43,16 @@ function SearchSite() {
 
   const handleSearchSiteClick = (e) => {
     e.preventDefault();
-    console.log(siteSearchInput);
     axios.get('shopdata/products?count=all')
       .then((res) => {
         console.log(res.data);
         const newProduct = res.data.find((product) => product.name.toLowerCase().includes(siteSearchInput));
-        const newId = newProduct.id;
-        setProductId(newId);
+        if (newProduct) {
+          const newId = newProduct.id;
+          setProductId(newId);
+        } else {
+          window.alert('No Product Found');
+        }
         setSiteSearchInput('');
       })
       .catch((err) => {
@@ -59,7 +62,7 @@ function SearchSite() {
 
   return (
     <SearchBox onSubmit={handleSearchSiteClick}>
-      <input placeholder="Search Site..." type="Search" onChange={handleSearchInputChange} />
+      <input placeholder="Search Site..." value={siteSearchInput} type="Search" onChange={handleSearchInputChange} />
       <button type="submit">Search</button>
     </SearchBox>
   );
