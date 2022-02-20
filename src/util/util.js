@@ -16,7 +16,7 @@ const dateFormatter = (unformattedDate) => {
   const chunks = unformattedDate.split('-');
   const year = chunks[0];
   const month = months[Number(chunks[1])];
-  let day = chunks[2];
+  let day = chunks[2].substring(0,2);
   if (day[0] === '0') day = day[1];
   return `${month} ${day}, ${year}`;
 };
