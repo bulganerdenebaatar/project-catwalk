@@ -97,35 +97,46 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
 
   };
 
+  if (relatedProductsItem.length === relatedProducts.length && relatedProducts.length !== 0) {
+    return (
+      <WrapperStyle>
+        <ListStyle>
+          <ContainerStyle>
+            {console.log('containerStyle; RelatedProducts: ', relatedProductsItem)}
+            {relatedProductsItem ? relatedProducts.map((product, index) => (
+              <CardContainerStyle>
+                {console.log('inside MAP; PRODUCT: ', product)}
+                <ProductCard
+                  product={product}
+                  relatedProductsItem={relatedProductsItem}
+                  index={index}
+                />
+              </CardContainerStyle>
+            )) : console.log('BANG: ', outfitPicks)}
+          </ContainerStyle>
+        </ListStyle>
+        <LeftArrow
+          className="fas fa-angle-left fa-lg"
+          type="button"
+          value="left"
+          onClick={() => handleArrowClick('prev')}
+        />
+        <RightArrow
+          className="fas fa-angle-right fa-lg"
+          type="button"
+          value="right"
+          onClick={() => handleArrowClick('next')}
+        />
+      </WrapperStyle>
+    );
+  }
+
   return (
-    <WrapperStyle>
-      <ListStyle>
-        <ContainerStyle>
-          {relatedProductsItem ? relatedProducts.map((product, index) => (
-            <CardContainerStyle>
-              <ProductCard
-                product={product}
-                relatedProductsItem={relatedProductsItem}
-                index={index}
-              />
-            </CardContainerStyle>
-          )) : console.log('BANG: ', outfitPicks)}
-        </ContainerStyle>
-      </ListStyle>
-      <LeftArrow
-        className="fas fa-angle-left fa-lg"
-        type="button"
-        value="left"
-        onClick={() => handleArrowClick('prev')}
-      />
-      <RightArrow
-        className="fas fa-angle-right fa-lg"
-        type="button"
-        value="right"
-        onClick={() => handleArrowClick('next')}
-      />
-    </WrapperStyle>
+    <div>
+      Goodbye World
+    </div>
   );
+
 }
 
 ListBehavior.propTypes = {

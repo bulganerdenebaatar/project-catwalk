@@ -25,12 +25,12 @@ function RelatedProductsList() {
   }, [productId]);
 
   useEffect(() => {
-    console.log('in related: ', relatedIDs);
+    // console.log('in related: ', relatedIDs);
     relatedIDs.forEach((ID, index) => {
-      console.log('per round: ', ID, 'index: ', index);
+      // console.log('per round: ', ID, 'index: ', index);
       axios.get(`shopdata/products/${ID}/styles`)
         .then((res) => {
-          console.log('IN style req: ', res.data);
+          // console.log('IN style req: ', res.data);
           setRelatedProducts((prevIDs) => [...prevIDs, res.data]);
         })
         .catch((err) => (
@@ -38,7 +38,7 @@ function RelatedProductsList() {
         ));
       axios.get(`shopdata/products/${ID}`)
         .then((res) => {
-          console.log('IN PRODUCT ID req: ', res.data);
+          // console.log('IN PRODUCT ID req: ', res.data);
           setRelatedProductsItem((prevIDs) => [...prevIDs, res.data]);
         })
         .catch((err) => (
@@ -47,21 +47,31 @@ function RelatedProductsList() {
     });
   }, [relatedIDs]);
 
+  if (relatedProductsItem.length === relatedIDs.length && relatedIDs.length !== 0) {
+    return (
+      <>
+        <p>{console.log('Start of RPL render', 'relatedProductsItem: ', relatedProductsItem)}</p>
+        <p>{console.log('Start of RPL render', 'relatedProducts: ', relatedProducts)}</p>
+        <div>
+          {relatedProductsItem.length >= 3
+            ? (
+              <ListBehavior
+                relatedProducts={relatedProducts}
+                relatedProductsItem={relatedProductsItem}
+              />
+            ) : <div>{6}</div>}
+        </div>
+      </>
+    );
+  }
+
   return (
-    <>
-      <p>{console.log('Start of RPL render', 'relatedProductsItem: ', relatedProductsItem)}</p>
-      <p>{console.log('Start of RPL render', 'relatedProducts: ', relatedProducts)}</p>
-      <div>
-        {relatedProductsItem.length >= 3
-          ? (
-            <ListBehavior
-              relatedProducts={relatedProducts}
-              relatedProductsItem={relatedProductsItem}
-            />
-          ) : <div>{6}</div>}
-      </div>
-    </>
+    <div>
+      HELLO WORLD
+    </div>
   );
+
+
 }
 
 export default RelatedProductsList;
