@@ -4,21 +4,25 @@ import styled from 'styled-components';
 import { OverviewContext } from '../index.jsx';
 
 const AddStyle = styled.div`
-  font-family: inherit;
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
-  width: 50%;
-  button {
-    background-color: pink;
-    border-radius: 5px;
-    font-family: inherit;
+  font-family: inherit;
+  position: relative;
+  top: -20px;
+  width: 40%;
+
+  .size-and-quantity {
+    flex-direction: row;
+    select {
+      margin-left: 5px;
+      width: min-content;
+    }
   }
-  select {
-    border-radius: 5px;
-    background-color: pink;
-  }
+
 `;
+
+const sizes = ['XS', 'S', 'M', 'L', 'XL'];
+const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
 const parseStock = (stock) => {
   const parsedStock = {};
@@ -33,16 +37,13 @@ const parseStock = (stock) => {
 
 function AddToCart() {
   const stock = useContext(OverviewContext).currentStyleSelection.skus;
-  const sizes = ['XS', 'S', 'M', 'L', 'XL'];
-  const quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
-
   const [sizeSelection, setSizeSelection] = useState('Select Size');
   const [stockQuantity, setStockQuantity] = useState(0);
   const [quantitySelection, setQuantitySelection] = useState(1);
 
   const handleSizeSelect = (event) => {
-    setSizeSelection(event.target.value);
     const sizesAndStock = parseStock(stock);
+    setSizeSelection(event.target.value);
     setStockQuantity(sizesAndStock[event.target.value].quantity);
   };
 
@@ -51,7 +52,6 @@ function AddToCart() {
   };
 
   const handleAddToCart = () => {
-    console.log('cart updated');
     const sizesAndStock = parseStock(stock);
     axios.post('shopdata/cart', {
       sku: sizesAndStock[sizeSelection].sku,
@@ -67,23 +67,25 @@ function AddToCart() {
 
   return (
     <AddStyle>
-      <select value={sizeSelection} onChange={handleSizeSelect}>
-        {(sizeSelection === 'Select Size')
-          ? <option label="--Select Size--" /> : null}
-        {sizes.map((size) => <option label={size} value={size} />)}
-      </select>
-      {stockQuantity
-        ? (
-          <select value={quantitySelection} onChange={handleQuantitySelect}>
-            {quantities.map((number) => {
-              if (number <= stockQuantity && number <= 15) {
-                return <option label={number} value={number} />;
-              }
-              return null;
-            })}
-          </select>
-        )
-        : null}
+      <div className="size-and-quantity">
+        <select value={sizeSelection} onChange={handleSizeSelect}>
+          {(sizeSelection === 'Select Size')
+            ? <option label="Size" /> : null}
+          {sizes.map((size) => <option label={size} value={size} />)}
+        </select>
+        {stockQuantity
+          ? (
+            <select value={quantitySelection} onChange={handleQuantitySelect}>
+              {quantities.map((number) => {
+                if (number <= stockQuantity && number <= 15) {
+                  return <option label={number} value={number} />;
+                }
+                return null;
+              })}
+            </select>
+          )
+          : null}
+      </div>
       <button type="button" onClick={handleAddToCart}>Add To Cart</button>
     </AddStyle>
   );

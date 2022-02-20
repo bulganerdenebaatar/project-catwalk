@@ -7,6 +7,26 @@ const StarBar = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const GreenGrayProgress = styled.progress`
+  appearance: none;
+  width: 100%;
+  height 25px;
+  margin-bottom: 10px;
+
+  ::-webkit-progress-bar {
+    background-color: rgba(149, 141, 153, 0.6);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+
+  ::-webkit-progress-value {
+    background-color: rgba(112, 32, 150, 0.8);
+    border-radius: 2px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+  }
+`;
+
 function Breakdown() {
   const { numberOfRatings, ratings } = useContext(GlobalContext).ratingsData;
   // Take in a ratings object and return five bars (one for each numerical rating)
@@ -36,10 +56,10 @@ function RatingBar({ stars, percent, number }) {
         {' -- '}
         {number}
       </label>
-      <progress id="test" max="100" value={percent}>
+      <GreenGrayProgress id="test" max="100" value={percent}>
         {percent}
         %
-      </progress>
+      </GreenGrayProgress>
     </StarBar>
   );
 }

@@ -7,7 +7,6 @@ import { GlobalContext } from '../../../App.jsx';
 import { OverviewContext } from '../index.jsx';
 
 const ProductInformationStyle = styled.div`
-  color: rgba(89, 255, 255, 0.9);
   display: grid;
   grid-template-rows: repeat(4, 0.5fr);
   margin-bottom: 10px;
