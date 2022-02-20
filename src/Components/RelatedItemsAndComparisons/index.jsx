@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
-import RelatedProductCards from './RelatedProductCards.jsx';
+import OutfitList from './OutfitList.jsx';
 import RelatedProductsList from './RelatedProductsList.jsx';
 import {
   productData, productIdData, productStyleData, relatedProductsData,
@@ -23,6 +23,10 @@ function RelatedItemsAndComparisons() {
         Related Products
       </Title>
       <RelatedProductsList />
+      <Title>
+        Outfits
+      </Title>
+      <OutfitList />
     </RelatedStyle>
   );
 }

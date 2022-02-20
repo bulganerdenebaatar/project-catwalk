@@ -11,7 +11,9 @@ import { GlobalContext } from '../../App.jsx';
 
 
 
-function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
+function ListBehavior({
+  relatedProducts, relatedProductsItem, outfitPicks, addNewOutfit,
+}) {
   const [activeIndex, setActiveIndex] = useState(0);
 
   const WrapperStyle = styled.div`
@@ -97,7 +99,9 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
 
   };
 
-  if (relatedProductsItem.length === relatedProducts.length && relatedProducts.length !== 0) {
+  if ((
+    (relatedProductsItem !== undefined && relatedProducts !== undefined)
+    && (relatedProductsItem.length === relatedProducts.length)) && relatedProducts.length !== 0) {
     return (
       <WrapperStyle>
         <ListStyle>
@@ -131,6 +135,42 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
     );
   }
 
+  if (outfitPicks) {
+    return (
+      <WrapperStyle>
+        <ListStyle>
+          <ContainerStyle>
+            <CardContainerStyle>
+              <ProductCard />
+            </CardContainerStyle>
+            {relatedProductsItem ? relatedProducts.map((product, index) => (
+              <CardContainerStyle>
+                <ProductCard
+                  product={product}
+                  relatedProductsItem={relatedProductsItem}
+                  index={index}
+                  addNewOutfit={addNewOutfit}
+                />
+              </CardContainerStyle>
+            )) : console.log('BANG: ', outfitPicks)}
+          </ContainerStyle>
+        </ListStyle>
+        <LeftArrow
+          className="fas fa-angle-left fa-lg"
+          type="button"
+          value="left"
+          onClick={() => handleArrowClick('prev')}
+        />
+        <RightArrow
+          className="fas fa-angle-right fa-lg"
+          type="button"
+          value="right"
+          onClick={() => handleArrowClick('next')}
+        />
+      </WrapperStyle>
+    );
+  }
+
   return (
     <div>
       Goodbye World
@@ -142,7 +182,8 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
 ListBehavior.propTypes = {
   relatedProducts: PropTypes.arrayOf(PropTypes.object).isRequired,
   relatedProductsItem: PropTypes.arrayOf(PropTypes.object).isRequired,
-  outfitPicks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  outfitPicks: PropTypes.number.isRequired,
+  addNewOutfit: PropTypes.func.isRequired,
 };
 
 export default ListBehavior;

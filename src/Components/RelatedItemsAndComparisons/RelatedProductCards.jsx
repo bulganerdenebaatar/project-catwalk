@@ -4,19 +4,6 @@ import PropTypes from 'prop-types';
 import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
 
-// dont need
-import {
-  productData, productIdData, productStyleData, relatedProductsData,
-} from './other_test_data/othertestdata.js';
-
-// dont need
-const ratings = {
-  1: '1',
-  2: '2',
-  3: '8',
-  4: '2',
-  5: '4',
-};
 
 const CardStyle = styled.div`
   width: 100%;
@@ -59,8 +46,37 @@ const CardStyle = styled.div`
 `;
 
 
-function ProductCard({ product, relatedProductsItem, index }) {
+
+function ProductCard({
+  product, relatedProductsItem, index, addNewOutfit,
+}) {
   const { productId, setProductId } = useContext(GlobalContext);
+  // const { setAddNewOutfit } = useContext(outfitContext);
+
+  if (!product) {
+    return (
+      <div>
+        <CardStyle
+          className="product__card"
+          id="productCard"
+          data-testid="productCard"
+          onClick={() => addNewOutfit((prevStuff) => prevStuff + 1)}
+        // change this to add to outfits
+        >
+          <div>
+            <div className="div__pic">
+              <p className="pic">
+                +
+              </p>
+            </div>
+            <div className="product__info">
+              <p>Click to add Outfit</p>
+            </div>
+          </div>
+        </CardStyle>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -93,7 +109,7 @@ function ProductCard({ product, relatedProductsItem, index }) {
               </div>
             )}
             {console.log('IN PRODUCT CARD ', relatedProductsItem)}
-            <FiveStar ratings={ratings} />
+            <FiveStar ratings={3} />
           </div>
         </div>
       </CardStyle>
@@ -106,6 +122,7 @@ ProductCard.propTypes = {
   product: PropTypes.objectOf(PropTypes.any).isRequired,
   relatedProductsItem: PropTypes.objectOf(PropTypes.any).isRequired,
   index: PropTypes.number.isRequired,
+  addNewOutfit: PropTypes.func.isRequired,
 };
 
 export default ProductCard;
