@@ -18,12 +18,14 @@ const ratings = {
 };
 
 const CardStyle = styled.div`
-  border: solid;
-  background: #fafafa;
-  z-index: 0;
-  width: 12.5rem;
+  width: 100%;
   height: 100%;
-  margin-right: 1em;
+  border: 1px solid #ccc;
+  background: #fafafa;
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 
   .product__topStar {
     position: absolute;
@@ -33,7 +35,7 @@ const CardStyle = styled.div`
 
   .div__pic {
     width: 100%;
-    height: 12rem;
+    height: 9em;
     position: relative;
     overflow: hidden;
   }
@@ -47,6 +49,7 @@ const CardStyle = styled.div`
 
   p {
     margin: 5px;
+    font-size: .7em;
   }
 
 `;
@@ -101,6 +104,142 @@ ProductCard.propTypes = {
 };
 
 export default ProductCard;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------------OldStuff----------------------------------------------
+
+
+
+
+
+
+// import React from 'react';
+// import styled from 'styled-components';
+// import PropTypes from 'prop-types';
+// import FiveStar from '../FiveStar.jsx';
+
+// // dont need
+// import {
+//   productData, productIdData, productStyleData, relatedProductsData,
+// } from './other_test_data/othertestdata.js';
+
+// // dont need
+// const ratings = {
+//   1: '1',
+//   2: '2',
+//   3: '8',
+//   4: '2',
+//   5: '4',
+// };
+
+// const CardStyle = styled.div`
+//   border: solid;
+//   background: #fafafa;
+//   z-index: 0;
+//   width: 12.5rem;
+//   height: 100%;
+//   margin-right: 1em;
+
+//   .product__topStar {
+//     position: absolute;
+//     z-index: 1;
+//     right: 0;
+//   }
+
+//   .div__pic {
+//     width: 100%;
+//     height: 12rem;
+//     position: relative;
+//     overflow: hidden;
+//   }
+
+//   .pic {
+//     position: absolute;
+//     display: block;
+//     top: 0;
+//     left: 0;
+//   }
+
+//   p {
+//     margin: 5px;
+//   }
+
+// `;
+
+
+// function ProductCard({ product, relatedProductsItem, index }) {
+
+//   return (
+
+//     <div>
+//       {
+//         product.results[0].photos[0].thumbnail_url && (
+//           <CardStyle className="product__card" id="productCard" data-testid="productCard">
+//             <div>
+//               <div className="div__pic">
+//                 <div className="product__topStar">Star</div>
+//                 <img
+//                   src={product.results[0].photos[0].thumbnail_url}
+//                   alt="placeholder for Product img"
+//                   className="pic"
+//                 />
+//               </div>
+//               <div className="product__info">
+//                 {console.log('relatedProductsItem: ', relatedProductsItem)}
+//                 {relatedProductsItem[index] && (
+//                   <div>
+//                     <p>{relatedProductsItem[index].category}</p>
+//                     <p>{relatedProductsItem[index].name}</p>
+//                     <p>{relatedProductsItem[index].slogan}</p>
+//                     <p>
+//                       $
+//                       {relatedProductsItem[index].default_price}
+//                     </p>
+//                   </div>
+//                 )}
+//                 {console.log('IN PRODUCT CARD ', relatedProductsItem)}
+//                 <FiveStar ratings={ratings} />
+//               </div>
+//             </div>
+//           </CardStyle>
+//         )
+//       }
+//     </div>
+
+//   );
+// }
+
+// ProductCard.propTypes = {
+//   product: PropTypes.objectOf(PropTypes.any).isRequired,
+//   relatedProductsItem: PropTypes.objectOf(PropTypes.any).isRequired,
+//   index: PropTypes.number.isRequired,
+// };
+
+// export default ProductCard;
 
 
 
