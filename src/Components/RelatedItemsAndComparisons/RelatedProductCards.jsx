@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
 
 // dont need
@@ -26,6 +27,9 @@ const CardStyle = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  :hover {
+    cursor: pointer;
+  }
 
   .product__topStar {
     position: absolute;
@@ -56,11 +60,16 @@ const CardStyle = styled.div`
 
 
 function ProductCard({ product, relatedProductsItem, index }) {
+  const { productId, setProductId } = useContext(GlobalContext);
 
   return (
-
     <div>
-      <CardStyle className="product__card" id="productCard" data-testid="productCard">
+      <CardStyle
+        className="product__card"
+        id="productCard"
+        data-testid="productCard"
+        onClick={() => setProductId(product.product_id)}
+      >
         <div>
           <div className="div__pic">
             <div className="product__topStar">Star</div>

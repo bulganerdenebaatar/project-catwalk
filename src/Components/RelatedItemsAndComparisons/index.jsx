@@ -12,10 +12,16 @@ const RelatedStyle = styled.div`
   height: 400px;
 `;
 
+const Title = styled.h3`
+  font-family: inherit;
+`;
+
 function RelatedItemsAndComparisons() {
   return (
     <RelatedStyle className="relatedAndComparisons">
-      {/* <RelatedProductCards /> */}
+      <Title>
+        Related Products
+      </Title>
       <RelatedProductsList />
     </RelatedStyle>
   );

@@ -16,7 +16,7 @@ function ListBehavior({ relatedProducts, relatedProductsItem, outfitPicks }) {
 
   const WrapperStyle = styled.div`
   width: 800px;
-  margin: 5px auto;
+  margin: 1px auto;
   height: 250px;
   position: relative;
 

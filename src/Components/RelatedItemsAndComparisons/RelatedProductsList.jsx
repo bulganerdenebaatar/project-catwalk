@@ -49,19 +49,15 @@ function RelatedProductsList() {
 
   if (relatedProductsItem.length === relatedIDs.length && relatedIDs.length !== 0) {
     return (
-      <>
-        <p>{console.log('Start of RPL render', 'relatedProductsItem: ', relatedProductsItem)}</p>
-        <p>{console.log('Start of RPL render', 'relatedProducts: ', relatedProducts)}</p>
-        <div>
-          {relatedProductsItem.length >= 3
-            ? (
-              <ListBehavior
-                relatedProducts={relatedProducts}
-                relatedProductsItem={relatedProductsItem}
-              />
-            ) : <div>{6}</div>}
-        </div>
-      </>
+      <div>
+        {relatedProductsItem.length >= 3
+          ? (
+            <ListBehavior
+              relatedProducts={relatedProducts}
+              relatedProductsItem={relatedProductsItem}
+            />
+          ) : <div>{6}</div>}
+      </div>
     );
   }
 
