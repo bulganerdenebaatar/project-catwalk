@@ -1,5 +1,5 @@
 import React, {
-  useState, useContext, useEffect,
+  useState, useContext, useEffect, createContext,
 } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import { GlobalContext } from '../../App.jsx';
 
 import ListBehavior from './ListBehavior.jsx';
 
-// export const outfitContext = React.createContext({});
+// export const OutfitContext = createContext(0);
 
 function OutfitList() {
   const { productId, setProductId } = useContext(GlobalContext);
@@ -18,6 +18,9 @@ function OutfitList() {
   const [outfitsItem, setOutfitsItem] = useState([]);
   const [addNewOutfit, setAddNewOutfit] = useState(0);
 
+  const passedFunction = () => {
+    setAddNewOutfit((pv) => pv + 1);
+  };
 
   // Get current product and style
   useEffect(() => {
@@ -43,16 +46,13 @@ function OutfitList() {
 
   return (
     <>
-      {/* <outfitContext.Provider value={{
-        setAddNewOutfit,
-      }}
-      /> */}
       <ListBehavior
         relatedProducts={outfits}
         relatedPorductsItem={outfitsItem}
         outfitPicks={1}
-        addNewOutfit={(n) => setAddNewOutfit(n)}
+        addNewOutfit={passedFunction}
       />
+      <p>{console.log('inside OutfitList; passedFunction: ', passedFunction)}</p>
     </>
   );
 

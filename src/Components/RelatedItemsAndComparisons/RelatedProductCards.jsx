@@ -1,8 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+// import { OutfitContext } from './OutfitList.jsx';
 import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
+
 
 
 const CardStyle = styled.div`
@@ -53,7 +55,7 @@ function ProductCard({
   product, relatedProductsItem, index, addNewOutfit,
 }) {
   const { productId, setProductId } = useContext(GlobalContext);
-  // const { setAddNewOutfit } = useContext(outfitContext);
+  // const { setAddNewOutfit } = useContext(OutfitContext);
 
   if (!product) {
     return (
@@ -62,7 +64,7 @@ function ProductCard({
           className="product__card"
           id="productCard"
           data-testid="productCard"
-          onClick={() => addNewOutfit((prevStuff) => prevStuff + 1)}
+          onClick={addNewOutfit}
         // change this to add to outfits
         >
           <div>

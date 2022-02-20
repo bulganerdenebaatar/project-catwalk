@@ -141,7 +141,8 @@ function ListBehavior({
         <ListStyle>
           <ContainerStyle>
             <CardContainerStyle>
-              <ProductCard />
+              <ProductCard addNewOutfit={addNewOutfit} />
+              <p>{console.log('inside ListBehavior; addNewOutfit: ', addNewOutfit)}</p>
             </CardContainerStyle>
             {relatedProductsItem ? relatedProducts.map((product, index) => (
               <CardContainerStyle>
@@ -149,7 +150,7 @@ function ListBehavior({
                   product={product}
                   relatedProductsItem={relatedProductsItem}
                   index={index}
-                  addNewOutfit={addNewOutfit}
+
                 />
               </CardContainerStyle>
             )) : console.log('BANG: ', outfitPicks)}
