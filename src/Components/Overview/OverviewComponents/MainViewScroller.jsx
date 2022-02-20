@@ -14,18 +14,18 @@ const Scroller = styled.div`
 
 
   button {
-    background-color: rgba(20, 0, 20, 0.7);
+    background-color: rgba(20, 0, 20, 0.3);
     border-radius: 0;
     border: none;
     height: 80%;
     width: 100%;
     margin: 0;
-    padding: 3px;
+    padding: 1px;
     margin-left: -5px;
     :hover {
       cursor: pointer;
     }
-    box-shadow: 0 -5px 0 rgba(120, 90, 200, 0.3);
+    box-shadow: 0 -5px 0 rgba(89, 255, 255, 0.6);
   }
 `;
 
