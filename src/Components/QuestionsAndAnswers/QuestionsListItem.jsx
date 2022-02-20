@@ -31,8 +31,8 @@ function QuestionsListItem(props) {
               onClick={answerDisplay < props.answers.length - 1
                 ? updateAnswerDisplay : collapseAnswerDisplay}
             >
-              {answerDisplay < props.answers.length ? 'load more answers'
-                : 'collapse answers'}
+              {answerDisplay < props.answers.length ? 'Load More Answers'
+                : 'Collapse Answers'}
             </button>
           </p>
         )

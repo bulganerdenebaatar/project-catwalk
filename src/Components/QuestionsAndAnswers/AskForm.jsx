@@ -5,7 +5,7 @@ function AskForm() {
 
   return (
     <button>
-      Ask Question
+      Add A Question +
     </button>
   );
 }

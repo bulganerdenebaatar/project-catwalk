@@ -16,7 +16,7 @@ function SearchForm(props) {
       <input
         type="text"
         value={props.searchInput}
-        placeholder="Have a qeustion? Search for answers…"
+        placeholder="Have a question? Search for answers…"
         onChange={(e) => props.setSearchInput(e.target.value)}
       />
       <button
