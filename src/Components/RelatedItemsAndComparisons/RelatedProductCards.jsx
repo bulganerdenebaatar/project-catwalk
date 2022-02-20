@@ -8,8 +8,8 @@ import FiveStar from '../FiveStar.jsx';
 const CardStyle = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid #ccc;
-  background: #fafafa;
+  // border: 1px solid #ccc;
+  background-color: rgba(220,152,245,0.3);
   box-sizing: border-box;
   border-radius: 10px;
   display: flex;
@@ -27,6 +27,8 @@ const CardStyle = styled.div`
   .div__pic {
     width: 100%;
     height: 9em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     position: relative;
     overflow: hidden;
   }

@@ -9,7 +9,8 @@ import {
 
 const RelatedStyle = styled.div`
   ${styles.Standard};
-  height: 400px;
+  height: fit-content;
+  width: 100%;
 `;
 
 const Title = styled.h3`
