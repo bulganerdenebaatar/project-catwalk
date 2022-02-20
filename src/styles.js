@@ -2,7 +2,8 @@
 
 const colors = {
   standardBGColor: 'rgb(100, 80, 140)',
-  standardTxtColor: 'rgba(89, 255, 255, 0.9)',
+  // standardTxtColor: 'rgba(89, 255, 255, 0.9)',
+  standardTxtColor: 'rgba(230, 252, 249, 0.8)',
   standardBorder: '3px solid rgba(52, 168, 192, 0.8)',
 };
 

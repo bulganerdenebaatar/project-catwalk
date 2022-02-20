@@ -14,7 +14,6 @@ const ratingsCalculator = function (ratings) {
 const dateFormatter = (unformattedDate) => {
   const months = ['indexSpacer', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const chunks = unformattedDate.split('-');
-  console.log(chunks);
   const year = chunks[0];
   const month = months[Number(chunks[1])];
   let day = chunks[2].substring(0,2);

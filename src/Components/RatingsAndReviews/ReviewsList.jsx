@@ -4,11 +4,11 @@ import axios from 'axios';
 import Styled from 'styled-components';
 import { GlobalContext } from '../../App.jsx';
 import ReviewTile from './ReviewTile.jsx';
-import { ReviewModal } from '../FormModal.jsx';
+import ReviewModal from '../ReviewModal.jsx';
 
 const ScrollDiv = Styled.div`
-  min-height: 0;
-  max-height: 50vh;
+  min-height: 40vh;
+  max-height: 40vh;
   overflow-y: scroll;
 `;
 
@@ -61,16 +61,20 @@ function ReviewsList() {
         {reviews.length}
         {' '}
         reviews sorted by
+        {' '}
         <select value={sort} onChange={handleChange}>
           <option value="relevant">relevant</option>
           <option value="helpful">helpful</option>
-          <option value="newest">Newest</option>
+          <option value="newest">newest</option>
         </select>
         <hr />
       </div>
+      {reviews.length > 0
+      && (
       <ScrollDiv>
         {reviews.slice(0, displayNumber).map((review) => <ReviewTile handleRefresh={handleRefresh} review={review} />)}
       </ScrollDiv>
+      )}
       <div>
         <hr />
         {displayNumber < reviews.length

@@ -30,7 +30,9 @@ const Background = Styled.div`
   z-index: 14;
 `;
 const Form = Styled.form`
-  height: fit-content;
+  min-height: fit-content;
+  max-height: 80vh;
+  overflow-y: scroll;
   width: 50vw;
   padding: 50px;
   border-style: solid;
@@ -58,21 +60,26 @@ const SpacedLabel = Styled.label`
   align-items: flex-start;
   padding: 0px 0px 20px 0px;
 `;
+const HorizontalFlex = Styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 20px;
+`;
+const ScaleEnds = Styled.div`
+  font-size: 80%;
+  display: flex;
+  justify-content: center;
+`;
+const Wrap = Styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
-const CharacteristicFormatter = () => {
+function QuestionModal({ onDismiss, id }) {
   const { characteristics } = useContext(GlobalContext).ratingsData;
-
-  const radioButtonSettings = {
-    Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too big'],
-    Width: ['Too narrow', 'Slightly Narrow', 'Perfect', 'Slightly wide', 'Too wide'],
-    Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'perfect'],
-    Quality: ['Poor', 'Below Average', 'What I expected', 'Pretty great', 'Perfect'],
-    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'long'],
-    Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
-  };
-};
-
-function ReviewModal({ onDismiss, id }) {
   const [options, setOptions] = useState({
     product_id: id,
     name: '',
@@ -81,20 +88,15 @@ function ReviewModal({ onDismiss, id }) {
     rating: 1,
     summary: '',
     recommend: true,
-    characteristics: {
-      135219: 1,
-      135220: 2,
-      135221: 3,
-      135222: 4,
-    },
     photos: [],
   });
+  const [reviewCharacteristics, setReviewCharacteristics] = useState({});
 
   const formSubmit = () => {
     axios({
       method: 'post',
       url: '/shopdata/reviews',
-      data: options,
+      data: { ...options, characteristics: reviewCharacteristics },
     })
       .then((res) => {
         onDismiss();
@@ -133,7 +135,6 @@ function ReviewModal({ onDismiss, id }) {
           Summary:
           <FormEntry
             value={options.summary}
-            required
             maxLength={60}
             placeholder="Why did you like the product or not?"
             onChange={(e) => setOptions((p) => ({ ...p, summary: e.target.value }))}
@@ -159,10 +160,14 @@ function ReviewModal({ onDismiss, id }) {
             onChange={(e) => setOptions((p) => ({ ...p, rating: Number(e.target.value) }))}
           />
         </SpacedLabel>
-        {CharacteristicFormatter()}
+        <Wrap>
+          {Object.entries(characteristics)
+            .map((characteristic) =>
+              CharacteristicFormatter(characteristic[0], characteristic[1].id, setReviewCharacteristics))}
+        </Wrap>
         <div className="recommend-indicator">
           <p>Would you recommend this product?</p>
-          <div onChange={(e) => setOptions({ recommend: e.target.value === 'yes' })}>
+          <div onChange={(e) => setOptions((p) => ({ ...p, recommend: e.target.value === 'yes' }))}>
             <input
               type="radio"
               id="yes"
@@ -181,8 +186,10 @@ function ReviewModal({ onDismiss, id }) {
             <label htmlFor="no">No</label>
           </div>
         </div>
-        <button type="button" value="Cancel" onClick={onDismiss}>Cancel</button>
-        <button type="button" value="Submit" onClick={formSubmit}>Submit</button>
+        <HorizontalFlex>
+          <button type="button" value="Cancel" onClick={onDismiss}>Cancel</button>
+          <button type="button" value="Submit" onClick={formSubmit}>Submit</button>
+        </HorizontalFlex>
       </Form>
     </Modal>
   );
@@ -190,12 +197,12 @@ function ReviewModal({ onDismiss, id }) {
   return ReactDom.createPortal(form, modalRoot);
 }
 
-ReviewModal.proptypes = {
+QuestionModal.proptypes = {
   onDismiss: PropTypes.func.isRequired,
   route: PropTypes.string.isRequired,
 };
 
-export { ReviewModal };
+export default QuestionModal;
 
 // review opt: product_id, rating, summary, body, recommend, name, email, photos, characteristics
 // question opt: body, name, email, product_id
