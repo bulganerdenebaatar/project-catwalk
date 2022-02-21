@@ -23,17 +23,21 @@ function RelatedProductsList() {
   }, [productId]);
 
   useEffect(() => {
+    if (relatedProducts.length !== 0 || relatedProductsItem.length !== 0) {
+      setRelatedProducts([]);
+      setRelatedProductsItem([]);
+    }
     relatedIDs.forEach((ID, index) => {
       axios.get(`shopdata/products/${ID}/styles`)
         .then((res) => {
           setRelatedProducts((prevIDs) => [...prevIDs, res.data]);
-        })
-        .catch((err) => (
-          console.log('errr', err)
-        ));
-      axios.get(`shopdata/products/${ID}`)
-        .then((res) => {
-          setRelatedProductsItem((prevIDs) => [...prevIDs, res.data]);
+          return axios.get(`shopdata/products/${ID}`)
+            .then((response) => {
+              setRelatedProductsItem((previousIDs) => [...previousIDs, response.data]);
+            })
+            .catch((err) => (
+              console.log('errr', err)
+            ));
         })
         .catch((err) => (
           console.log('errr', err)
