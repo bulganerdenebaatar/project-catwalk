@@ -3,9 +3,7 @@ import React, {
 } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import { GlobalContext } from '../../App.jsx';
-
 import ListBehavior from './ListBehavior.jsx';
 
 function RelatedProductsList() {
@@ -25,12 +23,9 @@ function RelatedProductsList() {
   }, [productId]);
 
   useEffect(() => {
-    // console.log('in related: ', relatedIDs);
     relatedIDs.forEach((ID, index) => {
-      // console.log('per round: ', ID, 'index: ', index);
       axios.get(`shopdata/products/${ID}/styles`)
         .then((res) => {
-          // console.log('IN style req: ', res.data);
           setRelatedProducts((prevIDs) => [...prevIDs, res.data]);
         })
         .catch((err) => (
@@ -38,7 +33,6 @@ function RelatedProductsList() {
         ));
       axios.get(`shopdata/products/${ID}`)
         .then((res) => {
-          // console.log('IN PRODUCT ID req: ', res.data);
           setRelatedProductsItem((prevIDs) => [...prevIDs, res.data]);
         })
         .catch((err) => (
@@ -49,15 +43,10 @@ function RelatedProductsList() {
 
   if (relatedProductsItem.length === relatedIDs.length && relatedIDs.length !== 0) {
     return (
-      <div>
-        {relatedProductsItem.length >= 3
-          ? (
-            <ListBehavior
-              relatedProducts={relatedProducts}
-              relatedProductsItem={relatedProductsItem}
-            />
-          ) : <div>{6}</div>}
-      </div>
+      <ListBehavior
+        relatedProducts={relatedProducts}
+        relatedProductsItem={relatedProductsItem}
+      />
     );
   }
 
@@ -67,12 +56,7 @@ function RelatedProductsList() {
     </div>
   );
 
-
 }
 
 export default RelatedProductsList;
-
-// have to use useLayoutEfftect hook because of painting issues
-
-// or check to see if relatedProductsItem is not undefined first then do something
 

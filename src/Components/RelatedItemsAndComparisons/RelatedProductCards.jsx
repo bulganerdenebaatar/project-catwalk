@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-// import { OutfitContext } from './OutfitList.jsx';
 import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
 
@@ -55,7 +54,6 @@ function ProductCard({
   product, relatedProductsItem, index, addNewOutfit,
 }) {
   const { productId, setProductId } = useContext(GlobalContext);
-  // const { setAddNewOutfit } = useContext(OutfitContext);
 
   if (!product) {
     return (
@@ -96,6 +94,7 @@ function ProductCard({
             <img
               src={product.results[0].photos[0].thumbnail_url}
               alt="placeholder for Product img"
+              // nature picture for alt
               className="pic"
             />
           </div>

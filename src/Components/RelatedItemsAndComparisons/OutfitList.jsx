@@ -1,14 +1,11 @@
 import React, {
-  useState, useContext, useEffect, createContext,
+  useState, useContext, useEffect,
 } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-
 import { GlobalContext } from '../../App.jsx';
-
 import ListBehavior from './ListBehavior.jsx';
 
-// export const OutfitContext = createContext(0);
 
 function OutfitList() {
   const { productId, setProductId } = useContext(GlobalContext);
@@ -38,8 +35,11 @@ function OutfitList() {
 
   // Adds new outfit to outfits
   useEffect(() => {
-    setOutfits((prevOutfits) => [...prevOutfits, currentProduct]);
-    setOutfitsItem((prevItems) => [...prevItems, currentProductStyle]);
+    if (currentProduct.id) {
+      console.log('useEFFECT: currentProduct: ', currentProduct);
+      setOutfits((prevOutfits) => [...prevOutfits, currentProduct]);
+      setOutfitsItem((prevItems) => [...prevItems, currentProductStyle]);
+    }
   }, [addNewOutfit]);
   // listens to add click listener
 
@@ -47,12 +47,12 @@ function OutfitList() {
   return (
     <>
       <ListBehavior
-        relatedProducts={outfits}
-        relatedPorductsItem={outfitsItem}
+        relatedProducts={outfitsItem}
+        relatedProductsItem={outfits}
         outfitPicks={1}
         addNewOutfit={passedFunction}
       />
-      <p>{console.log('inside OutfitList; passedFunction: ', passedFunction)}</p>
+      <p>{console.log('inside OutfitList; outfits: ', outfits)}</p>
     </>
   );
 

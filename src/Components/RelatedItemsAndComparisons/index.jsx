@@ -3,9 +3,6 @@ import styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
 import OutfitList from './OutfitList.jsx';
 import RelatedProductsList from './RelatedProductsList.jsx';
-import {
-  productData, productIdData, productStyleData, relatedProductsData,
-} from './other_test_data/othertestdata.js';
 
 const RelatedStyle = styled.div`
   ${styles.Standard};

@@ -1,14 +1,8 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-
 import ProductCard from './RelatedProductCards.jsx';
-
-// dont need
-import { GlobalContext } from '../../App.jsx';
-
-
 
 
 function ListBehavior({
@@ -22,7 +16,7 @@ function ListBehavior({
   height: 250px;
   position: relative;
 
-  // background: lightblue;
+  background: lightblue;
 `;
 
   const ListStyle = styled.div`
@@ -30,7 +24,7 @@ function ListBehavior({
   height: 100%
   box-sizing: border-box;
 
-  // border: 2px solid green;
+  border: 2px solid green;
 `;
 
   const ContainerStyle = styled.div`
@@ -39,7 +33,7 @@ function ListBehavior({
   transition: transform 0.5s;
   transform: translateX(-${activeIndex * 259}px);
 
-  // border: 4px dotted red;
+  border: 4px dotted red;
 `;
 
   const CardContainerStyle = styled.div`
@@ -49,7 +43,7 @@ function ListBehavior({
   padding-right: 15px;
   box-sizing: border-box;
 
-  // border: 5px solid black;
+  border: 5px solid black;
 `;
 
   const LeftArrow = styled.span`
@@ -82,8 +76,6 @@ function ListBehavior({
 
   const handleArrowClick = (direction) => {
 
-    console.log('arrow click! Direction: ', direction, 'activeIndex: ', activeIndex);
-
     if (direction === 'next') {
       const nextIndex = activeIndex + 1;
       if (nextIndex === relatedProducts.length) return;
@@ -99,61 +91,76 @@ function ListBehavior({
 
   };
 
-  if ((
-    (relatedProductsItem !== undefined && relatedProducts !== undefined)
-    && (relatedProductsItem.length === relatedProducts.length)) && relatedProducts.length !== 0) {
-    return (
-      <WrapperStyle>
-        <ListStyle>
-          <ContainerStyle>
-            {console.log('containerStyle; RelatedProducts: ', relatedProductsItem)}
-            {relatedProductsItem ? relatedProducts.map((product, index) => (
-              <CardContainerStyle>
-                {console.log('inside MAP; PRODUCT: ', product)}
-                <ProductCard
-                  product={product}
-                  relatedProductsItem={relatedProductsItem}
-                  index={index}
-                />
-              </CardContainerStyle>
-            )) : console.log('BANG: ', outfitPicks)}
-          </ContainerStyle>
-        </ListStyle>
-        <LeftArrow
-          className="fas fa-angle-left fa-lg"
-          type="button"
-          value="left"
-          onClick={() => handleArrowClick('prev')}
-        />
-        <RightArrow
-          className="fas fa-angle-right fa-lg"
-          type="button"
-          value="right"
-          onClick={() => handleArrowClick('next')}
-        />
-      </WrapperStyle>
-    );
-  }
 
-  if (outfitPicks) {
+  if (outfitPicks === 1) {
     return (
       <WrapperStyle>
         <ListStyle>
+
+
           <ContainerStyle>
+
+
             <CardContainerStyle>
               <ProductCard addNewOutfit={addNewOutfit} />
-              <p>{console.log('inside ListBehavior; addNewOutfit: ', addNewOutfit)}</p>
+              <p>{console.log(
+                'inside ListBehavior/outfits; addNewOutfit: ',
+                addNewOutfit,
+                'relatedProductItem: ',
+                relatedProductsItem,
+              )}
+              </p>
             </CardContainerStyle>
+
+
             {relatedProductsItem ? relatedProducts.map((product, index) => (
               <CardContainerStyle>
                 <ProductCard
                   product={product}
                   relatedProductsItem={relatedProductsItem}
                   index={index}
-
                 />
               </CardContainerStyle>
-            )) : console.log('BANG: ', outfitPicks)}
+            )) : console.log('No Outfits: ', relatedProductsItem)}
+          </ContainerStyle>
+
+
+
+
+        </ListStyle>
+        <LeftArrow
+          className="fas fa-angle-left fa-lg"
+          type="button"
+          value="left"
+          onClick={() => handleArrowClick('prev')}
+        />
+        <RightArrow
+          className="fas fa-angle-right fa-lg"
+          type="button"
+          value="right"
+          onClick={() => handleArrowClick('next')}
+        />
+      </WrapperStyle>
+    );
+  }
+
+
+  if (
+    ((relatedProductsItem !== undefined && relatedProducts !== undefined)
+      && (relatedProductsItem.length === relatedProducts.length)) && relatedProducts.length !== 0) {
+    return (
+      <WrapperStyle>
+        <ListStyle>
+          <ContainerStyle>
+            {relatedProductsItem ? relatedProducts.map((product, index) => (
+              <CardContainerStyle>
+                <ProductCard
+                  product={product}
+                  relatedProductsItem={relatedProductsItem}
+                  index={index}
+                />
+              </CardContainerStyle>
+            )) : console.log('inside relatedItems; relatedProductsItem: ', relatedProductsItem)}
           </ContainerStyle>
         </ListStyle>
         <LeftArrow
@@ -171,6 +178,7 @@ function ListBehavior({
       </WrapperStyle>
     );
   }
+
 
   return (
     <div>
