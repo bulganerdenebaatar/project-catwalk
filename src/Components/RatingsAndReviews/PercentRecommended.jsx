@@ -1,7 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import Styled from 'styled-components';
 import { GlobalContext } from '../../App.jsx';
 
+const PercRec = Styled.p`
+  font-size: 85%;
+`;
 
 function PercentRecommended() {
   const { recommended } = useContext(GlobalContext).ratingsData;
@@ -9,12 +13,10 @@ function PercentRecommended() {
   const total = Number(recommended.false) + rec;
   const percent = Math.floor((rec / total) * 100);
   return (
-    <div>
-      <p>
-        { percent }
-        % of reviews recommend this product
-      </p>
-    </div>
+    <PercRec>
+      { percent }
+      % of reviews recommend this product
+    </PercRec>
   );
 }
 

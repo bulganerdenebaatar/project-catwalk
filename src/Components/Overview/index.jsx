@@ -36,7 +36,7 @@ function Overview() {
   const [currentImageThumbs, setCurrentImageThumbs] = useState([]);
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState([]);
-  const [currentStyleId, setCurrentStyleId] = useState(240500);
+  const [currentStyleId, setCurrentStyleId] = useState(0);
 
   useEffect(() => {
     axios.get(`shopdata/products/${productId}`)
@@ -49,9 +49,15 @@ function Overview() {
 
     axios.get(`shopdata/products/${productId}/styles`)
       .then((res) => {
+        const initStyle = res.data.results[0];
         setProductStyles(res.data.results);
-        res.data.results.forEach((style) => {
+        setCurrentStyleSelection(initStyle);
+        setCurrentImageThumbs(initStyle.photos);
+        setCurrentMainImage([initStyle.photos[0].url, 0]);
+
+        res.data.results.forEach((style, index) => {
           if (style.style_id === currentStyleId) {
+            if (index === 0) setCurrentStyleId(style.style_id);
             setCurrentStyleSelection(style);
             setCurrentImageThumbs(style.photos);
             setCurrentMainImage([style.photos[0].url, 0]);
