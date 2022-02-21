@@ -1,20 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
-import RelatedProductCards from './RelatedProductCards.jsx';
-import {
-  productData, productIdData, productStyleData, relatedProductsData,
-} from './other_test_data/othertestdata.js';
+import OutfitList from './OutfitList.jsx';
+import RelatedProductsList from './RelatedProductsList.jsx';
 
 const RelatedStyle = styled.div`
   ${styles.Standard};
-  height: 400px;
+  height: fit-content;
+  width: 100%;
+`;
+
+const Title = styled.h3`
+  font-family: inherit;
 `;
 
 function RelatedItemsAndComparisons() {
   return (
     <RelatedStyle className="relatedAndComparisons">
-      <RelatedProductCards />
+      <Title>
+        Related Products
+      </Title>
+      <RelatedProductsList />
+      <Title>
+        Outfits
+      </Title>
+      <OutfitList />
     </RelatedStyle>
   );
 }
