@@ -27,7 +27,7 @@ function QuestionsAndAnswers() {
       url: 'shopdata/qa/questions/',
       params: {
         count: 10,
-        product_id: 40349,
+        product_id: 40348,
       },
     })
       .then((res) => {

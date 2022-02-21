@@ -3,23 +3,27 @@ import QuestionsListItem from './QuestionsListItem.jsx';
 import ExpandButton from './ExpandButton.jsx';
 import AskForm from './AskForm.jsx';
 
+// wrap buttons in enclosing style div using display flex
+
 function QuestionsList(props) {
   return (
     <div>
       <p>
-        {props.questions.slice(0, props.displayNumber).map((item, index) =>
-          <QuestionsListItem question={item.question} answers={item.answers} key={index} />)}
+        {props.questions.slice(0, props.displayNumber).map((item, index) => <QuestionsListItem question={item.question} answers={item.answers} key={index} />)}
       </p>
-      <p>
-        <ExpandButton
-          questions={props.questions}
-          displayNumber={props.displayNumber}
-          updateDisplayNumber={props.updateDisplayNumber}
-          collapseDisplayNumber={props.collapseDisplayNumber}
-        />
-        {' '}
-        <AskForm />
-      </p>
+      {props.questions.length !== 4
+        && (
+        <p>
+          <ExpandButton
+            questions={props.questions}
+            displayNumber={props.displayNumber}
+            updateDisplayNumber={props.updateDisplayNumber}
+            collapseDisplayNumber={props.collapseDisplayNumber}
+          />
+          {' '}
+        </p>
+        )}
+      <AskForm />
     </div>
   );
 }
