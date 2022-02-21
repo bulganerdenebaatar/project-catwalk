@@ -85,9 +85,9 @@ function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
   const radioButtonSettings = {
     Size: ['A size too small', '1/2 a size too small', 'Perfect', '1/2 a size too big', 'A size too big'],
     Width: ['Too narrow', 'Slightly Narrow', 'Perfect', 'Slightly wide', 'Too wide'],
-    Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'perfect'],
+    Comfort: ['Uncomfortable', 'Slightly uncomfortable', 'Ok', 'Comfortable', 'Perfect'],
     Quality: ['Poor', 'Below Average', 'What I expected', 'Pretty great', 'Perfect'],
-    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'long'],
+    Length: ['Runs short', 'Runs slightly short', 'Perfect', 'Runs slightly long', 'Runs long'],
     Fit: ['Runs tight', 'Runs slightly tight', 'Perfect', 'Runs slightly long', 'Runs long'],
   };
 
@@ -207,9 +207,12 @@ function ReviewModal({ onDismiss, id }) {
           />
         </SpacedLabel>
         <Wrap>
-          {Object.entries(characteristics)
-            .map((characteristic) =>
-              CharacteristicFormatter(characteristic[0], characteristic[1].id, setReviewCharacteristics))}
+          {
+            Object.entries(characteristics)
+              .map((characteristic) => (
+                CharacteristicFormatter(characteristic[0], characteristic[1].id, setReviewCharacteristics)
+              ))
+          }
         </Wrap>
         <div className="recommend-indicator">
           <p>Would you recommend this product?</p>

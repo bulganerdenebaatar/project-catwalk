@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useContext, createContext, useState, useMemo,
+} from 'react';
 import styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
 import RatingsBreakdown from './RatingsBreakdown.jsx';
@@ -29,19 +31,26 @@ const RightPane = styled.div`
   grid-row-start: 2;
 `;
 
+export const ReviewContext = createContext(0);
+
 function RatingsAndReviews() {
+  const [starFilter, setStarFilter] = useState([]);
+  const reviewContext = useMemo(() => ({ starFilter, setStarFilter }), [starFilter, setStarFilter]);
+
   return (
-    <RandRStyle className="ratingsAndReviews">
-      <Title>
-        Ratings & Reviews
-      </Title>
-      <LeftPane>
-        <RatingsBreakdown />
-      </LeftPane>
-      <RightPane>
-        <ReviewsList />
-      </RightPane>
-    </RandRStyle>
+    <ReviewContext.Provider value={reviewContext}>
+      <RandRStyle className="ratingsAndReviews">
+        <Title>
+          Ratings & Reviews
+        </Title>
+        <LeftPane>
+          <RatingsBreakdown />
+        </LeftPane>
+        <RightPane>
+          <ReviewsList />
+        </RightPane>
+      </RandRStyle>
+    </ReviewContext.Provider>
   );
 }
 
