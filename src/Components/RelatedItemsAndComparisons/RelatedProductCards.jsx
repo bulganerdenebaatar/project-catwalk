@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
-// import CompareModal from './CompareModal.jsx';
+import CompareModal from './CompareModal.jsx';
 
 
 const CardStyle = styled.div`
@@ -82,7 +82,7 @@ function ProductCard({
   product, relatedProductsItem, index, addNewOutfit, outfitPicks,
 }) {
   const { productId, setProductId } = useContext(GlobalContext);
-  // const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   if (!product) {
     return (
@@ -131,7 +131,8 @@ function ProductCard({
                   className="star fa fa-star"
                   data-testid="full-star"
                   onClick={() => {
-                    console.log('Star Click!');
+                    console.log('Star clicked!');
+                    setOpenModal(true);
                   }}
                 />
               )}
@@ -148,7 +149,6 @@ function ProductCard({
             </ButtonWrap>
           </div>
           <div className="product__info">
-            {console.log('relatedProductsItem: ', relatedProductsItem)}
             {relatedProductsItem[index] && (
               <div>
                 <p>{relatedProductsItem[index].category}</p>
@@ -160,8 +160,7 @@ function ProductCard({
                 </p>
               </div>
             )}
-            {console.log('IN PRODUCT CARD ', relatedProductsItem)}
-            <FiveStar ratings={3} />
+            <FiveStar rating={Math.random() * (4 - 1) + 1} />
           </div>
         </div>
       </CardStyle>
