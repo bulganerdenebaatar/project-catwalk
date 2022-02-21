@@ -78,25 +78,19 @@ const Wrap = Styled.div`
   justify-content: space-between;
 `;
 
-function QuestionModal({ onDismiss, id }) {
-  const { characteristics } = useContext(GlobalContext).ratingsData;
+function QuestionModal({ onDismiss, id, route }) {
   const [options, setOptions] = useState({
     product_id: id,
     name: '',
     email: '',
     body: '',
-    rating: 1,
-    summary: '',
-    recommend: true,
-    photos: [],
   });
-  const [reviewCharacteristics, setReviewCharacteristics] = useState({});
 
   const formSubmit = () => {
     axios({
       method: 'post',
-      url: '/shopdata/reviews',
-      data: { ...options, characteristics: reviewCharacteristics },
+      url: '/shopdata/qa/questions',
+      data: options,
     })
       .then((res) => {
         onDismiss();
@@ -131,17 +125,8 @@ function QuestionModal({ onDismiss, id }) {
           />
           <div>For authentication reasons, you will not be emailed</div>
         </SpacedLabel>
-        <SpacedLabel className="summary">
-          Summary:
-          <FormEntry
-            value={options.summary}
-            maxLength={60}
-            placeholder="Why did you like the product or not?"
-            onChange={(e) => setOptions((p) => ({ ...p, summary: e.target.value }))}
-          />
-        </SpacedLabel>
         <SpacedLabel className="body">
-          Review:
+          {}Answer:
           <FormEntry
             value={options.body}
             required
@@ -151,20 +136,6 @@ function QuestionModal({ onDismiss, id }) {
             onChange={(e) => setOptions((p) => ({ ...p, body: e.target.value }))}
           />
         </SpacedLabel>
-        <SpacedLabel className="rating">
-          Rating:
-          <FormEntry
-            value={options.rating}
-            required
-            placeholder="Rating?"
-            onChange={(e) => setOptions((p) => ({ ...p, rating: Number(e.target.value) }))}
-          />
-        </SpacedLabel>
-        <Wrap>
-          {Object.entries(characteristics)
-            .map((characteristic) =>
-              CharacteristicFormatter(characteristic[0], characteristic[1].id, setReviewCharacteristics))}
-        </Wrap>
         <div className="recommend-indicator">
           <p>Would you recommend this product?</p>
           <div onChange={(e) => setOptions((p) => ({ ...p, recommend: e.target.value === 'yes' }))}>
@@ -203,7 +174,3 @@ QuestionModal.proptypes = {
 };
 
 export default QuestionModal;
-
-// review opt: product_id, rating, summary, body, recommend, name, email, photos, characteristics
-// question opt: body, name, email, product_id
-// Helper

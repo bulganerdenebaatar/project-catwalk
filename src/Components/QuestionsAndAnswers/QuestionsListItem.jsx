@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import QuestionModal from '../QuestionModal.jsx';
 
 function QuestionsListItem(props) {
   const [answerDisplay, setAnswerDisplay] = useState(2);
+  const [showModal, setShowModal] = useState(false);
   const updateAnswerDisplay = () => {
     setAnswerDisplay((prev) => prev + 10);
   };
@@ -15,6 +17,13 @@ function QuestionsListItem(props) {
         Q:
         {' '}
         {props.question}
+        {' '}
+        <button type="button"
+          onClick={() => setShowModal(true)}
+        >
+          Add Answer
+        </button>
+        {showModal && <QuestionModal id={40344} onDismiss={() => setShowModal(false)} />}
       </p>
       {props.answers.length !== 0
         ? props.answers.slice(0, answerDisplay).map((answer) => (
@@ -37,6 +46,7 @@ function QuestionsListItem(props) {
           </p>
         )
         : <p> </p>}
+      <hr />
     </div>
   );
 }
