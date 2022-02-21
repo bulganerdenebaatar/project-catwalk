@@ -36,12 +36,11 @@ function OutfitList() {
   // Adds new outfit to outfits
   useEffect(() => {
     if (currentProduct.id) {
-      console.log('useEFFECT: currentProduct: ', currentProduct);
+      // console.log('useEFFECT: currentProduct: ', currentProduct);
       setOutfits((prevOutfits) => [...prevOutfits, currentProduct]);
       setOutfitsItem((prevItems) => [...prevItems, currentProductStyle]);
     }
   }, [addNewOutfit]);
-  // listens to add click listener
 
 
   return (
@@ -52,7 +51,7 @@ function OutfitList() {
         outfitPicks={1}
         addNewOutfit={passedFunction}
       />
-      <p>{console.log('inside OutfitList; outfits: ', outfits)}</p>
+      {/* <p>{console.log('inside OutfitList; outfits: ', outfits)}</p> */}
     </>
   );
 
@@ -60,4 +59,3 @@ function OutfitList() {
 
 export default OutfitList;
 
-// have to resize things, get click working (maybe use context), star - compare model, clean up

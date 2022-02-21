@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
-
+// import CompareModal from './CompareModal.jsx';
 
 
 const CardStyle = styled.div`
@@ -49,11 +49,33 @@ const CardStyle = styled.div`
 `;
 
 
+const Star = styled.span`
+  display: inline-block;
+  position: relative;
+  font-size: 1em;
+  color: #ddd;
+
+  &:after {
+    font-family: FontAwesome;
+    content: "\f005";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: hidden;
+    color: yellow;
+  }
+
+  z-index: 1;
+`;
+
+
 
 function ProductCard({
   product, relatedProductsItem, index, addNewOutfit,
 }) {
   const { productId, setProductId } = useContext(GlobalContext);
+  // const [openModal, setOpenModal] = useState(false);
 
   if (!product) {
     return (
@@ -63,7 +85,6 @@ function ProductCard({
           id="productCard"
           data-testid="productCard"
           onClick={addNewOutfit}
-        // change this to add to outfits
         >
           <div>
             <div className="div__pic">
@@ -90,7 +111,15 @@ function ProductCard({
       >
         <div>
           <div className="div__pic">
-            <div className="product__topStar">Star</div>
+            <div className="product__topStar">
+              <Star
+                className="star fa fa-star"
+                data-testid="full-star"
+                // onClick={() => {
+                //   setOpenModal(true);
+                // }}
+              />
+            </div>
             <img
               src={product.results[0].photos[0].thumbnail_url}
               alt="placeholder for Product img"

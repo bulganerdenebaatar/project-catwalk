@@ -16,7 +16,7 @@ function ListBehavior({
   height: 250px;
   position: relative;
 
-  background: lightblue;
+  // background: lightblue;
 `;
 
   const ListStyle = styled.div`
@@ -24,7 +24,7 @@ function ListBehavior({
   height: 100%
   box-sizing: border-box;
 
-  border: 2px solid green;
+  // border: 2px solid green;
 `;
 
   const ContainerStyle = styled.div`
@@ -33,7 +33,7 @@ function ListBehavior({
   transition: transform 0.5s;
   transform: translateX(-${activeIndex * 259}px);
 
-  border: 4px dotted red;
+  // border: 4px dotted red;
 `;
 
   const CardContainerStyle = styled.div`
@@ -43,7 +43,7 @@ function ListBehavior({
   padding-right: 15px;
   box-sizing: border-box;
 
-  border: 5px solid black;
+  // border: 5px solid black;
 `;
 
   const LeftArrow = styled.span`
@@ -75,11 +75,9 @@ function ListBehavior({
 `;
 
   const handleArrowClick = (direction) => {
-
     if (direction === 'next') {
       const nextIndex = activeIndex + 1;
       if (nextIndex === relatedProducts.length) return;
-
       setActiveIndex(nextIndex);
     }
 
@@ -88,7 +86,6 @@ function ListBehavior({
       if (prevIndex < 0) return;
       setActiveIndex(prevIndex);
     }
-
   };
 
 
@@ -96,23 +93,17 @@ function ListBehavior({
     return (
       <WrapperStyle>
         <ListStyle>
-
-
           <ContainerStyle>
-
-
             <CardContainerStyle>
               <ProductCard addNewOutfit={addNewOutfit} />
-              <p>{console.log(
+              {/* <p>{console.log(
                 'inside ListBehavior/outfits; addNewOutfit: ',
                 addNewOutfit,
                 'relatedProductItem: ',
                 relatedProductsItem,
               )}
-              </p>
+              </p> */}
             </CardContainerStyle>
-
-
             {relatedProductsItem ? relatedProducts.map((product, index) => (
               <CardContainerStyle>
                 <ProductCard
@@ -123,10 +114,6 @@ function ListBehavior({
               </CardContainerStyle>
             )) : console.log('No Outfits: ', relatedProductsItem)}
           </ContainerStyle>
-
-
-
-
         </ListStyle>
         <LeftArrow
           className="fas fa-angle-left fa-lg"
