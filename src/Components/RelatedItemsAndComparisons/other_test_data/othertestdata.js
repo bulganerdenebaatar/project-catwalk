@@ -1,4 +1,4 @@
-const products_Data = [
+const productsData = [
   {
     id: 40344,
     campus: 'hr-rfp',
@@ -56,7 +56,7 @@ const products_Data = [
   },
 ];
 
-const product_id_Data = {
+const productIdData = {
   id: 40344,
   campus: 'hr-rfp',
   name: 'Camo Onesie',
@@ -79,7 +79,7 @@ const product_id_Data = {
 };
 
 
-const product_style_Data = {
+const productStyleData = {
   product_id: '40344',
   results: [
     {
@@ -439,7 +439,7 @@ const product_style_Data = {
   ],
 };
 
-const related_products_Data = [
+const relatedProductsData = [
   40345,
   40346,
   40351,
@@ -447,8 +447,8 @@ const related_products_Data = [
 ];
 
 module.exports = {
-  productsData: products_Data,
-  productIdData: product_id_Data,
-  productStyleData: product_style_Data,
-  relatedProductsData: related_products_Data,
+  productsData,
+  productIdData,
+  productStyleData,
+  relatedProductsData,
 };

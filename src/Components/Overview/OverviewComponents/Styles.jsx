@@ -7,7 +7,6 @@ import loading from './assets/loading.gif';
 
 
 const StyleSelectors = styled.div`
-
   position: relative;
   top: -30px;
 
@@ -32,6 +31,7 @@ const testStyles = styleOptions.results;
 
 function StyleSelection() {
   const { productStyles, currentStyleSelection } = useContext(OverviewContext);
+
 
   if (productStyles.length) {
     const [currentStyleName, setCurrentStyleName] = useState(productStyles[0].name);
