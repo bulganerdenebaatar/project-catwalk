@@ -11,7 +11,12 @@ function QuestionsList(props) {
           <QuestionsListItem question={item.question} answers={item.answers} key={index} />)}
       </p>
       <p>
-        <ExpandButton updateDisplayNumber={props.updateDisplayNumber} />
+        <ExpandButton
+          questions={props.questions}
+          displayNumber={props.displayNumber}
+          updateDisplayNumber={props.updateDisplayNumber}
+          collapseDisplayNumber={props.collapseDisplayNumber}
+        />
         {' '}
         <AskForm />
       </p>

@@ -5,9 +5,11 @@ function QuestionsListItem(props) {
   const [answerDisplay, setAnswerDisplay] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const updateAnswerDisplay = () => {
+    console.log('more answers');
     setAnswerDisplay((prev) => prev + 10);
   };
   const collapseAnswerDisplay = () => {
+    console.log('collapse answers');
     setAnswerDisplay(2);
   };
 
@@ -18,12 +20,13 @@ function QuestionsListItem(props) {
         {' '}
         {props.question}
         {' '}
-        <button type="button"
+        <button
+          type="button"
           onClick={() => setShowModal(true)}
         >
           Add Answer
         </button>
-        {showModal && <QuestionModal id={40344} onDismiss={() => setShowModal(false)} />}
+        {showModal && <QuestionModal id={40347} onDismiss={() => setShowModal(false)} />}
       </p>
       {props.answers.length !== 0
         ? props.answers.slice(0, answerDisplay).map((answer) => (
@@ -33,11 +36,12 @@ function QuestionsListItem(props) {
             {answer}
           </p>
         )) : <p>A: N/A</p>}
-      {props.answers.length >= 2
+      {props.answers.length > 2
         ? (
           <p>
-            <button type="button"
-              onClick={answerDisplay < props.answers.length - 1
+            <button
+              type="button"
+              onClick={answerDisplay <= props.answers.length - 1
                 ? updateAnswerDisplay : collapseAnswerDisplay}
             >
               {answerDisplay < props.answers.length ? 'Load More Answers'

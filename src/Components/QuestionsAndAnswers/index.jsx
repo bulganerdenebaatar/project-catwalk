@@ -27,7 +27,7 @@ function QuestionsAndAnswers() {
       url: 'shopdata/qa/questions/',
       params: {
         count: 10,
-        product_id: 40347,
+        product_id: 40349,
       },
     })
       .then((res) => {
@@ -67,6 +67,10 @@ function QuestionsAndAnswers() {
     setDisplayNumber((prev) => prev + 2);
   };
 
+  const collapseDisplayNumber = () => {
+    setDisplayNumber(4);
+  };
+
   return (
     <QandAStyle className="questionsAndAnswers">
       <SearchForm
@@ -80,6 +84,7 @@ function QuestionsAndAnswers() {
         data-testid="questions-list"
         displayNumber={displayNumber}
         updateDisplayNumber={updateDisplayNumber}
+        collapseDisplayNumber={collapseDisplayNumber}
       />
       {/* <ExpandButton updateDisplayNumber={updateDisplayNumber} /> */}
       {/* <AskForm /> */}
