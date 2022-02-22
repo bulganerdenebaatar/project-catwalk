@@ -15,7 +15,7 @@ function AskForm(props) {
       {showModal
         && (
           <QuestionModal
-            id={props.productID}
+            id={props.productId}
             onDismiss={() => setShowModal(false)}
             route="/shopdata/qa/questions"
           />
@@ -23,5 +23,5 @@ function AskForm(props) {
     </div>
   );
 }
-//
+
 export default AskForm;
