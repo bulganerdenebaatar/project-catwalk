@@ -27,7 +27,7 @@ function QuestionsAndAnswers() {
       url: 'shopdata/qa/questions/',
       params: {
         count: 10,
-        product_id: 40347,
+        product_id: 40348,
       },
     })
       .then((res) => {
@@ -44,9 +44,11 @@ function QuestionsAndAnswers() {
           const answersBody = answers.map((answer) => answer.body);
           questions.push({
             question: question.question_body,
+            question_id: question.question_id,
             answers: answersBody,
           });
         });
+        console.log('this is questions array', questions);
         setSelected(questions);
         // setQuestionData(res.data.results);
         // res.data.results.forEach((question) => {
@@ -67,6 +69,10 @@ function QuestionsAndAnswers() {
     setDisplayNumber((prev) => prev + 2);
   };
 
+  const collapseDisplayNumber = () => {
+    setDisplayNumber(4);
+  };
+
   return (
     <QandAStyle className="questionsAndAnswers">
       <SearchForm
@@ -77,12 +83,14 @@ function QuestionsAndAnswers() {
       />
       <QuestionsList
         questions={selected}
+        productId={productId}
         data-testid="questions-list"
         displayNumber={displayNumber}
         updateDisplayNumber={updateDisplayNumber}
+        collapseDisplayNumber={collapseDisplayNumber}
       />
-      <ExpandButton updateDisplayNumber={updateDisplayNumber} />
-      <AskForm />
+      {/* <ExpandButton updateDisplayNumber={updateDisplayNumber} /> */}
+      {/* <AskForm /> */}
     </QandAStyle>
   );
 }
