@@ -78,7 +78,12 @@ function QuestionsListItem(props) {
             <div>
               Helpful?
               {' '}
-              <Helpful />
+              <Helpful
+                path="/qa/answers"
+                id={props.answers_Id[index]}
+                handleRefresh={props.handleRefresh}
+              />
+              {props.answers_helpfulness[index]}
             </div>
           </p>
         )) : <p>A: N/A</p>}

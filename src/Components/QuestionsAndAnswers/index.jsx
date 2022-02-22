@@ -42,6 +42,7 @@ function QuestionsAndAnswers() {
           const answersHelpfulness = answers.map((answer) => answer.helpfulness);
           const answersName = answers.map((answer) => answer.answerer_name);
           const answersDate = answers.map((answer) => answer.date);
+          const answersId = answers.map((answer) => answer.id);
           questions.push({
             question: question.question_body,
             question_id: question.question_id,
@@ -49,6 +50,7 @@ function QuestionsAndAnswers() {
             asker_name: question.asker_name,
             question_date: question.question_date,
             answers: answersBody,
+            answers_Id: answersId,
             answers_helpfulness: answersHelpfulness,
             answerer_name: answersName,
             answer_date: answersDate,
