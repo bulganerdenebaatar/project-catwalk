@@ -14,6 +14,8 @@ function QuestionsList(props) {
             question={item.question}
             question_id={item.question_id}
             question_helpfulness={item.question_helpfulness}
+            asker_name={item.asker_name}
+            question_date={item.question_date}
             answers={item.answers}
             key={index}
             handleRefresh={props.handleRefresh}

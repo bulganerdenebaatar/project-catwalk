@@ -39,10 +39,13 @@ function QuestionsAndAnswers() {
         sortedArr.forEach((question) => {
           const answers = Object.values(question.answers);
           const answersBody = answers.map((answer) => answer.body);
+          const answersHelpfulness = answers.map((answer) => answer.helpfulness);
           questions.push({
             question: question.question_body,
             question_id: question.question_id,
             question_helpfulness: question.question_helpfulness,
+            asker_name: question.asker_name,
+            question_date: question.question_date,
             answers: answersBody,
           });
         });

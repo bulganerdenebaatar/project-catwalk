@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import QuestionModal from '../QuestionModal.jsx';
 import { Helpful, Report } from '../HelpfulOrReport.jsx';
+import { dateFormatter } from '../../util/util.js';
 
 function QuestionsListItem(props) {
   const [answerDisplay, setAnswerDisplay] = useState(2);
@@ -20,6 +21,16 @@ function QuestionsListItem(props) {
         Q:
         {' '}
         {props.question}
+        {' '}
+        {' | '}
+        {' '}
+        Name:
+        {' '}
+        {props.asker_name}
+        {' '}
+        {' | '}
+        {' '}
+        {dateFormatter(props.question_date)}
         {' '}
         {' | '}
         {' '}
