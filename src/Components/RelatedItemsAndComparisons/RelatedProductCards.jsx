@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../../App.jsx';
 import FiveStar from '../FiveStar.jsx';
-import CompareModal from './CompareModal.jsx';
 
 
 const CardStyle = styled.div`
@@ -47,6 +46,17 @@ const CardStyle = styled.div`
     font-size: .7em;
   }
 
+  .outfitBtnX {
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+  }
+
 `;
 
 
@@ -79,10 +89,9 @@ const ButtonWrap = styled.div`
 
 
 function ProductCard({
-  product, relatedProductsItem, index, addNewOutfit, outfitPicks,
+  product, relatedProductsItem, index, addNewOutfit, outfitPicks, openModal,
 }) {
   const { productId, setProductId } = useContext(GlobalContext);
-  const [openModal, setOpenModal] = useState(false);
 
   if (!product) {
     return (
@@ -132,7 +141,7 @@ function ProductCard({
                   data-testid="full-star"
                   onClick={() => {
                     console.log('Star clicked!');
-                    setOpenModal(true);
+                    openModal([product.product_id, productId]);
                   }}
                 />
               )}
@@ -141,7 +150,8 @@ function ProductCard({
             <ButtonWrap onClick={() => setProductId(product.product_id)}>
               <img
                 src={product.results[0].photos[0].thumbnail_url ? product.results[0].photos[0].thumbnail_url
-                  : (`https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k=20&m=517188688&w=0&h=pCjvUkNlz9_esVvQw2Wgc8VJZBMgJrB0FQmktCA0KYY=`)}
+                  : ('https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k'
+                  + '=20&m=517188688&w=0&h=pCjvUkNlz9_esVvQw2Wgc8VJZBMgJrB0FQmktCA0KYY=')}
                 // nature picture for alt
                 alt="placeholder for Product img"
                 className="pic"
@@ -165,7 +175,6 @@ function ProductCard({
         </div>
       </CardStyle>
     </div>
-
   );
 }
 
@@ -175,6 +184,7 @@ ProductCard.propTypes = {
   index: PropTypes.number.isRequired,
   addNewOutfit: PropTypes.func.isRequired,
   outfitPicks: PropTypes.number.isRequired,
+  openModal: PropTypes.func.isRequired,
 };
 
 export default ProductCard;

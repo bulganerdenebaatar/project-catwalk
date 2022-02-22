@@ -3,12 +3,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import ProductCard from './RelatedProductCards.jsx';
+import CompareModal from './CompareModal.jsx';
 
 
 function ListBehavior({
   relatedProducts, relatedProductsItem, outfitPicks, addNewOutfit,
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
 
   const WrapperStyle = styled.div`
   width: 80vw;
@@ -96,13 +98,6 @@ function ListBehavior({
           <ContainerStyle>
             <CardContainerStyle>
               <ProductCard addNewOutfit={addNewOutfit} />
-              {/* <p>{console.log(
-                'inside ListBehavior/outfits; addNewOutfit: ',
-                addNewOutfit,
-                'relatedProductItem: ',
-                relatedProductsItem,
-              )}
-              </p> */}
             </CardContainerStyle>
             {relatedProductsItem ? relatedProducts.map((product, index) => (
               <CardContainerStyle>
@@ -137,33 +132,45 @@ function ListBehavior({
     ((relatedProductsItem !== undefined && relatedProducts !== undefined)
       && (relatedProductsItem.length === relatedProducts.length)) && relatedProducts.length !== 0) {
     return (
-      <WrapperStyle>
-        <ListStyle>
-          <ContainerStyle>
-            {relatedProductsItem ? relatedProducts.map((product, index) => (
-              <CardContainerStyle>
-                <ProductCard
-                  product={product}
-                  relatedProductsItem={relatedProductsItem}
-                  index={index}
-                />
-              </CardContainerStyle>
-            )) : console.log('inside relatedItems; relatedProductsItem: ', relatedProductsItem)}
-          </ContainerStyle>
-        </ListStyle>
-        <LeftArrow
-          className="fas fa-angle-left fa-lg"
-          type="button"
-          value="left"
-          onClick={() => handleArrowClick('prev')}
-        />
-        <RightArrow
-          className="fas fa-angle-right fa-lg"
-          type="button"
-          value="right"
-          onClick={() => handleArrowClick('next')}
-        />
-      </WrapperStyle>
+      <>
+        <WrapperStyle>
+          <ListStyle>
+            <ContainerStyle>
+              {relatedProductsItem ? relatedProducts.map((product, index) => (
+                <CardContainerStyle>
+                  <ProductCard
+                    product={product}
+                    relatedProductsItem={relatedProductsItem}
+                    index={index}
+                    openModal={setOpenModal}
+                  />
+                </CardContainerStyle>
+              )) : console.log('inside relatedItems; relatedProductsItem: ', relatedProductsItem)}
+            </ContainerStyle>
+          </ListStyle>
+          <LeftArrow
+            className="fas fa-angle-left fa-lg"
+            type="button"
+            value="left"
+            onClick={() => handleArrowClick('prev')}
+          />
+          <RightArrow
+            className="fas fa-angle-right fa-lg"
+            type="button"
+            value="right"
+            onClick={() => handleArrowClick('next')}
+          />
+        </WrapperStyle>
+        <div className="modalDiv">
+          {openModal && (
+            <CompareModal
+              closeModal={setOpenModal}
+              cardProductID={openModal[0]}
+              overViewProductID={openModal[1]}
+            />
+          )}
+        </div>
+      </>
     );
   }
 
