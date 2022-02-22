@@ -18,7 +18,8 @@ const OverviewStyle = styled.div`
   ${styles.Standard};
   display: grid;
   grid-template-columns: 60% 40%;
-  height: fit-content(1em);
+  padding-bottom: 0;
+  height: fit-content;
 `;
 
 const ProductInteractions = styled.div`
