@@ -83,6 +83,7 @@ function QuestionsAndAnswers() {
       />
       <QuestionsList
         questions={selected}
+        productId={productId}
         data-testid="questions-list"
         displayNumber={displayNumber}
         updateDisplayNumber={updateDisplayNumber}

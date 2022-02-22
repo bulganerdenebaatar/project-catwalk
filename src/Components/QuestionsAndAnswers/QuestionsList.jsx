@@ -30,7 +30,7 @@ function QuestionsList(props) {
             {' '}
           </p>
         )}
-      <AskForm />
+      <AskForm productId={40348} />
     </div>
   );
 }

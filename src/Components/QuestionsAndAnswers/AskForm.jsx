@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
+import QuestionModal from '../QuestionModal.jsx';
 
-function AskForm() {
-  const [myQuestion, updateMyQ] = useState('');
+function AskForm(props) {
+  const [showModal, setShowModal] = useState(false);
 
   return (
-    <button>
-      Add A Question +
-    </button>
+    <div>
+      <button
+        type="button"
+        onClick={() => setShowModal(true)}
+      >
+        Add A Question +
+      </button>
+      {showModal
+        && (
+          <QuestionModal
+            id={props.productID}
+            onDismiss={() => setShowModal(false)}
+            route="/shopdata/qa/questions"
+          />
+        )}
+    </div>
   );
 }
 
