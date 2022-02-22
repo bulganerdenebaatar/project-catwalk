@@ -1,7 +1,7 @@
 import React from 'react';
 
 function ExpandButton(props) {
-  console.log('this is questions props', props.questions);
+  // console.log('this is questions props', props.questions);
   return (
     <button
       type="button"

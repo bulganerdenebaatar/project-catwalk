@@ -5,11 +5,11 @@ function QuestionsListItem(props) {
   const [answerDisplay, setAnswerDisplay] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const updateAnswerDisplay = () => {
-    console.log('more answers');
+    // console.log('more answers');
     setAnswerDisplay((prev) => prev + 10);
   };
   const collapseAnswerDisplay = () => {
-    console.log('collapse answers');
+    // console.log('collapse answers');
     setAnswerDisplay(2);
   };
 
