@@ -110,6 +110,7 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
   return (
     <Scroller>
       <LeftArrow
+        data-analytics-id="scroll-left"
         className="fas fa-angle-left fa-lg"
         type="button"
         value="left"
@@ -118,11 +119,18 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
       {thumbs.slice(...thumbnailIndexRange).map((image, index) => {
         if (currentMainImageIndex - indexTracker === index) {
           return (
-            <SelectedImage src={image.thumbnail_url} />
+            <SelectedImage
+              data-analytics-id="selected thumbnail clicked (no effect)"
+              src={image.thumbnail_url}
+            />
           );
         }
         return (
-          <button type="button" onClick={() => handleClickOnThumbnail(index + indexTracker)}>
+          <button
+            data-analytics-id={`thumbnail number ${index + indexTracker} selected`}
+            type="button"
+            onClick={() => handleClickOnThumbnail(index + indexTracker)}
+          >
             <img
               className="not-selected"
               position={index}
@@ -133,6 +141,7 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
         );
       })}
       <RightArrow
+        data-analytics-id="scroll-right"
         className="fas fa-angle-right fa-lg"
         type="button"
         value="right"

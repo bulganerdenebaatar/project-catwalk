@@ -90,7 +90,11 @@ function AddToCart() {
     quantityAndAddToCart = <span className="out-of-stock">Out Of Stock</span>;
   } else {
     quantityAndAddToCart = (
-      <select value={quantitySelection} onChange={handleQuantitySelect}>
+      <select
+        data-analytics-id="quantity-selection"
+        value={quantitySelection}
+        onChange={handleQuantitySelect}
+      >
         {quantities.map((number) => {
           if (number <= stockQuantity && number <= 15) {
             return <option label={number} value={number} />;
@@ -104,7 +108,11 @@ function AddToCart() {
   return (
     <AddStyle>
       <div className="size-and-quantity">
-        <select value={sizeSelection} onChange={handleSizeSelect}>
+        <select
+          data-analytics-id="size-selection"
+          value={sizeSelection}
+          onChange={handleSizeSelect}
+        >
           {(sizeSelection === 'Select Size')
             ? <option label="Size" /> : null}
           {sizes.map((size) => <option label={size} value={size} />)}

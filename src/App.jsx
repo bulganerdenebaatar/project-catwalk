@@ -13,13 +13,22 @@ import { colors, styles } from './styles.js';
 import { ratingsCalculator } from './util/util.js';
 
 const GlobalStyle = createGlobalStyle`
+html {
+  display: flex;
+  justify-content: center;
+  left: 50px;
+}
+
 body {
   background-color: ${colors.standardBGColor};
   color: ${colors.standardTxtColor};
   display: flex;
   flex-direction: column;
   font-family: 'Comfortaa', monospace;
-  position: relative;
+  justify-content: center;
+  position: absolute;
+  max-width: 1200px;
+
   button {
     background-color: rgba(255, 240, 240);
     border: thin solid teal;
