@@ -13,8 +13,10 @@ function QuestionsList(props) {
           <QuestionsListItem
             question={item.question}
             question_id={item.question_id}
+            question_helpfulness={item.question_helpfulness}
             answers={item.answers}
             key={index}
+            handleRefresh={props.handleRefresh}
           />
         ))}
       </p>

@@ -25,7 +25,12 @@ function QuestionsListItem(props) {
         {' '}
         Helpful?
         {' '}
-        <Helpful />
+        <Helpful
+          path="/qa/questions"
+          id={props.question_id}
+          handleRefresh={props.handleRefresh}
+        />
+        ({props.question_helpfulness})
         <button
           type="button"
           onClick={() => setShowModal(true)}
@@ -42,8 +47,8 @@ function QuestionsListItem(props) {
         )}
       </p>
       {props.answers.length !== 0
-        ? props.answers.slice(0, answerDisplay).map((answer) => (
-          <p>
+        ? props.answers.slice(0, answerDisplay).map((answer, index) => (
+          <p key={index}>
             A:
             {' '}
             {answer}
