@@ -31,6 +31,9 @@ function QuestionsListItem(props) {
           handleRefresh={props.handleRefresh}
         />
         ({props.question_helpfulness})
+        {' '}
+        {' | '}
+        {' '}
         <button
           type="button"
           onClick={() => setShowModal(true)}
