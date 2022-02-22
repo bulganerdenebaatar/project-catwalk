@@ -85,9 +85,9 @@ function App() {
   });
 
   // For testing
-  const exampleProductIds = [40344, 40345];
+  const exampleProductIds = [40344, 40345, 40348];
 
-  const [productId, setProductId] = useState(exampleProductIds[0]);
+  const [productId, setProductId] = useState(exampleProductIds[2]);
 
   useLayoutEffect(() => {
     axios.get(`shopdata/reviews/meta/?product_id=${productId}`)

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { styleOptions } from '../test_data/testdata.js';
@@ -10,7 +10,7 @@ const Scroller = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  left: 5%;
+  height: 15%;
 
 
   button {
@@ -47,9 +47,13 @@ const Arrow = styled.span`
   width: 100%;
 `;
 
-
+let indexTracker = 0;
+// hold window range as a state using a tuple and use
+// slice to re-define the array of thumbnails being rendered
 
 function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }) {
+
+  const [thumbnailIndexRange, setThumbnailIndexRange] = useState([0, 7]);
 
   const LeftArrow = styled(Arrow)`
     content: &#Xf104;
@@ -72,6 +76,7 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
   `;
 
   const handleClickOnThumbnail = (index) => {
+    console.log(index);
     setCurrentMainImage([thumbs[index].url, index]);
   };
 
@@ -92,6 +97,16 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
 
   };
 
+  if (currentMainImageIndex === thumbnailIndexRange[1]) {
+    setThumbnailIndexRange([thumbnailIndexRange[0] + 1, thumbnailIndexRange[1] + 1]);
+    indexTracker += 1;
+  }
+
+  if (currentMainImageIndex === thumbnailIndexRange[0] && currentMainImageIndex > 0) {
+    setThumbnailIndexRange([thumbnailIndexRange[0] - 1, thumbnailIndexRange[1] - 1]);
+    indexTracker -= 1;
+  }
+
   return (
     <Scroller>
       <LeftArrow
@@ -100,14 +115,14 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
         value="left"
         onClick={() => handleArrowClick('prev')}
       />
-      {thumbs.map((image, index) => {
-        if (currentMainImageIndex === index) {
+      {thumbs.slice(...thumbnailIndexRange).map((image, index) => {
+        if (currentMainImageIndex - indexTracker === index) {
           return (
             <SelectedImage src={image.thumbnail_url} />
           );
         }
         return (
-          <button type="button" onClick={() => handleClickOnThumbnail(index)}>
+          <button type="button" onClick={() => handleClickOnThumbnail(index + indexTracker)}>
             <img
               className="not-selected"
               position={index}
