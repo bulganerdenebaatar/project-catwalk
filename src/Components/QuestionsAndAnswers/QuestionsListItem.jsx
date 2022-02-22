@@ -34,6 +34,14 @@ function QuestionsListItem(props) {
         {' '}
         {' | '}
         {' '}
+        <Report
+          path="/qa/questions"
+          id={props.question_id}
+          handleRefresh={props.handleRefresh}
+        />
+        {' '}
+        {' | '}
+        {' '}
         <button
           type="button"
           onClick={() => setShowModal(true)}
