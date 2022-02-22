@@ -37,7 +37,7 @@ function QuestionsListItem(props) {
         <QuestionModal
           id={props.question_id}
           onDismiss={() => setShowModal(false)}
-          route={`/qa/questions/${props.question_id}/answers`}
+          route={`/shopdata/qa/questions/${props.question_id}/answers`}
         />
         )}
       </p>

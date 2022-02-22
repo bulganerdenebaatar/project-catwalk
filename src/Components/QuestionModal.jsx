@@ -89,7 +89,7 @@ function QuestionModal({ onDismiss, id, route }) {
   const formSubmit = () => {
     axios({
       method: 'post',
-      url: `/shopdata/qa/questions/${id}/answers`,
+      url: route,
       data: options,
     })
       .then((res) => {
