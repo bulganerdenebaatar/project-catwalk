@@ -12,6 +12,7 @@ function QuestionsList(props) {
         {props.questions.slice(0, props.displayNumber).map((item, index) => (
           <QuestionsListItem
             question={item.question}
+            question_id={item.question_id}
             answers={item.answers}
             key={index}
           />

@@ -44,9 +44,11 @@ function QuestionsAndAnswers() {
           const answersBody = answers.map((answer) => answer.body);
           questions.push({
             question: question.question_body,
+            question_id: question.question_id,
             answers: answersBody,
           });
         });
+        console.log('this is questions array', questions);
         setSelected(questions);
         // setQuestionData(res.data.results);
         // res.data.results.forEach((question) => {

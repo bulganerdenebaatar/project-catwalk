@@ -89,7 +89,7 @@ function QuestionModal({ onDismiss, id, route }) {
   const formSubmit = () => {
     axios({
       method: 'post',
-      url: '/shopdata/qa/questions',
+      url: `/shopdata/qa/questions/${id}/answers`,
       data: options,
     })
       .then((res) => {
@@ -136,27 +136,6 @@ function QuestionModal({ onDismiss, id, route }) {
             onChange={(e) => setOptions((p) => ({ ...p, body: e.target.value }))}
           />
         </SpacedLabel>
-        <div className="recommend-indicator">
-          <p>Would you recommend this product?</p>
-          <div onChange={(e) => setOptions((p) => ({ ...p, recommend: e.target.value === 'yes' }))}>
-            <input
-              type="radio"
-              id="yes"
-              name="recommend"
-              value="yes"
-              checked={options.recommend}
-            />
-            <label htmlFor="yes">Yes</label>
-            <input
-              type="radio"
-              id="no"
-              name="recommmend"
-              value="no"
-              checked={!options.recommend}
-            />
-            <label htmlFor="no">No</label>
-          </div>
-        </div>
         <HorizontalFlex>
           <button type="button" value="Cancel" onClick={onDismiss}>Cancel</button>
           <button type="button" value="Submit" onClick={formSubmit}>Submit</button>
