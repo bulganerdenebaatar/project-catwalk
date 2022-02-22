@@ -35,11 +35,13 @@ function QuestionsAndAnswers() {
           b.question_helpfulness - a.question_helpfulness
         ));
         setQuestionData(sortedArr);
-        console.log('this is sortedArr', sortedArr);
+        // console.log('this is sortedArr', sortedArr);
         sortedArr.forEach((question) => {
           const answers = Object.values(question.answers);
           const answersBody = answers.map((answer) => answer.body);
           const answersHelpfulness = answers.map((answer) => answer.helpfulness);
+          const answersName = answers.map((answer) => answer.answerer_name);
+          const answersDate = answers.map((answer) => answer.date);
           questions.push({
             question: question.question_body,
             question_id: question.question_id,
@@ -47,9 +49,12 @@ function QuestionsAndAnswers() {
             asker_name: question.asker_name,
             question_date: question.question_date,
             answers: answersBody,
+            answers_helpfulness: answersHelpfulness,
+            answerer_name: answersName,
+            answer_date: answersDate,
           });
         });
-        console.log('this is questions array', questions);
+        // console.log('this is questions array', questions);
         setSelected(questions);
       })
       .catch((err) => (console.log('error message', err)));

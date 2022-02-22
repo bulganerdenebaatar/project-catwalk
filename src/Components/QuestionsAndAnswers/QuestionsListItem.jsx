@@ -74,6 +74,12 @@ function QuestionsListItem(props) {
             A:
             {' '}
             {answer}
+            {' '}
+            <div>
+              Helpful?
+              {' '}
+              <Helpful />
+            </div>
           </p>
         )) : <p>A: N/A</p>}
       {props.answers.length > 2
