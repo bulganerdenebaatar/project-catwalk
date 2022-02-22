@@ -76,6 +76,16 @@ function QuestionsListItem(props) {
             {answer}
             {' '}
             <div>
+              Name:
+              {' '}
+              {props.answers_name[index]}
+              {' '}
+              {' | '}
+              {' '}
+              {dateFormatter(props.answers_date[index])}
+              {' '}
+              {' | '}
+              {' '}
               Helpful?
               {' '}
               <Helpful

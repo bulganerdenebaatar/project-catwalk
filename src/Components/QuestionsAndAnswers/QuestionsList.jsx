@@ -14,13 +14,13 @@ function QuestionsList(props) {
             question={item.question}
             question_id={item.question_id}
             question_helpfulness={item.question_helpfulness}
-            asker_name={item.asker_name}
             question_date={item.question_date}
+            asker_name={item.asker_name}
             answers={item.answers}
             answers_Id={item.answers_Id}
             answers_helpfulness={item.answers_helpfulness}
-            answers_name={item.answers_name}
-            answers_date={item.answer_date}
+            answers_name={item.answerer_name}
+            answers_date={item.answers_date}
             handleRefresh={props.handleRefresh}
             key={index}
           />

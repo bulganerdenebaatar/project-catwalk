@@ -53,7 +53,7 @@ function QuestionsAndAnswers() {
             answers_Id: answersId,
             answers_helpfulness: answersHelpfulness,
             answerer_name: answersName,
-            answer_date: answersDate,
+            answers_date: answersDate,
           });
         });
         // console.log('this is questions array', questions);
