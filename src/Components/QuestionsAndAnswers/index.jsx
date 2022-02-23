@@ -13,6 +13,12 @@ const QandAStyle = styled.div`
   height: fit-content;
 `;
 
+const Title = styled.h3`
+  font-family: inherit;
+  grid-column: 1 / span 3;
+  grid-row-start: 1;
+`;
+
 function QuestionsAndAnswers() {
   const { productId } = useContext(GlobalContext);
   const [questionData, setQuestionData] = useState('');
@@ -75,6 +81,9 @@ function QuestionsAndAnswers() {
 
   return (
     <QandAStyle className="questionsAndAnswers">
+      <Title>
+        Questions & Answers
+      </Title>
       <SearchForm
         searchInput={searchInput}
         setSearchInput={setSearchInput}
