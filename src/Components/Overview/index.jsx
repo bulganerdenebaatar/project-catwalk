@@ -13,12 +13,15 @@ import MainView from './OverviewComponents/MainView.jsx';
 import AddToCart from './OverviewComponents/AddToCart.jsx';
 import { colors, styles } from '../../styles.js';
 import { GlobalContext } from '../../App.jsx';
+import withAnalytics from '../../HOC/withAnalytics.jsx';
 
 const OverviewStyle = styled.div`
   ${styles.Standard};
   display: grid;
-  grid-template-columns: 60% 40%;
-  height: fit-content(1em);
+  grid-template-columns: 50% 50%;
+  justify-items: center;
+  padding-bottom: 1em;
+  height: fit-content;
 `;
 
 const ProductInteractions = styled.div`
@@ -37,6 +40,7 @@ function Overview() {
   const [productInfo, setProductInfo] = useState({});
   const [productStyles, setProductStyles] = useState([]);
   const [currentStyleId, setCurrentStyleId] = useState(0);
+  const [salePrice, setSalePrice] = useState(0);
 
   useEffect(() => {
     console.log(productId);
@@ -76,6 +80,8 @@ function Overview() {
         setCurrentImageThumbs,
         currentStyleId,
         setCurrentStyleId,
+        salePrice,
+        setSalePrice,
       }}
       >
         <MainView />
@@ -89,4 +95,4 @@ function Overview() {
   );
 }
 
-export default Overview;
+export default withAnalytics(Overview, 'overview');
