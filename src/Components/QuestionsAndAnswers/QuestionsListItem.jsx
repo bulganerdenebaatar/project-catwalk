@@ -1,8 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import Styled from 'styled-components';
 import QuestionModal from '../QuestionModal.jsx';
 import { Helpful, Report } from '../HelpfulOrReport.jsx';
 import { dateFormatter } from '../../util/util.js';
+
+const StyledQuestion = Styled.div`
+  background-color: rgba(220, 152, 245, 0.3);
+`;
 
 function QuestionsListItem({
   question,
@@ -29,7 +34,7 @@ function QuestionsListItem({
   };
 
   return (
-    <div className="list-item">
+    <StyledQuestion className="list-item">
       <p>
         Q:
         {' '}
@@ -133,7 +138,7 @@ function QuestionsListItem({
         )
         : <p> </p>}
       <hr />
-    </div>
+    </StyledQuestion>
   );
 }
 
