@@ -13,6 +13,13 @@ const ScrollDiv = Styled.div`
   overflow-y: scroll;
 `;
 
+const CenteredPane = Styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 800px;
+`;
+
 function QuestionsList({ questions, handleRefresh }) {
   const [displayNumber, setDisplayNumber] = useState(4);
   const updateDisplayNumber = () => {
@@ -23,7 +30,7 @@ function QuestionsList({ questions, handleRefresh }) {
   };
 
   return (
-    <>
+    <CenteredPane>
       <ScrollDiv>
         <p>
           {questions.slice(0, displayNumber).map((item) => (
@@ -43,7 +50,7 @@ function QuestionsList({ questions, handleRefresh }) {
             />
           ))}
         </p>
-        {questions.length !== 4
+        {questions.length > 4
           && (
             <p>
               <ExpandButton
@@ -57,7 +64,7 @@ function QuestionsList({ questions, handleRefresh }) {
           )}
       </ScrollDiv>
       <AskForm />
-    </>
+    </CenteredPane>
   );
 }
 

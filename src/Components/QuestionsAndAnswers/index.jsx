@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
 import { GlobalContext } from '../../App.jsx';
 import QuestionsList from './QuestionsList.jsx';
@@ -8,15 +8,21 @@ import SearchForm from './SearchForm.jsx';
 import AskForm from './AskForm.jsx';
 import ExpandButton from './ExpandButton.jsx';
 
-const QandAStyle = styled.div`
+const QandAStyle = Styled.div`
   ${styles.Standard};
   height: fit-content;
 `;
 
-const Title = styled.h3`
+const Title = Styled.h3`
   font-family: inherit;
   grid-column: 1 / span 3;
   grid-row-start: 1;
+`;
+
+const CenterList = Styled.div`
+  display: flex;
+  alignItems: center;
+  justify-content: center;
 `;
 
 function QuestionsAndAnswers() {
@@ -89,11 +95,13 @@ function QuestionsAndAnswers() {
         setSearchInput={setSearchInput}
         handleSubmit={handleSubmit}
       />
-      <QuestionsList
-        questions={selected}
-        data-testid="questions-list"
-        handleRefresh={handleRefresh}
-      />
+      <CenterList>
+        <QuestionsList
+          questions={selected}
+          data-testid="questions-list"
+          handleRefresh={handleRefresh}
+        />
+      </CenterList>
     </QandAStyle>
   );
 }
