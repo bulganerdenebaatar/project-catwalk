@@ -19,7 +19,6 @@ function QuestionsAndAnswers() {
   const [searchInput, setSearchInput] = useState('');
   const [selected, setSelected] = useState([]);
   const questions = [];
-  const [displayNumber, setDisplayNumber] = useState(4);
 
   const sortQuestions = () => {
     axios({
@@ -74,29 +73,16 @@ function QuestionsAndAnswers() {
     setSelected(selected.filter((element) => element.question.includes(searchInput)));
   };
 
-  const updateDisplayNumber = () => {
-    setDisplayNumber((prev) => prev + 2);
-  };
-
-  const collapseDisplayNumber = () => {
-    setDisplayNumber(4);
-  };
-
   return (
     <QandAStyle className="questionsAndAnswers">
       <SearchForm
         searchInput={searchInput}
         setSearchInput={setSearchInput}
-        setSearched={setSelected}
         handleSubmit={handleSubmit}
       />
       <QuestionsList
         questions={selected}
-        productId={productId}
         data-testid="questions-list"
-        displayNumber={displayNumber}
-        updateDisplayNumber={updateDisplayNumber}
-        collapseDisplayNumber={collapseDisplayNumber}
         handleRefresh={handleRefresh}
       />
     </QandAStyle>

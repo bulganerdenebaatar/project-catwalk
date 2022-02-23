@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import QuestionModal from '../QuestionModal.jsx';
 
-function AskForm(props) {
+function AskForm() {
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -15,7 +15,7 @@ function AskForm(props) {
       {showModal
         && (
           <QuestionModal
-            id={props.productId}
+            id={40348}
             onDismiss={() => setShowModal(false)}
             route="/shopdata/qa/questions"
           />

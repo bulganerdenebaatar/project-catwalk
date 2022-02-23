@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import QuestionModal from '../QuestionModal.jsx';
 import { Helpful, Report } from '../HelpfulOrReport.jsx';
 import { dateFormatter } from '../../util/util.js';
 
-function QuestionsListItem(props) {
+function QuestionsListItem({
+  question,
+  questionId,
+  questionHelpfulness,
+  questionDate,
+  askerName,
+  answers,
+  answersId,
+  answersHelpfulness,
+  answersName,
+  answersDate,
+  handleRefresh,
+}) {
   const [answerDisplay, setAnswerDisplay] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const updateAnswerDisplay = () => {
@@ -20,17 +33,17 @@ function QuestionsListItem(props) {
       <p>
         Q:
         {' '}
-        {props.question}
+        {question}
         {' '}
         {' | '}
         {' '}
         Name:
         {' '}
-        {props.asker_name}
+        {askerName}
         {' '}
         {' | '}
         {' '}
-        {dateFormatter(props.question_date)}
+        {dateFormatter(questionDate)}
         {' '}
         {' | '}
         {' '}
@@ -38,17 +51,17 @@ function QuestionsListItem(props) {
         {' '}
         <Helpful
           path="/qa/questions"
-          id={props.question_id}
-          handleRefresh={props.handleRefresh}
+          id={questionId}
+          handleRefresh={handleRefresh}
         />
-        ({props.question_helpfulness})
+        ({questionHelpfulness})
         {' '}
         {' | '}
         {' '}
         <Report
           path="/qa/questions"
-          id={props.question_id}
-          handleRefresh={props.handleRefresh}
+          id={questionId}
+          handleRefresh={handleRefresh}
         />
         {' '}
         {' | '}
@@ -62,15 +75,15 @@ function QuestionsListItem(props) {
         {showModal
         && (
         <QuestionModal
-          id={props.question_id}
+          id={questionId}
           onDismiss={() => setShowModal(false)}
-          route={`/shopdata/qa/questions/${props.question_id}/answers`}
+          route={`/shopdata/qa/questions/${questionId}/answers`}
         />
         )}
       </p>
-      {props.answers.length !== 0
-        ? props.answers.slice(0, answerDisplay).map((answer, index) => (
-          <p key={index}>
+      {answers.length !== 0
+        ? answers.slice(0, answerDisplay).map((answer, index) => (
+          <p key={answersId[index]}>
             A:
             {' '}
             {answer}
@@ -78,11 +91,11 @@ function QuestionsListItem(props) {
             <div>
               Name:
               {' '}
-              {props.answers_name[index]}
+              {answersName[index]}
               {' '}
               {' | '}
               {' '}
-              {dateFormatter(props.answers_date[index])}
+              {dateFormatter(answersDate[index])}
               {' '}
               {' | '}
               {' '}
@@ -90,30 +103,30 @@ function QuestionsListItem(props) {
               {' '}
               <Helpful
                 path="/qa/answers"
-                id={props.answers_Id[index]}
-                handleRefresh={props.handleRefresh}
+                id={answersId[index]}
+                handleRefresh={handleRefresh}
               />
-              ({props.answers_helpfulness[index]})
+              ({answersHelpfulness[index]})
               {' '}
               {' | '}
               {' '}
               <Report
                 path="/qa/answers"
-                id={props.answers_Id[index]}
-                handleRefresh={props.handleRefresh}
+                id={answersId[index]}
+                handleRefresh={handleRefresh}
               />
             </div>
           </p>
         )) : <p>A: N/A</p>}
-      {props.answers.length > 2
+      {answers.length > 2
         ? (
           <p>
             <button
               type="button"
-              onClick={answerDisplay <= props.answers.length - 1
+              onClick={answerDisplay <= answers.length - 1
                 ? updateAnswerDisplay : collapseAnswerDisplay}
             >
-              {answerDisplay < props.answers.length ? 'See More Answers'
+              {answerDisplay < answers.length ? 'See More Answers'
                 : 'Collapse Answers'}
             </button>
           </p>
@@ -123,5 +136,19 @@ function QuestionsListItem(props) {
     </div>
   );
 }
+
+QuestionsListItem.propTypes = {
+  question: PropTypes.string.isRequired,
+  questionId: PropTypes.number.isRequired,
+  questionHelpfulness: PropTypes.number.isRequired,
+  askerName: PropTypes.string.isRequired,
+  questionDate: PropTypes.string.isRequired,
+  answers: PropTypes.arrayOf(PropTypes.string).isRequired,
+  answersId: PropTypes.arrayOf(PropTypes.number).isRequired,
+  answersHelpfulness: PropTypes.arrayOf(PropTypes.number).isRequired,
+  answersName: PropTypes.arrayOf(PropTypes.string).isRequired,
+  answersDate: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleRefresh: PropTypes.func.isRequired,
+};
 
 export default QuestionsListItem;
