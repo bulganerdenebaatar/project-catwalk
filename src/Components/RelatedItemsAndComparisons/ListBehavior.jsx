@@ -18,7 +18,7 @@ function ListBehavior({
   height: 250px;
   position: relative;
 
-  // background: lightblue;
+  background: lightblue;
 `;
 
   const ListStyle = styled.div`
@@ -26,7 +26,7 @@ function ListBehavior({
   height: 100%
   box-sizing: border-box;
 
-  // border: 2px solid green;
+  border: 2px solid green;
 `;
 
   const ContainerStyle = styled.div`
@@ -35,7 +35,7 @@ function ListBehavior({
   transition: transform 0.5s;
   transform: translateX(-${activeIndex * 259}px);
 
-  // border: 4px dotted red;
+  border: 4px dotted red;
 `;
 
   const CardContainerStyle = styled.div`
@@ -45,7 +45,7 @@ function ListBehavior({
   padding-right: 15px;
   box-sizing: border-box;
 
-  // border: 5px solid black;
+  border: 5px solid black;
 `;
 
   const LeftArrow = styled.span`
