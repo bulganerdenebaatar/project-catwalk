@@ -93,7 +93,15 @@ function QuestionsListItem(props) {
                 id={props.answers_Id[index]}
                 handleRefresh={props.handleRefresh}
               />
-              {props.answers_helpfulness[index]}
+              ({props.answers_helpfulness[index]})
+              {' '}
+              {' | '}
+              {' '}
+              <Report
+                path="/qa/answers"
+                id={props.answers_Id[index]}
+                handleRefresh={props.handleRefresh}
+              />
             </div>
           </p>
         )) : <p>A: N/A</p>}
