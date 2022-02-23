@@ -12,6 +12,15 @@ const Modal = styled.div`
   justify-content: center;
   align-items: center;
   z-index: 14;
+  background-color: rgba(20, 20, 20, 0.5);
+
+  img {
+    position: relative;
+    border: thick solid rgba(150, 200, 255, 0.8);
+    border-radius: 10px;
+    max-height: 900px;
+    max-width: 900px;
+  }
 
   :hover {
     cursor: zoom-out;
