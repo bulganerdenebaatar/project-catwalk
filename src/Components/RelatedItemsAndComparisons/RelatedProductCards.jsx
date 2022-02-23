@@ -131,7 +131,12 @@ function ProductCard({
                 <button
                   type="button"
                   className="outfitBtnX"
-                  onClick={console.log('Outfit Click!')}
+                  onClick={() => {
+                    console.log(relatedProductsItem[index].id);
+                    const k = relatedProductsItem[index].id;
+                    console.log('k: ', k);
+                    addNewOutfit(k);
+                  }}
                 >
                   X
                 </button>
@@ -151,7 +156,7 @@ function ProductCard({
               <img
                 src={product.results[0].photos[0].thumbnail_url ? product.results[0].photos[0].thumbnail_url
                   : ('https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k'
-                  + '=20&m=517188688&w=0&h=pCjvUkNlz9_esVvQw2Wgc8VJZBMgJrB0FQmktCA0KYY=')}
+                    + '=20&m=517188688&w=0&h=pCjvUkNlz9_esVvQw2Wgc8VJZBMgJrB0FQmktCA0KYY=')}
                 // nature picture for alt
                 alt="placeholder for Product img"
                 className="pic"

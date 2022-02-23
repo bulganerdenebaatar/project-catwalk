@@ -105,6 +105,7 @@ function ListBehavior({
                   product={product}
                   relatedProductsItem={relatedProductsItem}
                   index={index}
+                  addNewOutfit={addNewOutfit}
                   outfitPicks={outfitPicks}
                 />
               </CardContainerStyle>
@@ -161,15 +162,13 @@ function ListBehavior({
             onClick={() => handleArrowClick('next')}
           />
         </WrapperStyle>
-        <div className="modalDiv">
-          {openModal && (
-            <CompareModal
-              closeModal={setOpenModal}
-              cardProductID={openModal[0]}
-              overViewProductID={openModal[1]}
-            />
-          )}
-        </div>
+        {openModal && (
+          <CompareModal
+            closeModal={setOpenModal}
+            cardProductID={openModal[0]}
+            overViewProductID={openModal[1]}
+          />
+        )}
       </>
     );
   }

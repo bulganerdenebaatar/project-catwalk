@@ -37,15 +37,13 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
   }, []);
   // Get Overview Card Info and put it in state
 
-
   const ModalStyle = styled.div`
-  width: 70vw;
+  width: 60vw;
   margin: 1px auto;
   height: 350px;
   position: relative;
-  top: -15em;
+  top: -17em;
   border-radius: 10px;
-  background: lightblue;
 
   button {
     background-color: transparent;
@@ -63,19 +61,20 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
   .cancelBtn {
     margin: 2;
     bottom: 0;
-    right: 43%;
+    right: 43.5%;
   }
 `;
 
   const GridStyle = styled.div`
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
-  border: 5px solid orange;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
   gap: 10px;
-  // grid-auto-rows: auto;
+  background-color: rgba(220,152,245);
+  border-radius: 10px;
 
   .cardPicDiv {
     grid-column: 1 / 3;
@@ -85,10 +84,41 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
     overflow: hidden;
   }
 
-  .test2 {
-    background: green;
+  .overviewPicDiv {
     grid-column: 3 / 5;
     grid-row: 1 / 4;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+  }
+
+  .modalPic {
+    block-size: fit-content;
+    width: 100%;
+  }
+
+  .cardProductInfo{
+    grid-column: 1 / 3;
+    grid-row: 4 / 5;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .overviewProductInfo{
+    grid-column: 3 / 5;
+    grid-row: 4 / 5;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  p {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-left: 3px;
   }
 
 `;
@@ -97,14 +127,8 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
     return (
       <ModalStyle className="modalBackground">
         <button type="button" className="xBtn" onClick={() => closeModal(false)}> X </button>
-        <button type="button" className="cancelBtn">Cancel</button>
+        <button type="button" className="cancelBtn" onClick={() => closeModal(false)}>Cancel</button>
         <GridStyle>
-          {console.log(
-            'currentCardProduct: ',
-            currentCardProduct,
-            'currentOverviewProductStyle: ',
-            currentOverviewProductStyle,
-          )}
           <div className="cardPicDiv">
             <img
               src={currentCardProductStyle.results[0].photos[0].thumbnail_url
@@ -112,7 +136,7 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
                 : ('https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k'
                   + '=20&m=517188688&w=0&h=pCjvUkNlz9_esVvQw2Wgc8VJZBMgJrB0FQmktCA0KYY=')}
               alt="placeholder for Product img"
-              className="cardPic"
+              className="modalPic"
             />
           </div>
           <div className="cardProductInfo">
@@ -124,7 +148,26 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
             <p>{currentCardProduct.category}</p>
             <p>{currentCardProduct.slogan}</p>
           </div>
-          <div className="test2">test2</div>
+
+          <div className="overviewPicDiv">
+            <img
+              src={currentOverviewProductStyle.results[0].photos[0].thumbnail_url
+                ? currentOverviewProductStyle.results[0].photos[0].thumbnail_url
+                : ('https://media.istockphoto.com/photos/mountain-landscape-picture-id517188688?k'
+                  + '=20&m=517188688&w=0&h=pCjvUkNlz9_esVvQw2Wgc8VJZBMgJrB0FQmktCA0KYY=')}
+              alt="placeholder for Product img"
+              className="modalPic"
+            />
+          </div>
+          <div className="overviewProductInfo">
+            <p>
+              $
+              {currentOverviewProduct.default_price}
+            </p>
+            <p>{currentOverviewProduct.name}</p>
+            <p>{currentOverviewProduct.category}</p>
+            <p>{currentOverviewProduct.slogan}</p>
+          </div>
         </GridStyle>
       </ModalStyle>
     );
