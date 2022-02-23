@@ -42,6 +42,12 @@ function Breakdown() {
   // Each bar shows proportinally (green) how many of the reviews had this value
   // const numberOfRatings = Object.values(ratings);
   // const total = numberOfRatings.reduce((p, c) => p + Number(c), 0);
+  const starValues = [1, 2, 3, 4, 5];
+  starValues.forEach((num) => {
+    if (ratings[num] === undefined) {
+      ratings[num] = 0;
+    }
+  });
   const percents = Object.values(ratings).map((rating) => ((Number(rating) * 100) / numberOfRatings).toString());
   const filterBy = (star) => {
     console.log('filter click');
@@ -49,13 +55,13 @@ function Breakdown() {
       !p.includes(star) ? [...p, star] : p.filter((item) => item !== star)
     ));
   };
-  const starValues = [1, 2, 3, 4, 5];
 
   return (
     <div className="breakdown">
       {
         starValues.map((value) => (
           <RatingBar
+            data-analytics-id={`${value}stars-rating-bar`}
             className="rating-bar"
             stars={value.toString()}
             number={ratings[value]}

@@ -1,9 +1,12 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useEffect, useState, useContext } from 'react';
 import ReactDom from 'react-dom';
 import axios from 'axios';
 import Styled from 'styled-components';
 import PropTypes from 'prop-types';
+import FiveStar from './FiveStar.jsx';
 import { GlobalContext } from '../App.jsx';
 
 const modalRoot = document.getElementById('modal-root');
@@ -73,9 +76,18 @@ const ScaleEnds = Styled.div`
 `;
 const Wrap = Styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
+`;
+const CharacteristicRadio = Styled.input`
+  transform: scale(1.5);
+  margin: 10px;
+`;
+const LeftAligned = Styled.div`
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  font-size: 100%;
 `;
 
 function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
@@ -93,20 +105,21 @@ function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
 
   return (
     <div className="characteristic-radio">
-      <ScaleEnds>
-        <div>
+      <LeftAligned>
+        <p>
           {characteristic}
           {': '}
-        </div>
-        {charValue !== 0 && <p>{radioButtonSettings[characteristic][charValue - 1]}</p>}
-      </ScaleEnds>
+        </p>
+        {' '}
+        {charValue !== 0 ? <p>{radioButtonSettings[characteristic][charValue - 1]}</p> : <p />}
+      </LeftAligned>
       <ScaleEnds onChange={(e) => {
         setCharValue(Number(e.target.value));
         setReviewCharacteristics((p) => ({ ...p, [id]: Number(e.target.value) }));
       }}
       >
         {radioButtonSettings[characteristic].map((buttonOption, index) => (
-          <input
+          <CharacteristicRadio
             type="radio"
             id="yes"
             name={characteristic}
@@ -116,9 +129,11 @@ function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
         ))}
       </ScaleEnds>
       <ScaleEnds>
-        <div>{radioButtonSettings[characteristic][0]}</div>
-        {'   '}
-        <div>{radioButtonSettings[characteristic][4]}</div>
+        <div>
+          {radioButtonSettings[characteristic][0]}
+          {' '}
+          {radioButtonSettings[characteristic][4]}
+        </div>
       </ScaleEnds>
     </div>
   );
@@ -131,7 +146,7 @@ function ReviewModal({ onDismiss, id }) {
     name: '',
     email: '',
     body: '',
-    rating: 1,
+    rating: 0,
     summary: '',
     recommend: true,
     photos: [],
@@ -201,12 +216,14 @@ function ReviewModal({ onDismiss, id }) {
         </SpacedLabel>
         <SpacedLabel className="rating">
           Rating:
-          <FormEntry
-            value={options.rating}
-            required
-            placeholder="Rating?"
-            onChange={(e) => setOptions((p) => ({ ...p, rating: Number(e.target.value) }))}
-          />
+          <div
+            onClick={(e) => {
+              const update = Number(e.target.getAttribute('data-position'));
+              setOptions((p) => ({ ...p, rating: update }));
+            }}
+          >
+            <FiveStar rating={options.rating} />
+          </div>
         </SpacedLabel>
         <Wrap>
           {
@@ -239,7 +256,7 @@ function ReviewModal({ onDismiss, id }) {
         </div>
         <HorizontalFlex>
           <button type="button" value="Cancel" onClick={onDismiss}>Cancel</button>
-          <input type="submit" value="sumbit" />
+          <input type="submit" value="Submit" />
           {/* <button type="button" value="Submit" onClick={formSubmit}>Submit</button> */}
         </HorizontalFlex>
       </Form>

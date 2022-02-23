@@ -20,9 +20,11 @@ const logAnalytics = (target, time, moduleName, stop = document.body) => {
     node = node.parentElement;
   }
 
+  // Replace with API call down the road
   analytics.push([key.reverse().join(' '), time, moduleName]);
 };
 
+// This is a higher order component that will wrap your widgets index file
 const withAnalytics = (WrappedComponent, moduleName) => function ComponentWithAnalytics(props) {
   const stop = useRef(undefined);
 
