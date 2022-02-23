@@ -14,9 +14,9 @@ import {
 // // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
-import RelatedProductCards from './RelatedProductCards';
+import RelatedProductsList from './RelatedProductsList';
 
-test('ProductCards can render', () => {
-  render(<RelatedProductCards />);
-  expect(screen.getByTestId('productCard')).toBeTruthy();
+test('RelatedProductsList can render', () => {
+  render(<RelatedProductsList />);
+  expect(screen.getByTestId('list')).toBeTruthy();
 });

@@ -125,10 +125,10 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
 
   if (currentCardProductStyle.results && currentOverviewProductStyle.results) {
     return (
-      <ModalStyle className="modalBackground">
+      <ModalStyle className="modalBackground" data-testid="modal-style">
         <button type="button" className="xBtn" onClick={() => closeModal(false)}> X </button>
         <button type="button" className="cancelBtn" onClick={() => closeModal(false)}>Cancel</button>
-        <GridStyle>
+        <GridStyle data-testid="grid-style">
           <div className="cardPicDiv">
             <img
               src={currentCardProductStyle.results[0].photos[0].thumbnail_url

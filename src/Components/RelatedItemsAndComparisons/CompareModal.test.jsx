@@ -14,9 +14,10 @@ import {
 // // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
-import RelatedProductCards from './RelatedProductCards';
+import CompareModal from './CompareModal';
 
-test('ProductCards can render', () => {
-  render(<RelatedProductCards />);
-  expect(screen.getByTestId('productCard')).toBeTruthy();
+test('CompareModal can render', () => {
+  render(<CompareModal cardProductID={40345} overViewProductID={40351} />);
+  expect(screen.getByTestId('modal-style')).toBeTruthy();
+  expect(screen.getByTestId('grid-style')).toBeTruthy();
 });
