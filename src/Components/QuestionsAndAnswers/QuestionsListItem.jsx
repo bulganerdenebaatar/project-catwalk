@@ -10,7 +10,7 @@ const StyledQuestion = Styled.div`
 `;
 
 const StyledAnswer = Styled.div`
-  background-color: rgb(40, 35, 45);
+  background-color: rgba(100, 100, 150, 0.8);
 `;
 
 const FlexColumn = Styled.div`
@@ -42,6 +42,15 @@ const AnswerBody = Styled.div`
   margin: 10px;
 `;
 
+const AnswerBottomBar = Styled.div`
+  margin: 10px;
+  font-size: 80%;
+`;
+
+const AnswerNA = Styled.div`
+  margin: 10px;
+`;
+
 function QuestionsListItem({
   question,
   questionId,
@@ -68,7 +77,7 @@ function QuestionsListItem({
 
   return (
     <StyledQuestion className="list-item">
-      <FlexColumn className="display-column">
+      <FlexColumn data-analytics-id={`question ${questionId}`} className="display-column">
         <FlexTopBar className="question-topbar">
           <div>
             Name:&nbsp;{askerName}
@@ -105,13 +114,13 @@ function QuestionsListItem({
               Add Answer
             </button>
             {showModal
-            && (
-            <QuestionModal
-              id={questionId}
-              onDismiss={() => setShowModal(false)}
-              route={`/shopdata/qa/questions/${questionId}/answers`}
-            />
-            )}
+              && (
+                <QuestionModal
+                  id={questionId}
+                  onDismiss={() => setShowModal(false)}
+                  route={`/shopdata/qa/questions/${questionId}/answers`}
+                />
+              )}
           </div>
         </FlexBottomBar>
       </FlexColumn>
@@ -119,43 +128,41 @@ function QuestionsListItem({
         <hr />
         {answers.length !== 0
           ? answers.slice(0, answerDisplay).map((answer, index) => (
-            <AnswerBody key={answersId[index]}>
+            <AnswerBody data-analytics-id={`answer ${answersId[index]}`} key={answersId[index]}>
               A:
               {' '}
               {answer}
               {' '}
-              <div>
-                <h6>
-                  Name:
-                  {' '}
-                  {answersName[index]}
-                  {' '}
-                  {' | '}
-                  {' '}
-                  {dateFormatter(answersDate[index])}
-                  {' '}
-                  {' | '}
-                  {' '}
-                  Helpful?
-                  {' '}
-                  <Helpful
-                    path="/qa/answers"
-                    id={answersId[index]}
-                    handleRefresh={handleRefresh}
-                  />
-                  ({answersHelpfulness[index]})
-                  {' '}
-                  {' | '}
-                  {' '}
-                  <Report
-                    path="/qa/answers"
-                    id={answersId[index]}
-                    handleRefresh={handleRefresh}
-                  />
-                </h6>
-              </div>
+              <AnswerBottomBar>
+                Name:
+                {' '}
+                {answersName[index]}
+                {' '}
+                {' | '}
+                {' '}
+                {dateFormatter(answersDate[index])}
+                {' '}
+                {' | '}
+                {' '}
+                Helpful?
+                {' '}
+                <Helpful
+                  path="/qa/answers"
+                  id={answersId[index]}
+                  handleRefresh={handleRefresh}
+                />
+                ({answersHelpfulness[index]})
+                {' '}
+                {' | '}
+                {' '}
+                <Report
+                  path="/qa/answers"
+                  id={answersId[index]}
+                  handleRefresh={handleRefresh}
+                />
+              </AnswerBottomBar>
             </AnswerBody>
-          )) : <p>A: N/A</p>}
+          )) : <AnswerNA>A: N/A</AnswerNA>}
         {answers.length > 2
           ? (
             <p>

@@ -7,6 +7,7 @@ import QuestionsList from './QuestionsList.jsx';
 import SearchForm from './SearchForm.jsx';
 import AskForm from './AskForm.jsx';
 import ExpandButton from './ExpandButton.jsx';
+import withAnalytics from '../../HOC/withAnalytics.jsx';
 
 const QandAStyle = Styled.div`
   ${styles.Standard};
@@ -106,4 +107,4 @@ function QuestionsAndAnswers() {
   );
 }
 
-export default QuestionsAndAnswers;
+export default withAnalytics(QuestionsAndAnswers, 'questions-and-answers');
