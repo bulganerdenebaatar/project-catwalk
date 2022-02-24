@@ -59,7 +59,7 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
   }
 
   .cancelBtn {
-    margin: 2;
+    // margin: 2px;
     bottom: 0;
     right: 43.5%;
   }
@@ -72,7 +72,7 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
-  gap: 10px;
+  // gap: 10px;
   background-color: rgba(220,152,245);
   border-radius: 10px;
 
@@ -80,14 +80,14 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
     grid-column: 1 / 3;
     grid-row: 1 / 4;
     border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    // border-top-right-radius: 10px;
     overflow: hidden;
   }
 
   .overviewPicDiv {
     grid-column: 3 / 5;
     grid-row: 1 / 4;
-    border-top-left-radius: 10px;
+    // border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow: hidden;
   }
@@ -117,7 +117,7 @@ function CompareModal({ closeModal, cardProductID, overViewProductID }) {
 
   p {
     margin-top: 7px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
     margin-left: 3px;
   }
 
