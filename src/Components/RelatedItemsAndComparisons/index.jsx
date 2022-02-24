@@ -16,12 +16,12 @@ const Title = styled.h3`
 
 function RelatedItemsAndComparisons() {
   return (
-    <RelatedStyle className="relatedAndComparisons">
-      <Title>
+    <RelatedStyle className="relatedAndComparisons" data-testid="overall-style">
+      <Title data-testid="RP-title">
         Related Products
       </Title>
       <RelatedProductsList />
-      <Title>
+      <Title data-testid="outfit-title">
         Outfits
       </Title>
       <OutfitList />

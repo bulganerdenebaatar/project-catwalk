@@ -6,6 +6,7 @@ import axios from 'axios';
 import { GlobalContext } from '../../App.jsx';
 import ListBehavior from './ListBehavior.jsx';
 
+
 function RelatedProductsList() {
   const { productId, setProductId } = useContext(GlobalContext);
   const [relatedIDs, setRelatedIDs] = useState([]);
