@@ -129,32 +129,17 @@ function QuestionsListItem({
         {answers.length !== 0
           ? answers.slice(0, answerDisplay).map((answer, index) => (
             <AnswerBody data-analytics-id={`answer ${answersId[index]}`} key={answersId[index]}>
-              A:
-              {' '}
-              {answer}
-              {' '}
+              A:&nbsp;{answer}&nbsp;
               <AnswerBottomBar>
-                Name:
-                {' '}
-                {answersName[index]}
-                {' '}
-                {' | '}
-                {' '}
-                {dateFormatter(answersDate[index])}
-                {' '}
-                {' | '}
-                {' '}
-                Helpful?
-                {' '}
+                Name:&nbsp;{answersName[index]}&nbsp;&apos;&nbsp;
+                {dateFormatter(answersDate[index])}&nbsp;&apos;&nbsp;
+                Helpful?&nbsp;
                 <Helpful
                   path="/qa/answers"
                   id={answersId[index]}
                   handleRefresh={handleRefresh}
                 />
-                ({answersHelpfulness[index]})
-                {' '}
-                {' | '}
-                {' '}
+                ({answersHelpfulness[index]})&nbsp;&apos;&nbsp;
                 <Report
                   path="/qa/answers"
                   id={answersId[index]}

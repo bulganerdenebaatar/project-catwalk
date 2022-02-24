@@ -11,10 +11,10 @@ function ExpandButton({
   return (
     <button
       type="button"
-      onClick={displayNumber < questions.length - 1
+      onClick={displayNumber <= questions.length - 1
         ? updateDisplayNumber : collapseDisplayNumber}
     >
-      {displayNumber < questions.length - 1
+      {displayNumber <= questions.length - 1
         ? 'More Answered Questions' : 'Collapse Answered Questions'}
     </button>
   );
