@@ -35,7 +35,13 @@ function SearchForm({
         />
         <button
           type="button"
-          onClick={(e) => { e.preventDefault(); handleSubmit(); }}
+          onClick={
+            (e) => {
+              e.preventDefault();
+              handleSubmit();
+              setSearchInput('');
+            }
+          }
         >
           Search
         </button>
