@@ -82,8 +82,16 @@ function QuestionsAndAnswers() {
     sortQuestions();
   };
 
+  // const handleSubmit = () => {
+  //   setSelected(selected.filter((element) => element.question.includes(searchInput)));
+  // };
   const handleSubmit = () => {
-    setSelected(selected.filter((element) => element.question.includes(searchInput)));
+    const filteredSearch = selected.filter((element) => element.question.includes(searchInput));
+    return (
+      filteredSearch.length !== 0
+        ? setSelected(filteredSearch)
+        : window.alert('No Similar Questions Found')
+    );
   };
 
   return (

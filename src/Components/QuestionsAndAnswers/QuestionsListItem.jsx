@@ -131,7 +131,7 @@ function QuestionsListItem({
             <AnswerBody data-analytics-id={`answer ${answersId[index]}`} key={answersId[index]}>
               A:&nbsp;{answer}&nbsp;
               <AnswerBottomBar>
-                Name:&nbsp;{answersName[index]}&nbsp;&apos;&nbsp;
+                Name:&nbsp;{answersName[index]}&nbsp;&#124;&nbsp;
                 {dateFormatter(answersDate[index])}&nbsp;&#124;&nbsp;
                 Helpful?&nbsp;
                 <Helpful
