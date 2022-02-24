@@ -14,9 +14,12 @@ import {
 // // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
-import RelatedProductCards from './RelatedProductCards';
+import ListBehavior from './ListBehavior';
 
-test('ProductCards can render', () => {
-  render(<RelatedProductCards />);
-  expect(screen.getByTestId('productCard')).toBeTruthy();
+test('ListBehavior can render', () => {
+  render(<ListBehavior />);
+  expect(screen.getByTestId('list')).toBeTruthy();
+  expect(screen.getByTestId('list-style')).toBeTruthy();
+  expect(screen.getByTestId('container-list')).toBeTruthy();
+  expect(screen.getByTestId('cardStyle-list')).toBeTruthy();
 });

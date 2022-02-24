@@ -14,9 +14,11 @@ import {
 // // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
-import RelatedProductCards from './RelatedProductCards';
+import RelatedItemsAndComparisons from './index';
 
-test('ProductCards can render', () => {
-  render(<RelatedProductCards />);
-  expect(screen.getByTestId('productCard')).toBeTruthy();
+test('index can render', () => {
+  render(<RelatedItemsAndComparisons />);
+  expect(screen.getByTestId('overall-style')).toBeTruthy();
+  expect(screen.getByTestId('RP-title')).toBeTruthy();
+  expect(screen.getByTestId('outfit-title')).toBeTruthy();
 });

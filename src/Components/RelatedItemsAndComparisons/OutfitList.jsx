@@ -19,6 +19,33 @@ function OutfitList() {
     setAddNewOutfit((pv) => pv + 1);
   };
 
+
+  // Working on taking outfits off list
+
+  // const passedFunction = (id) => {
+  //   if (id > 1) {
+  //     console.log('in passed func; id: ', id);
+  //     for (let i = 0; i <= outfits.length; i + 1) {
+  //       if (outfits[i].id === id) {
+  //         console.log('inside check; outfits[i].id ', outfits[i].id, 'id', id);
+  //         console.log('outfits: ', outfits[0], 'outfitsItem: ', outfitsItem[0]);
+  //         const fits = outfits.splice(i, 1);
+  //         const items = outfitsItem.splice(i, 1);
+  //         console.log('fits, items', fits, items);
+  //         setOutfits(fits);
+  //         setOutfitsItem(items);
+  //         console.log('AFTER SET; outfits: ', outfits, 'outfitsItem: ', outfitsItem);
+  //       }
+  //     }
+  //   } else {
+  //     console.log('adding new outfit in else statement');
+  //     setAddNewOutfit((pv) => pv + 1);
+  //   }
+  // };
+
+
+
+
   // Get current product and style
   useEffect(() => {
     axios.get(`shopdata/products/${productId}`)
@@ -51,7 +78,7 @@ function OutfitList() {
         outfitPicks={1}
         addNewOutfit={passedFunction}
       />
-      {/* <p>{console.log('inside OutfitList; outfits: ', outfits)}</p> */}
+      <p>{console.log('inside OutfitList return statement; outfits: ', outfits)}</p>
     </>
   );
 
