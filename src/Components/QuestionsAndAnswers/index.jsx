@@ -1,16 +1,29 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import { colors, styles } from '../../styles.js';
 import { GlobalContext } from '../../App.jsx';
 import QuestionsList from './QuestionsList.jsx';
 import SearchForm from './SearchForm.jsx';
 import AskForm from './AskForm.jsx';
 import ExpandButton from './ExpandButton.jsx';
+import withAnalytics from '../../HOC/withAnalytics.jsx';
 
-const QandAStyle = styled.div`
+const QandAStyle = Styled.div`
   ${styles.Standard};
   height: fit-content;
+`;
+
+const Title = Styled.h3`
+  font-family: inherit;
+  grid-column: 1 / span 3;
+  grid-row-start: 1;
+`;
+
+const CenterList = Styled.div`
+  display: flex;
+  alignItems: center;
+  justify-content: center;
 `;
 
 function QuestionsAndAnswers() {
@@ -75,18 +88,23 @@ function QuestionsAndAnswers() {
 
   return (
     <QandAStyle className="questionsAndAnswers">
+      <Title>
+        Questions & Answers
+      </Title>
       <SearchForm
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         handleSubmit={handleSubmit}
       />
-      <QuestionsList
-        questions={selected}
-        data-testid="questions-list"
-        handleRefresh={handleRefresh}
-      />
+      <CenterList>
+        <QuestionsList
+          questions={selected}
+          data-testid="questions-list"
+          handleRefresh={handleRefresh}
+        />
+      </CenterList>
     </QandAStyle>
   );
 }
 
-export default QuestionsAndAnswers;
+export default withAnalytics(QuestionsAndAnswers, 'questions-and-answers');
