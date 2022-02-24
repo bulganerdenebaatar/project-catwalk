@@ -46,7 +46,7 @@ function QuestionsAndAnswers() {
         const sortedArr = res.data.results.sort((a, b) => (
           b.question_helpfulness - a.question_helpfulness
         ));
-        setQuestionData(sortedArr);
+        // setQuestionData(sortedArr);
         // console.log('this is sortedArr', sortedArr);
         sortedArr.forEach((question) => {
           const answers = Object.values(question.answers);
@@ -69,6 +69,7 @@ function QuestionsAndAnswers() {
           });
         });
         // console.log('this is questions array', questions);
+        setQuestionData(questions);
         setSelected(questions);
       })
       .catch((err) => (console.log('error message', err)));
@@ -85,13 +86,35 @@ function QuestionsAndAnswers() {
   // const handleSubmit = () => {
   //   setSelected(selected.filter((element) => element.question.includes(searchInput)));
   // };
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    console.log('this is e', e);
+    console.log('this is questionData', questionData);
+    e.preventDefault();
+    if (!searchInput.length) {
+      setSelected(questionData);
+      return;
+    }
+
     const filteredSearch = selected.filter((element) => element.question.includes(searchInput));
-    return (
-      filteredSearch.length !== 0
-        ? setSelected(filteredSearch)
-        : window.alert('No Similar Questions Found')
-    );
+
+    if (!filteredSearch.length) {
+      window.alert('No Similar Questions Found');
+      setSearchInput('');
+      return;
+    }
+    setSelected(filteredSearch);
+    setSearchInput('');
+    // const filteredQuestions = filteredSearch.length !== 0
+    //   ? setSelected(filteredSearch)
+    //   : window.alert('No Similar Questions Found');
+
+    // return (
+    //   searchInput.length === 0
+    //     ? () => (
+    //       setSelected(questionData)
+    //     )
+    //     : filteredQuestions
+    // );
   };
 
   return (

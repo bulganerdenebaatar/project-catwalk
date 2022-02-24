@@ -51,6 +51,10 @@ const AnswerNA = Styled.div`
   margin: 10px;
 `;
 
+const AnswerButton = Styled.div`
+  margin: 0;
+`;
+
 function QuestionsListItem({
   question,
   questionId,
@@ -150,7 +154,7 @@ function QuestionsListItem({
           )) : <AnswerNA>A: N/A</AnswerNA>}
         {answers.length > 2
           ? (
-            <p>
+            <div>
               <button
                 type="button"
                 onClick={answerDisplay <= answers.length - 1
@@ -159,7 +163,7 @@ function QuestionsListItem({
                 {answerDisplay < answers.length ? 'See More Answers'
                   : 'Collapse Answers'}
               </button>
-            </p>
+            </div>
           )
           : <p> </p>}
         <hr />
