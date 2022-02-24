@@ -132,14 +132,14 @@ function QuestionsListItem({
               A:&nbsp;{answer}&nbsp;
               <AnswerBottomBar>
                 Name:&nbsp;{answersName[index]}&nbsp;&apos;&nbsp;
-                {dateFormatter(answersDate[index])}&nbsp;&apos;&nbsp;
+                {dateFormatter(answersDate[index])}&nbsp;&#124;&nbsp;
                 Helpful?&nbsp;
                 <Helpful
                   path="/qa/answers"
                   id={answersId[index]}
                   handleRefresh={handleRefresh}
                 />
-                ({answersHelpfulness[index]})&nbsp;&apos;&nbsp;
+                ({answersHelpfulness[index]})&nbsp;&#124;&nbsp;
                 <Report
                   path="/qa/answers"
                   id={answersId[index]}
