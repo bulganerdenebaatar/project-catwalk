@@ -14,7 +14,7 @@ const logAnalytics = (target, time, moduleName, stop = document.body) => {
 
   let node = target;
   while (node !== stop) {
-    if (node.getAttribute('data-analytics-id')) {
+    if (node?.getAttribute('data-analytics-id')) {
       key.push(node.getAttribute('data-analytics-id'));
     }
     node = node.parentElement;

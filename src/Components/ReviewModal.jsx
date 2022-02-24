@@ -37,6 +37,7 @@ const Form = Styled.form`
   max-height: 80vh;
   overflow-y: scroll;
   width: 50vw;
+  max-width: 400px;
   padding: 50px;
   border-style: solid;
   border-radius: 10px;
@@ -74,6 +75,11 @@ const ScaleEnds = Styled.div`
   display: flex;
   justify-content: center;
 `;
+const RatingStars = Styled.div`
+  font-size: 150%;
+  display: flex;
+  justify-content: center;
+`;
 const Wrap = Styled.div`
   display: flex;
   flex-direction: column;
@@ -105,14 +111,12 @@ function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
 
   return (
     <div className="characteristic-radio">
-      <LeftAligned>
+      <ScaleEnds>
         <p>
-          {characteristic}
-          {': '}
+          {characteristic}:&nbsp;
         </p>
-        {' '}
-        {charValue !== 0 ? <p>{radioButtonSettings[characteristic][charValue - 1]}</p> : <p />}
-      </LeftAligned>
+        {charValue !== 0 ? <p> {radioButtonSettings[characteristic][charValue - 1]}</p> : <p />}
+      </ScaleEnds>
       <ScaleEnds onChange={(e) => {
         setCharValue(Number(e.target.value));
         setReviewCharacteristics((p) => ({ ...p, [id]: Number(e.target.value) }));
@@ -131,7 +135,7 @@ function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
       <ScaleEnds>
         <div>
           {radioButtonSettings[characteristic][0]}
-          {' '}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           {radioButtonSettings[characteristic][4]}
         </div>
       </ScaleEnds>
@@ -214,17 +218,15 @@ function ReviewModal({ onDismiss, id }) {
             onChange={(e) => setOptions((p) => ({ ...p, body: e.target.value }))}
           />
         </SpacedLabel>
-        <SpacedLabel className="rating">
-          Rating:
-          <div
-            onClick={(e) => {
-              const update = Number(e.target.getAttribute('data-position'));
-              setOptions((p) => ({ ...p, rating: update }));
-            }}
-          >
-            <FiveStar rating={options.rating} />
-          </div>
-        </SpacedLabel>
+        <RatingStars
+          onClick={(e) => {
+            const update = Number(e.target.getAttribute('data-position'));
+            setOptions((p) => ({ ...p, rating: update }));
+          }}
+        >
+          Rating:&nbsp;
+          <FiveStar rating={options.rating} />
+        </RatingStars>
         <Wrap>
           {
             Object.entries(characteristics)
@@ -256,7 +258,7 @@ function ReviewModal({ onDismiss, id }) {
         </div>
         <HorizontalFlex>
           <button type="button" value="Cancel" onClick={onDismiss}>Cancel</button>
-          <input type="submit" value="Submit" />
+          <button type="submit" value="Submit">Submit</button>
           {/* <button type="button" value="Submit" onClick={formSubmit}>Submit</button> */}
         </HorizontalFlex>
       </Form>

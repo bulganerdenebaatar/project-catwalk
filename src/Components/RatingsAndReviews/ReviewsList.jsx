@@ -85,14 +85,14 @@ function ReviewsList() {
       {reviews.length > 0
       && (
       <ScrollDiv>
-        {starList.slice(0, displayNumber).map((review) => (
+        {starList.length > 0 ? starList.slice(0, displayNumber).map((review) => (
           <ReviewTile
             key={review.review_id}
             data-testid={`review-${review.review_id}`}
             handleRefresh={handleRefresh}
             review={review}
           />
-        ))}
+        )) : <div><br /><div>No written and unreported reviews for the selected ratings filters</div></div>}
       </ScrollDiv>
       )}
       <div>

@@ -14,6 +14,8 @@ const scaleEnds = {
 const Scale = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 80%;
 `;
 
 const IconInsideBar = styled.div`
@@ -22,7 +24,6 @@ const IconInsideBar = styled.div`
   position: relative;
   width: 100%;
   height 16px;
-  margin-bottom: 10px;
   background-color: grey;
   background-color: rgba(149, 141, 153, 0.6);
   border-radius: 10px;
