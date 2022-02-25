@@ -97,7 +97,7 @@ function AddToCart() {
       >
         {quantities.map((number) => {
           if (number <= stockQuantity && number <= 15) {
-            return <option label={number} value={number} />;
+            return <option label={number} value={number} key={number} />;
           }
           return null;
         })}
@@ -115,7 +115,7 @@ function AddToCart() {
         >
           {(sizeSelection === 'Select Size')
             ? <option label="Size" /> : null}
-          {sizes.map((size) => <option label={size} value={size} />)}
+          {sizes.map((size) => <option label={size} value={size} key={size} />)}
         </select>
         {stockQuantity ? quantityAndAddToCart : null}
       </div>

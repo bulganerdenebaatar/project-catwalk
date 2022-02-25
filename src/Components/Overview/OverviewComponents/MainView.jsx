@@ -1,12 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { Standard, standardBorder } from '../../../styles.js';
-import { product, styleOptions } from '../test_data/testdata.js';
 import MainViewScroller from './MainViewScroller.jsx';
 import MainViewImage from './MainViewImage.jsx';
 import ExpandedView from './ExpandedView.jsx';
 import { OverviewContext } from '../index.jsx';
-import loading from './assets/loading.gif';
 
 const ImageView = styled.div`
 
@@ -83,7 +81,7 @@ function MainView() {
 
   return (
     <ImageView>
-      <img src={loading} alt="loading..." />
+      <img src="./assets/loading.gif" alt="loading..." />
     </ImageView>
   );
 }
