@@ -132,9 +132,7 @@ function ProductCard({
                   type="button"
                   className="outfitBtnX"
                   onClick={() => {
-                    console.log(relatedProductsItem[index].id);
                     const k = relatedProductsItem[index].id;
-                    console.log('k: ', k);
                     addNewOutfit(k);
                   }}
                 >
@@ -145,7 +143,6 @@ function ProductCard({
                   className="star fa fa-star"
                   data-testid="full-star"
                   onClick={() => {
-                    console.log('Star clicked!');
                     openModal([product.product_id, productId]);
                   }}
                 />
