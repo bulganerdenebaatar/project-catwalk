@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { product } from '../test_data/testdata.js';
 import FiveStar from '../../FiveStar.jsx';
 import { GlobalContext } from '../../../App.jsx';
 import { OverviewContext } from '../index.jsx';
@@ -31,6 +30,7 @@ const ProductInformationStyle = styled.div`
 `;
 
 function ProductInformation() {
+
   const { closestQuarter } = useContext(GlobalContext).ratingsData;
   const { productInfo, salePrice } = useContext(OverviewContext);
 
