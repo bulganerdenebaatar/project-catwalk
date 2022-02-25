@@ -15,36 +15,14 @@ function OutfitList() {
   const [outfitsItem, setOutfitsItem] = useState([]);
   const [addNewOutfit, setAddNewOutfit] = useState(0);
 
-  const passedFunction = () => {
-    setAddNewOutfit((pv) => pv + 1);
+  const passedFunction = (id) => {
+    if (id > 1) {
+      setOutfits(outfits.filter((item) => item.id !== id));
+      setOutfitsItem(outfitsItem.filter((thing) => thing.product_id !== id.toString()));
+    } else {
+      setAddNewOutfit((pv) => pv + 1);
+    }
   };
-
-
-  // Working on taking outfits off list
-
-  // const passedFunction = (id) => {
-  //   if (id > 1) {
-  //     console.log('in passed func; id: ', id);
-  //     for (let i = 0; i <= outfits.length; i + 1) {
-  //       if (outfits[i].id === id) {
-  //         console.log('inside check; outfits[i].id ', outfits[i].id, 'id', id);
-  //         console.log('outfits: ', outfits[0], 'outfitsItem: ', outfitsItem[0]);
-  //         const fits = outfits.splice(i, 1);
-  //         const items = outfitsItem.splice(i, 1);
-  //         console.log('fits, items', fits, items);
-  //         setOutfits(fits);
-  //         setOutfitsItem(items);
-  //         console.log('AFTER SET; outfits: ', outfits, 'outfitsItem: ', outfitsItem);
-  //       }
-  //     }
-  //   } else {
-  //     console.log('adding new outfit in else statement');
-  //     setAddNewOutfit((pv) => pv + 1);
-  //   }
-  // };
-
-
-
 
   // Get current product and style
   useEffect(() => {
@@ -62,8 +40,7 @@ function OutfitList() {
 
   // Adds new outfit to outfits
   useEffect(() => {
-    if (currentProduct.id) {
-      // console.log('useEFFECT: currentProduct: ', currentProduct);
+    if (currentProduct.id && !outfits.some((e) => e.id === currentProduct.id)) {
       setOutfits((prevOutfits) => [...prevOutfits, currentProduct]);
       setOutfitsItem((prevItems) => [...prevItems, currentProductStyle]);
     }
@@ -71,18 +48,14 @@ function OutfitList() {
 
 
   return (
-    <>
-      <ListBehavior
-        relatedProducts={outfitsItem}
-        relatedProductsItem={outfits}
-        outfitPicks={1}
-        addNewOutfit={passedFunction}
-      />
-      <p>{console.log('inside OutfitList return statement; outfits: ', outfits)}</p>
-    </>
+    <ListBehavior
+      relatedProducts={outfitsItem}
+      relatedProductsItem={outfits}
+      outfitPicks={1}
+      addNewOutfit={passedFunction}
+    />
   );
 
 }
 
 export default OutfitList;
-
