@@ -6,7 +6,6 @@ const routes = require('./routes.js');
 const app = express();
 
 app.use(express.static(path.join(__dirname, '/../build')));
-// other configuration...
 
 app.use(express.json());
 app.use('/shopdata', routes);

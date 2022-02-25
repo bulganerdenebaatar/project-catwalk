@@ -14,10 +14,11 @@ import {
 // // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
-import Overview from './index';
-import App from '../../App.jsx';
+import Overview from '../index.jsx';
+import Styles from './Styles';
 
-test('Overview can render', () => {
-  render(<App><Overview /></App>);
-  expect(screen.getByTestId('overview')).toBeTruthy();
+test('The Styles component renders correctly', () => {
+  render(<Overview />);
+  render(<Styles />);
+  expect(screen.getByTestId('styles')).toBeTruthy();
 });
