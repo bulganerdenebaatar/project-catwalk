@@ -26,7 +26,7 @@ const FlexTopBar = Styled.div`
 `;
 
 const QuestionBody = Styled.div`
-  font-size: 150%;
+  font-size: 130%;
   margin: 10px;
 `;
 
