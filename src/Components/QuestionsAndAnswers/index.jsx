@@ -39,15 +39,13 @@ function QuestionsAndAnswers() {
       url: 'shopdata/qa/questions/',
       params: {
         count: 10,
-        product_id: 40348,
+        product_id: productId,
       },
     })
       .then((res) => {
         const sortedArr = res.data.results.sort((a, b) => (
           b.question_helpfulness - a.question_helpfulness
         ));
-        // setQuestionData(sortedArr);
-        // console.log('this is sortedArr', sortedArr);
         sortedArr.forEach((question) => {
           const answers = Object.values(question.answers);
           const answersBody = answers.map((answer) => answer.body);
@@ -68,7 +66,6 @@ function QuestionsAndAnswers() {
             answers_date: answersDate,
           });
         });
-        // console.log('this is questions array', questions);
         setQuestionData(questions);
         setSelected(questions);
       })
@@ -83,12 +80,7 @@ function QuestionsAndAnswers() {
     sortQuestions();
   };
 
-  // const handleSubmit = () => {
-  //   setSelected(selected.filter((element) => element.question.includes(searchInput)));
-  // };
   const handleSubmit = (e) => {
-    console.log('this is e', e);
-    console.log('this is questionData', questionData);
     e.preventDefault();
     if (!searchInput.length) {
       setSelected(questionData);
@@ -104,17 +96,6 @@ function QuestionsAndAnswers() {
     }
     setSelected(filteredSearch);
     setSearchInput('');
-    // const filteredQuestions = filteredSearch.length !== 0
-    //   ? setSelected(filteredSearch)
-    //   : window.alert('No Similar Questions Found');
-
-    // return (
-    //   searchInput.length === 0
-    //     ? () => (
-    //       setSelected(questionData)
-    //     )
-    //     : filteredQuestions
-    // );
   };
 
   return (
