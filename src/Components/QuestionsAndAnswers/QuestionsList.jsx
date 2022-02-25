@@ -11,13 +11,14 @@ const ScrollDiv = Styled.div`
   overflow-y: scroll;
   position: relative;
   margin-top: 10px;
-`;
+  `;
 
 const CenteredPane = Styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 800px;
+  width: 150%;
 `;
 
 function QuestionsList({ questions, handleRefresh }) {
