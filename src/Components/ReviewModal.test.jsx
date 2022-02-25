@@ -14,7 +14,7 @@ import {
 // // add custom jest matchers from jest-dom
 import '@testing-library/jest-dom';
 
-import ReviewTile from './ReviewTile';
+import ReviewModal from './ReviewModal';
 
 // Testing dummy data
 const review = {

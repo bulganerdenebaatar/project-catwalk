@@ -16,7 +16,8 @@ const Star = styled.span`
     top: 0;
     width: 100%;
     overflow: hidden;
-    color: yellow;
+    color: rgb(241,245,6);
+    color: linear-gradient(90deg, rgba(241,245,6,1) 1%, rgba(203,215,246,0.9066220238095238) 97%);
   }
 `;
 

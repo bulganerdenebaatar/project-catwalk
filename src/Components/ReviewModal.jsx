@@ -97,7 +97,6 @@ const LeftAligned = Styled.div`
 `;
 
 function CharacteristicFormatter(characteristic, id, setReviewCharacteristics) {
-  console.log(characteristic, id);
   const [charValue, setCharValue] = useState(0);
 
   const radioButtonSettings = {
