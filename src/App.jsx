@@ -31,30 +31,44 @@ body {
 
   button {
     background-color: rgba(255, 240, 240);
-    border: thin solid teal;
+    box-shadow: inset 0 0 20px rgba(120, 150, 150, 0.3);
+    border: 2px solid teal;
     border-radius: 15px;
     font-family: inherit;
+    font-weight: 500;
     margin: 5px;
-    padding: 5px;
+    padding: 7px;
 
     :hover{
-      background-color: rgb(255, 255, 255);
+      background-color: rgb(150, 200, 200);
       border-color: gold;
       cursor: pointer;
     }
     :active {
-      background-color: rgba(200, 255, 255, 0.9);
+      background-color: rgba(100, 150, 150, 0.9);
+      box-shadow: inset 0 0 3px rgb(30, 40, 40);
+      color: white;
     }
   }
   select {
-    border: thin solid teal;
+    font-weight: 500;
+    border: 2px solid teal;
     border-radius: 10px;
+    box-shadow: inset 0 0 20px rgba(120, 150, 150, 0.3);
     background-color: rgba(255, 240, 240);
     font-family: inherit;
+    padding: 7px;
+
     :hover {
-      background-color: rgb(255, 255, 255);
+      background-color: rgb(150, 200, 200);
       border-color: gold;
       cursor: pointer;
+    }
+
+    :active {
+      background-color: rgba(100, 150, 150, 0.9);
+      box-shadow: inset 0 0 3px rgb(30, 40, 40);
+      color: white;
     }
 }
 `;

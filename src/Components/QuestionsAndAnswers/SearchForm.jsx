@@ -10,12 +10,17 @@ const SearchStyle = Styled.form`
 
   input {
     background-color: rgba(200, 255, 255, 0.1);
+    color: inherit;
     border: none;
     padding-left: 20px;
     border-radius: 50px;
     width: content-min;
     font-family: inherit;
     height: 25px;
+
+    ::placeholder {
+      color: rgba(200, 200, 200, 0.8);
+    }
   }
 `;
 
@@ -35,7 +40,11 @@ function SearchForm({
         />
         <button
           type="button"
-          onClick={(e) => { e.preventDefault(); handleSubmit(); }}
+          onClick={
+            (e) => {
+              handleSubmit(e);
+            }
+          }
         >
           Search
         </button>
