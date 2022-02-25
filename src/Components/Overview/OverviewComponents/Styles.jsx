@@ -1,10 +1,7 @@
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import StyleName from './StyleName.jsx';
-import { styleOptions } from '../test_data/testdata.js';
 import { OverviewContext } from '../index.jsx';
-import loading from './assets/loading.gif';
-
 
 const StyleSelectors = styled.div`
   position: relative;
@@ -27,17 +24,13 @@ const StyleSelectors = styled.div`
   }
 `;
 
-const testStyles = styleOptions.results;
-
 function StyleSelection() {
   const { productStyles, currentStyleSelection } = useContext(OverviewContext);
 
-
-  console.log(productStyles);
   if (productStyles.length) {
     const [currentStyleName, setCurrentStyleName] = useState(productStyles[0].name);
     return (
-      <StyleSelectors>
+      <StyleSelectors data-testid="styles">
         <p className="style-name"><em>{currentStyleName}</em></p>
         {productStyles.map((style) => (
           <StyleName
@@ -55,7 +48,7 @@ function StyleSelection() {
   }
   return (
     <StyleSelectors>
-      <img src={loading} alt="loading..." />
+      <img src="./assets/loading.gif" alt="loading..." />
     </StyleSelectors>
   );
 }

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { styleOptions } from '../test_data/testdata.js';
 import { standardBGColor } from '../../../styles.js';
 
 const Scroller = styled.div`

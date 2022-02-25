@@ -28,11 +28,13 @@ const ProductInteractions = styled.div`
   display: grid;
   grid-template-rows: repeat(3, 0.3fr);
   width: fit-content;
+  margin-left: 2em;
 `;
 
 export const OverviewContext = createContext({});
 
 function Overview() {
+
   const { productId } = useContext(GlobalContext);
   const [currentMainImage, setCurrentMainImage] = useState('');
   const [currentStyleSelection, setCurrentStyleSelection] = useState([]);
@@ -43,7 +45,6 @@ function Overview() {
   const [salePrice, setSalePrice] = useState(0);
 
   useEffect(() => {
-    console.log(productId);
     axios.get(`shopdata/products/${productId}`)
       .then((res) => {
         setProductInfo(res.data);

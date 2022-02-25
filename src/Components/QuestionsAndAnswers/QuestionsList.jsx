@@ -5,19 +5,20 @@ import QuestionsListItem from './QuestionsListItem.jsx';
 import ExpandButton from './ExpandButton.jsx';
 import AskForm from './AskForm.jsx';
 
-// wrap buttons in enclosing style div using display flex
-
 const ScrollDiv = Styled.div`
   min-height: 40vh;
   max-height: 40vh;
   overflow-y: scroll;
-`;
+  position: relative;
+  margin-top: 10px;
+  `;
 
 const CenteredPane = Styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 800px;
+  width: 150%;
 `;
 
 function QuestionsList({ questions, handleRefresh }) {
