@@ -30,8 +30,17 @@ const GreenGrayProgress = styled.progress`
   }
 `;
 const Clickable = styled.div`
+  display: flex;
+  flex-direction: row;
   text-decoration: underline;
   cursor: pointer;
+`;
+const Active = styled.div`
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: rgb(220,174,238);
+  background: radial-gradient(circle, rgba(220,174,238,1) 0%, rgba(144,96,238,1) 100%);
 `;
 
 
@@ -42,20 +51,25 @@ function Breakdown() {
   // Each bar shows proportinally (green) how many of the reviews had this value
   // const numberOfRatings = Object.values(ratings);
   // const total = numberOfRatings.reduce((p, c) => p + Number(c), 0);
+  const starValues = [1, 2, 3, 4, 5];
+  starValues.forEach((num) => {
+    if (ratings[num] === undefined) {
+      ratings[num] = 0;
+    }
+  });
   const percents = Object.values(ratings).map((rating) => ((Number(rating) * 100) / numberOfRatings).toString());
   const filterBy = (star) => {
-    console.log('filter click');
     setStarFilter((p) => (
       !p.includes(star) ? [...p, star] : p.filter((item) => item !== star)
     ));
   };
-  const starValues = [1, 2, 3, 4, 5];
 
   return (
-    <div className="breakdown">
+    <div data-analytics-id="breakdown" className="breakdown">
       {
         starValues.map((value) => (
           <RatingBar
+            data-analytics-id={`${value}stars-rating-bar`}
             className="rating-bar"
             stars={value.toString()}
             number={ratings[value]}
@@ -78,14 +92,9 @@ function RatingBar({
 }) {
   return (
     <StarBar>
-      <Clickable onClick={onClick}>
-        {stars}
-        {' '}
-        Stars
-        {'  -  '}
-        {number}
-        {' '}
-        {active && '🟣'}
+      <Clickable data-analytics-id={`${stars}-stars`} onClick={onClick}>
+        {stars}&nbsp;Stars{'  -  '}{number}&nbsp;
+        {active && <Active />}
       </Clickable>
       <GreenGrayProgress max="100" value={percent}>
         {percent}

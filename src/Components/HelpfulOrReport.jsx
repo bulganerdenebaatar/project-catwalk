@@ -20,6 +20,7 @@ function Helpful({ path, id, handleRefresh }) {
   return (
     <button
       data-analytics-id="helpful"
+      data-testid="helpful"
       type="button"
       onClick={() => {
         helpfulOrReport(options)
@@ -51,6 +52,7 @@ function Report({ path, id, handleRefresh }) {
   return (
     <button
       data-analytics-id="report"
+      data-testid="report"
       type="button"
       onClick={() => {
         helpfulOrReport(options)

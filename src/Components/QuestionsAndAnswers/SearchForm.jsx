@@ -46,7 +46,7 @@ function SearchForm({
             }
           }
         >
-          Search
+          <i className="fa-solid fa-magnifying-glass" />&nbsp;Search
         </button>
       </form>
     </SearchStyle>

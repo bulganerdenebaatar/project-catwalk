@@ -69,13 +69,10 @@ function ReviewsList() {
 
 
   return (
-    <div>
+    <div data-analytics-id="review-list-pane">
       <div>
-        {reviews.length}
-        {' '}
-        reviews sorted by
-        {' '}
-        <select value={sort} onChange={handleChange}>
+        {reviews.length}&nbsp;reviews sorted by&nbsp;
+        <select data-analytics-id={`sort-${sort}`} value={sort} onChange={handleChange}>
           <option value="relevant">relevant</option>
           <option value="helpful">helpful</option>
           <option value="newest">newest</option>
@@ -85,22 +82,28 @@ function ReviewsList() {
       {reviews.length > 0
       && (
       <ScrollDiv>
-        {starList.slice(0, displayNumber).map((review) => (
+        {starList.length > 0 ? starList.slice(0, displayNumber).map((review) => (
           <ReviewTile
             key={review.review_id}
             data-testid={`review-${review.review_id}`}
             handleRefresh={handleRefresh}
             review={review}
           />
-        ))}
+        )) : <div><br /><div>No written and unreported reviews for the selected ratings filters</div></div>}
       </ScrollDiv>
       )}
       <div>
         <hr />
         {displayNumber < reviews.length
-        && <button type="button" onClick={updateDisplayNumber}>More Reviews</button>}
-        <button type="button" onClick={() => setShowModal(true)}>Add Review</button>
-        <button type="button" onClick={() => setStarFilter([])} disabled={!starFilter.length}>Clear Filters</button>
+        && <button data-analytics-id="more-reviews" type="button" onClick={updateDisplayNumber}>More Reviews</button>}
+        <button data-analytics-id="add-review" type="button" onClick={() => setShowModal(true)}>Add Review</button>
+        <button
+          data-analytics-id="clear"
+          type="button"
+          onClick={() => setStarFilter([])}
+          disabled={!starFilter.length}
+        >Clear Filters
+        </button>
         {showModal && <ReviewModal id={productId} onDismiss={() => setShowModal(false)} />}
       </div>
     </div>
