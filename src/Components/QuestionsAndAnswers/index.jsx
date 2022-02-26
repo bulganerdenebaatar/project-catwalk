@@ -48,6 +48,9 @@ function QuestionsAndAnswers() {
         ));
         sortedArr.forEach((question) => {
           const answers = Object.values(question.answers);
+          answers.sort((a, b) => (
+            b.helpfulness - a.helpfulness
+          ));
           const answersBody = answers.map((answer) => answer.body);
           const answersHelpfulness = answers.map((answer) => answer.helpfulness);
           const answersName = answers.map((answer) => answer.answerer_name);
