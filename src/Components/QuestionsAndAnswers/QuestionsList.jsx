@@ -64,7 +64,7 @@ function QuestionsList({ questions, handleRefresh }) {
             </p>
           )}
       </ScrollDiv>
-      <AskForm />
+      <AskForm handleRefresh={handleRefresh} />
     </CenteredPane>
   );
 }
