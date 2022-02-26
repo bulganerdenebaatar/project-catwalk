@@ -28,12 +28,8 @@ const ProductInformationStyle = styled.div`
     padding: 0;
   }
 
-  p {
-    margin: none;
-  }
-
   em {
-    color: red;
+    color: rgb(250, 50, 50);
     font-size: 0.75em;
     text-decoration: line-through;
   }
@@ -51,8 +47,8 @@ function ProductInformation() {
       <h4 className="overview-info category">{productInfo.category}</h4>
       <h3 className="overview-info price">
         { salePrice
-          ? (<p>${salePrice} <em>{productInfo.default_price}</em></p>)
-          : (<p>$ {productInfo.default_price}</p>)}
+          ? (<p>${salePrice} <em>was {productInfo.default_price}</em></p>)
+          : (<p>${productInfo.default_price}</p>)}
       </h3>
       <div className="overview-info description">{productInfo.description}</div>
     </ProductInformationStyle>
