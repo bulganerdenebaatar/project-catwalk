@@ -10,7 +10,7 @@ function Characteristics() {
   // tuple ['fit', {id: num, value: num}]
   return (
     <div>
-      {characteristicsAndValues.map((e) => <CharacteristicBar name={e[0]} value={e[1].value} />)}
+      {characteristicsAndValues.map((e) => <CharacteristicBar key={e[1].id} name={e[0]} value={e[1].value} />)}
     </div>
   );
 }

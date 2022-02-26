@@ -22,8 +22,6 @@ module.exports = {
   },
 
   postInfo: (req, res) => {
-    // console.log(req.url);
-    // console.log(req.body);
     const options = {
       method: 'post',
       url: `https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp${req.url}`,

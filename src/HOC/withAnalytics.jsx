@@ -14,15 +14,17 @@ const logAnalytics = (target, time, moduleName, stop = document.body) => {
 
   let node = target;
   while (node !== stop) {
-    if (node.getAttribute('data-analytics-id')) {
+    if (node?.getAttribute('data-analytics-id')) {
       key.push(node.getAttribute('data-analytics-id'));
     }
     node = node.parentElement;
   }
 
+  // Replace with API call down the road
   analytics.push([key.reverse().join(' '), time, moduleName]);
 };
 
+// This is a higher order component that will wrap your widgets index file
 const withAnalytics = (WrappedComponent, moduleName) => function ComponentWithAnalytics(props) {
   const stop = useRef(undefined);
 

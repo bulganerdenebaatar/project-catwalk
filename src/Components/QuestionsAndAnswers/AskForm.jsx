@@ -18,7 +18,7 @@ function AskForm({ questionId }) {
       {showModal
         && (
           <QuestionModal
-            id={40348}
+            id={productId}
             onDismiss={() => setShowModal(false)}
             route="/shopdata/qa/questions"
           />

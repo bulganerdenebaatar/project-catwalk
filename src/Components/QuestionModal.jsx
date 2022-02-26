@@ -5,6 +5,7 @@ import axios from 'axios';
 import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../App.jsx';
+import QuestionsListItem from './QuestionsAndAnswers/QuestionsListItem.jsx';
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -78,7 +79,9 @@ const Wrap = Styled.div`
   justify-content: space-between;
 `;
 
-function QuestionModal({ onDismiss, id, route }) {
+function QuestionModal({
+  onDismiss, id, route, handleRefresh,
+}) {
   const [options, setOptions] = useState({
     product_id: id,
     name: '',
@@ -93,6 +96,7 @@ function QuestionModal({ onDismiss, id, route }) {
       data: options,
     })
       .then((res) => {
+        handleRefresh();
         onDismiss();
       })
       .catch((err) => {
@@ -126,7 +130,7 @@ function QuestionModal({ onDismiss, id, route }) {
           <div>For authentication reasons, you will not be emailed</div>
         </SpacedLabel>
         <SpacedLabel className="body">
-          {}Answer:
+          { }Answer:
           <FormEntry
             value={options.body}
             required
@@ -150,6 +154,7 @@ function QuestionModal({ onDismiss, id, route }) {
 QuestionModal.proptypes = {
   onDismiss: PropTypes.func.isRequired,
   route: PropTypes.string.isRequired,
+  handleRefresh: PropTypes.func.isRequired,
 };
 
 export default QuestionModal;

@@ -7,7 +7,6 @@ function ExpandButton({
   updateDisplayNumber,
   collapseDisplayNumber,
 }) {
-  // console.log('this is questions props', props.questions);
   return (
     <button
       type="button"

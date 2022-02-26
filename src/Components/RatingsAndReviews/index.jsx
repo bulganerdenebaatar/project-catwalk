@@ -21,6 +21,7 @@ const Title = styled.h3`
   font-family: inherit;
   grid-column: 1 / span 3;
   grid-row-start: 1;
+  font-size: 200%;
 `;
 
 const LeftPane = styled.div`

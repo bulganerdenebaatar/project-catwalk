@@ -8,48 +8,55 @@ import { Helpful, Report } from '../HelpfulOrReport.jsx';
 
 const SpacedBody = Styled.div`
   overflow-wrap: anywhere;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 `;
-
 const StyledReview = Styled.div`
-  padding: 0px 10px 0px 10px;
-  margin: 10px 0px 10px 0px;
+  padding: 10px 10px 10px 10px;
+  margin: 12px 5px 12px 5px;
   border: black;
   background-color: rgba(220, 152, 245, 0.3);
+  box-shadow: 0px 0px 5px grey;
 `;
-
 const TopBar = Styled.div`
   display: flex;
   justify-content: space-between;
+  padding-top: 10px;
+  padding-bottom: 10px;
+`;
+const Opacity = Styled.div`
+  opacity: 0.6;
+`;
+const Summary = Styled.div`
+  font-size: 150%;
+  font-weight: 700;
 `;
 
 function ReviewTile({ review, handleRefresh }) {
   const {
-    review_id, rating, summary, response, body, date, helpfulness, photos, reviewer_name,
+    review_id, rating, summary, recommend, response, body, date, helpfulness, photos, reviewer_name,
   } = review;
 
   return (
     // eslint-disable-next-line react/destructuring-assignment
-    <StyledReview data-analytics-id={review.review_id}>
-      <TopBar>
+    <StyledReview data-analytics-id={review.review_id} data-testid="review-tile">
+      <TopBar data-testid="top-bar">
         <FiveStar rating={rating} />
-        <div>
-          {reviewer_name}
-          {' '}
-          {dateFormatter(date)}
-        </div>
+        <Opacity>
+          {reviewer_name}&nbsp;{dateFormatter(date)}
+        </Opacity>
       </TopBar>
-      <h3>{summary}</h3>
+      <Summary>{summary}</Summary>
       <SpacedBody>{body}</SpacedBody>
+      {response && <SpacedBody>Response from seller:&nbsp;{response}</SpacedBody>}
+      {recommend && <SpacedBody>{'\u2713'}&nbsp;I recommend this product</SpacedBody>}
       <div>{response}</div>
-      <div className="bottom-bar">
-        Helpful?
-        {' '}
+      <Opacity className="bottom-bar">
+        Helpful?&nbsp;
         <Helpful path="reviews" id={review_id} handleRefresh={handleRefresh} />
-        ({helpfulness})
-        {' | '}
+        ({helpfulness})&nbsp;&#124;
         <Report path="reviews" id={review_id} handleRefresh={handleRefresh} />
-      </div>
+      </Opacity>
     </StyledReview>
   );
 }
@@ -60,6 +67,7 @@ ReviewTile.propTypes = {
     review_id: PropTypes.number.isRequired,
     rating: PropTypes.number.isRequired,
     summary: PropTypes.string.isRequired,
+    recommend: PropTypes.bool.isRequired,
     response: PropTypes.string,
     body: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,

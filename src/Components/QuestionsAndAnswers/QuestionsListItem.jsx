@@ -26,7 +26,7 @@ const FlexTopBar = Styled.div`
 `;
 
 const QuestionBody = Styled.div`
-  font-size: 150%;
+  font-size: 130%;
   margin: 10px;
 `;
 
@@ -71,11 +71,9 @@ function QuestionsListItem({
   const [answerDisplay, setAnswerDisplay] = useState(2);
   const [showModal, setShowModal] = useState(false);
   const updateAnswerDisplay = () => {
-    // console.log('more answers');
     setAnswerDisplay((prev) => prev + 10);
   };
   const collapseAnswerDisplay = () => {
-    // console.log('collapse answers');
     setAnswerDisplay(2);
   };
 
@@ -122,6 +120,7 @@ function QuestionsListItem({
                 <QuestionModal
                   id={questionId}
                   onDismiss={() => setShowModal(false)}
+                  handleRefresh={handleRefresh}
                   route={`/shopdata/qa/questions/${questionId}/answers`}
                 />
               )}
