@@ -43,7 +43,6 @@ const Arrow = styled.span`
   font-size: 2em;
   position: relative;
   top: 33%;
-  width: 100%;
 `;
 
 let indexTracker = 0;
@@ -55,22 +54,33 @@ function MainViewScroller({ thumbs, setCurrentMainImage, currentMainImageIndex }
   const [thumbnailIndexRange, setThumbnailIndexRange] = useState([0, 7]);
 
   const LeftArrow = styled(Arrow)`
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
     content: &#Xf104;
-    left: 33%;
     color: rgba(80, 190, 250, ${currentMainImageIndex ? 1 : 0});
     text-shadow: 1px 1px rgba(20, 20, 20, ${currentMainImageIndex ? 1 : 0});
     :hover {
-      cursor:${currentMainImageIndex ? 'pointer' : 'auto'}
+      cursor:${currentMainImageIndex ? 'pointer' : 'auto'};
+      color: ${currentMainImageIndex ? 'gold' : 'none'};
+      text-shadow: 1px 1px rgba(70, 70, 20, ${currentMainImageIndex ? 0.8 : 0});
+    }
+    :active {
+      color: ${currentMainImageIndex ? 'rgb(170, 140, 20)' : 'none'};
     }
   `;
 
   const RightArrow = styled(Arrow)`
     content: &#Xf105;
-    left: 20%;
     color: rgba(80, 190, 250, ${(currentMainImageIndex === thumbs.length - 1) ? 0 : 1});
     text-shadow: 1px 1px rgba(20, 20, 20, ${(currentMainImageIndex === thumbs.length - 1) ? 0 : 1});
     :hover {
       cursor: ${(currentMainImageIndex === thumbs.length - 1) ? 'auto' : 'pointer'};
+      color: ${(currentMainImageIndex === thumbs.length - 1) ? 'none' : 'gold'};
+      text-shadow: 1px 1px rgba(70, 70, 20, ${(currentMainImageIndex === thumbs.length - 1) ? 0 : 0.8});
+    }
+    :active {
+      color: ${(currentMainImageIndex === thumbs.length - 1) ? 'none' : 'rgb(170, 140, 20)'};
     }
   `;
 
