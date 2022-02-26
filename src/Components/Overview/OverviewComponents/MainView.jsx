@@ -51,7 +51,9 @@ function MainView() {
 
   const toggleExpandView = (e) => {
     e.preventDefault();
-    setExpandView(!expandView);
+    if (!e.target.className.length) {
+      setExpandView(!expandView);
+    }
   };
 
   if (currentMainImage) {
@@ -72,6 +74,9 @@ function MainView() {
             <ExpandedView
               currentImage={currentMainImage}
               handleClick={toggleExpandView}
+              thumbs={currentImageThumbs}
+              setCurrentMainImage={setCurrentMainImage}
+              currentMainImageIndex={currentMainImage[1]}
             />
           )
           : null}
