@@ -120,6 +120,7 @@ function QuestionsListItem({
                 <QuestionModal
                   id={questionId}
                   onDismiss={() => setShowModal(false)}
+                  handleRefresh={handleRefresh}
                   route={`/shopdata/qa/questions/${questionId}/answers`}
                 />
               )}
