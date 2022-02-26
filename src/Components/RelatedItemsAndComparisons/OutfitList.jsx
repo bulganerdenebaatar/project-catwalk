@@ -11,8 +11,14 @@ function OutfitList() {
   const { productId, setProductId } = useContext(GlobalContext);
   const [currentProduct, setCurrentProduct] = useState({});
   const [currentProductStyle, setCurrentProductStyle] = useState([]);
-  const [outfits, setOutfits] = useState([]);
-  const [outfitsItem, setOutfitsItem] = useState([]);
+  const [outfits, setOutfits] = useState(() => {
+    const localOutfits = localStorage.getItem('outfits');
+    return localOutfits ? JSON.parse(localOutfits) : [];
+  });
+  const [outfitsItem, setOutfitsItem] = useState(() => {
+    const localOutfitsItem = localStorage.getItem('outfitsItem');
+    return localOutfitsItem ? JSON.parse(localOutfitsItem) : [];
+  });
   const [addNewOutfit, setAddNewOutfit] = useState(0);
 
   const passedFunction = (id) => {
@@ -45,6 +51,12 @@ function OutfitList() {
       setOutfitsItem((prevItems) => [...prevItems, currentProductStyle]);
     }
   }, [addNewOutfit]);
+
+  // Handles local storage
+  useEffect(() => {
+    localStorage.setItem('outfits', JSON.stringify(outfits));
+    localStorage.setItem('outfitsItem', JSON.stringify(outfitsItem));
+  }, [outfitsItem]);
 
 
   return (
