@@ -107,15 +107,15 @@ function ExpandedView({
   return (
     <Modal onClick={handleClick}>
       <LeftArrow
-        data-analytics-id="scroll-left"
+        data-analytics-id="scroll-left-expanded-view"
         className="fas fa-angle-left fa-lg"
         type="button"
         value="left"
         onClick={() => handleArrowClick('prev')}
       />
-      <img src={currentImage} alt="expanded view enabled" />
+      <img src={currentImage} alt="expanded view enabled" data-analytics-id="expanded-view-toggled-off" />
       <RightArrow
-        data-analytics-id="scroll-right"
+        data-analytics-id="scroll-right-expanded-view"
         className="fas fa-angle-right fa-lg"
         type="button"
         value="right"

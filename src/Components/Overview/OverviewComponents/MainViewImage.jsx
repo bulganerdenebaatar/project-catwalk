@@ -23,6 +23,7 @@ function MainViewImage({ currentImage, handleClick }) {
       <img
         src={currentImage}
         alt="The product currently being showcased"
+        data-analytics-id="expanded-view-toggled-on"
       />
     </Expand>
   );

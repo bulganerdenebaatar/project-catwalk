@@ -27,6 +27,12 @@ const ProductInformationStyle = styled.div`
     margin-top: 10px;
     padding: 0;
   }
+
+  em {
+    color: rgb(250, 50, 50);
+    font-size: 0.75em;
+    text-decoration: line-through;
+  }
 `;
 
 function ProductInformation() {
@@ -40,8 +46,9 @@ function ProductInformation() {
       <FiveStar className="overview-info stars" rating={closestQuarter} />
       <h4 className="overview-info category">{productInfo.category}</h4>
       <h3 className="overview-info price">
-        $
-        {salePrice || productInfo.default_price}
+        { salePrice
+          ? (<p>${salePrice} <em>was {productInfo.default_price}</em></p>)
+          : (<p>${productInfo.default_price}</p>)}
       </h3>
       <div className="overview-info description">{productInfo.description}</div>
     </ProductInformationStyle>
