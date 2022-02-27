@@ -130,7 +130,7 @@ function QuestionModal({
           <div>For authentication reasons, you will not be emailed</div>
         </SpacedLabel>
         <SpacedLabel className="body">
-          { }Answer:
+          { }{route === '/shopdata/qa/questions' ? 'Question' : 'Answer'}
           <FormEntry
             value={options.body}
             required

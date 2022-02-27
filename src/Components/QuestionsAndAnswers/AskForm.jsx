@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import QuestionModal from '../QuestionModal.jsx';
 import { GlobalContext } from '../../App.jsx';
 
-function AskForm({ questionId }) {
+function AskForm({ questionId, handleRefresh }) {
   const [showModal, setShowModal] = useState(false);
   const { productId } = useContext(GlobalContext);
 
@@ -20,6 +20,7 @@ function AskForm({ questionId }) {
           <QuestionModal
             id={productId}
             onDismiss={() => setShowModal(false)}
+            handleRefresh={handleRefresh}
             route="/shopdata/qa/questions"
           />
         )}
@@ -29,6 +30,7 @@ function AskForm({ questionId }) {
 
 AskForm.propTypes = {
   questionId: PropTypes.number.isRequired,
+  handleRefresh: PropTypes.func.isRequired,
 };
 
 export default AskForm;
